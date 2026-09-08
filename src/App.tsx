@@ -14,7 +14,13 @@ import { ResultView } from "./components/ResultView";
 import { DEFAULT_PARAMS } from "./constants";
 import { HARDWARE_PROFILES, loadHardwareId, saveHardwareId } from "./hardware";
 import { findBlockedTerm } from "./lib/safety";
-import { applyPreset, findPresetCheckpoint, MODEL_PRESETS } from "./model-presets";
+import {
+  applyPreset,
+  findPresetCheckpoint,
+  mergeHardwarePreset,
+  MODEL_PRESETS,
+  preferredPresetId,
+} from "./model-presets";
 import type {
   ComfyStatus,
   GenerateParams,
@@ -48,7 +54,9 @@ export function App() {
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [zoomUrl, setZoomUrl] = useState("");
   const [meta, setMeta] = useState<GenerationMeta | null>(null);
-  const [modelPresetId, setModelPresetId] = useState<ModelPresetId>("ponyV6");
+  const [modelPresetId, setModelPresetId] = useState<ModelPresetId>(() =>
+    preferredPresetId(loadHardwareId()),
+  );
 
   useEffect(() => {
     let stop = false;
@@ -60,7 +68,10 @@ export function App() {
           ...prev,
           checkpoint:
             prev.checkpoint ||
-            findPresetCheckpoint(MODEL_PRESETS.ponyV6, next.checkpoints) ||
+            findPresetCheckpoint(
+              MODEL_PRESETS[preferredPresetId(hwId)],
+              next.checkpoints,
+            ) ||
             next.checkpoints[0],
         }));
       }
@@ -74,14 +85,8 @@ export function App() {
     const next = HARDWARE_PROFILES[id];
     setHwId(id);
     saveHardwareId(id);
-    setParams((prev) => ({
-      ...prev,
-      prompt: next.defaultPrompt,
-      negativePrompt: next.defaultNegative,
-      ...next.sizeByAspect.portrait,
-      steps: next.defaultSteps,
-      cfg: next.defaultCfg,
-    }));
+    setModelPresetId(preferredPresetId(id));
+    setParams((prev) => mergeHardwarePreset(prev, next, status.checkpoints));
   };
 
   const onModelPresetChange = (id: ModelPresetId) => {

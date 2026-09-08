@@ -1,6 +1,26 @@
-import type { GenerateParams, ModelPreset, ModelPresetId } from "./types";
+import type {
+  GenerateParams,
+  HardwareId,
+  HardwareProfile,
+  ModelPreset,
+  ModelPresetId,
+} from "./types";
 
 export const MODEL_PRESETS: Record<ModelPresetId, ModelPreset> = {
+  dreamShaper8: {
+    id: "dreamShaper8",
+    label: "1660S · DreamShaper 8",
+    description: "SD1.5 约 2GB；6GB 显存主推，用自然语言提示词，不要写 score_9。",
+    checkpointIncludes: ["dreamshaper_8_pruned", "dreamshaper_8"],
+    width: 512,
+    height: 768,
+    steps: 24,
+    cfg: 6,
+    clipSkip: 2,
+    sampler: "euler_ancestral",
+    scheduler: "normal",
+    minVramGb: 6,
+  },
   ponyV6: {
     id: "ponyV6",
     label: "Pony V6 · 二次元/通用",
@@ -31,7 +51,33 @@ export const MODEL_PRESETS: Record<ModelPresetId, ModelPreset> = {
   },
 };
 
-export const MODEL_PRESET_IDS: ModelPresetId[] = ["ponyV6", "cyberRealisticPony"];
+export const MODEL_PRESET_IDS: ModelPresetId[] = [
+  "dreamShaper8",
+  "ponyV6",
+  "cyberRealisticPony",
+];
+
+export function preferredPresetId(hwId: HardwareId): ModelPresetId {
+  return hwId === "gtx1660s" ? "dreamShaper8" : "ponyV6";
+}
+
+export function mergeHardwarePreset(
+  prev: GenerateParams,
+  profile: HardwareProfile,
+  checkpoints: string[],
+): GenerateParams {
+  const preset = MODEL_PRESETS[preferredPresetId(profile.id)];
+  const checkpoint = findPresetCheckpoint(preset, checkpoints);
+  const withHw: GenerateParams = {
+    ...prev,
+    prompt: profile.defaultPrompt,
+    negativePrompt: profile.defaultNegative,
+    ...profile.sizeByAspect.portrait,
+    steps: profile.defaultSteps,
+    cfg: profile.defaultCfg,
+  };
+  return checkpoint ? applyPreset(withHw, preset, checkpoint) : withHw;
+}
 
 export function findPresetCheckpoint(
   preset: ModelPreset,

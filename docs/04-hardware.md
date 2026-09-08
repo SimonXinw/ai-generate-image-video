@@ -11,7 +11,7 @@
 ## 机器 B（文档撰写时用户坐的这台）
 
 - CPU：R5 9600X · GPU：GTX 1660 Super **6GB** · 内存 64GB
-- 适合：SD1.5 最稳；Pony/SDXL 仅 640 + `--lowvram`，会慢
+- 适合：SD1.5（DreamShaper 8）最稳；Pony/SDXL 不要当默认
 - 不适合：Flux、视频
 - 启动：`scripts/start-comfyui-1660s.ps1`（必须 `--lowvram`）
 - 页面档：`gtx1660s`

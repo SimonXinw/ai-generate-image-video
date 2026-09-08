@@ -10,7 +10,7 @@
 | 页面选项 | 硬件 | 启动脚本 | 默认分辨率 |
 |----------|------|----------|------------|
 | 机器 A · 2080 Super | R5 5600 · RTX 2080S **8GB** · 32G | `scripts/start-comfyui-2080s.ps1` | 768×1152 |
-| 机器 B · 1660 Super | R5 9600X · GTX 1660S **6GB** · 64G | `scripts/start-comfyui-1660s.ps1` | 640×960 |
+| 机器 B · 1660 Super | R5 9600X · GTX 1660S **6GB** · 64G | `scripts/start-comfyui-1660s.ps1` | 512×768 |
 
 1660S 必须加 `--lowvram`。瓶颈是显存，不是 CPU/内存。
 
@@ -30,6 +30,7 @@
 | [docs/09-prompt-keywords.md](docs/09-prompt-keywords.md) | 提示词存档 v1–v8 |
 | [docs/10-cyberrealistic-pony.md](docs/10-cyberrealistic-pony.md) | **2080S 成人写实模型安装与参数** |
 | [docs/11-prompt-keywords-v9-v11.md](docs/11-prompt-keywords-v9-v11.md) | 提示词存档 v9–v11 与草稿 |
+| [docs/12-dreamshaper-1660s.md](docs/12-dreamshaper-1660s.md) | **1660S DreamShaper 8 安装与参数** |
 
 ## 以后真正开跑时（摘要）
 
@@ -46,7 +47,8 @@ npm run dev
 
 ## 模型方案
 
-- Pony V6：二次元/通用，使用现有 `score_9` 提示词。
+- DreamShaper 8：SD1.5，机器 B（1660S 6GB）主推。
+- Pony V6：二次元/通用，使用现有 `score_9` 提示词；机器 A。
 - CyberRealistic Pony v18：成人写实，仍兼容 Pony 标签；机器 A 推荐。
 
 提示词不再堆进 README，统一存档到 `docs/09-*` 和 `docs/11-*`。

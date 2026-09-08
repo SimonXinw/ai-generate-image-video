@@ -57,6 +57,9 @@ Comfy 未开时页面会提示先跑 start 脚本。
 机器 A 要写实真人：选“成人写实 · CyberRealistic Pony”，详细说明见
 [`docs/10-cyberrealistic-pony.md`](10-cyberrealistic-pony.md)。
 
+机器 B 用 SD1.5：选“1660S · DreamShaper 8”，见
+[`docs/12-dreamshaper-1660s.md`](12-dreamshaper-1660s.md)。
+
 ## 4. 自检
 
 - 浏览器打开 `http://127.0.0.1:8188` 能进 Comfy。

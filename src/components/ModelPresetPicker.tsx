@@ -40,9 +40,14 @@ export function ModelPresetPicker({
           );
         })}
       </div>
+      {!findPresetCheckpoint(MODEL_PRESETS.dreamShaper8, checkpoints) ? (
+        <p className="muted small">
+          1660S 请先下载 DreamShaper 8，再重启 ComfyUI。
+        </p>
+      ) : null}
       {!findPresetCheckpoint(MODEL_PRESETS.cyberRealisticPony, checkpoints) ? (
         <p className="muted small">
-          写实模型未出现时，执行下载脚本并重启 ComfyUI。
+          2080S 写实模型未出现时，执行对应下载脚本并重启 ComfyUI。
         </p>
       ) : null}
     </section>

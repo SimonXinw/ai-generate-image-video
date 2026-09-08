@@ -6,7 +6,8 @@
 
 - 前端代码已在仓库里。
 - ComfyUI 目标路径 `vendor/ComfyUI`（已 gitignore），当前机器 A 已安装并固定兼容版本。
-- 已授权安装 CyberRealistic Pony v18；其他模型未接到明确指令前仍不要下载。
+- 已授权安装 CyberRealistic Pony v18；1660S 主推 DreamShaper 8。
+  其他模型未接到明确指令前仍不要下载。
 - 两台物理机：2080S 8G、1660S 6G。先问用户现在坐的是哪一台；不问就按 `docs/04-hardware.md` 两套都写好命令。
 
 ## 允许做
@@ -31,7 +32,8 @@
 2. 确认本机 GPU（`nvidia-smi`）：8G → 2080S 脚本；6G → 1660S 脚本。
 3. 做 `docs/01-setup.md`，直到 `vendor/ComfyUI/main.py` 存在且 venv 能 `python main.py --help`。
    - **1660S 已验证组合**：ComfyUI **v0.3.26** + Python 3.11 + torch 2.6.0+cu124。最新 master 可能因 `comfy_kitchen` 起不来，见 `docs/08-run-1660s.md`。
-4. 仅当用户要模型：打开 `docs/02-models.md`；机器 A 写实款见 `docs/10-cyberrealistic-pony.md`。
+4. 仅当用户要模型：打开 `docs/02-models.md`；机器 A 写实款见
+   `docs/10-cyberrealistic-pony.md`；机器 B 见 `docs/12-dreamshaper-1660s.md`。
 5. 做 `docs/03-run.md` 或直接 `docs/08-run-1660s.md`。前端页面切到对应机器档。
 6. 验证：`GET http://127.0.0.1:8188/object_info` 能返回；页面能列出 checkpoint。
 7. 在对应机器填 `docs/05-inventory.md` 模板。模型权重绝不进 Git；模型文件名可按用户要求写入安装文档。

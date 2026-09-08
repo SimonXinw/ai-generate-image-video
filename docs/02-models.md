@@ -36,8 +36,8 @@ CyberRealistic Pony 安装、许可证、参数和烟测见
 已验证可直链（Hugging Face，无需登录）：
 
 1. **DreamShaper 8 pruned**（主推，NSFW 友好）  
-   `https://huggingface.co/Lykon/DreamShaper/resolve/main/DreamShaper_8_pruned.safetensors`  
-   保存为：`vendor/ComfyUI/models/checkpoints/DreamShaper_8_pruned.safetensors`
+   安装、校验与 UI 方案见 [`docs/12-dreamshaper-1660s.md`](12-dreamshaper-1660s.md)。  
+   脚本：`scripts/download-dreamshaper.ps1`
 2. 可选写实：`Realistic_Vision_V5.1_fp16-no-ema.safetensors`  
    来自 `SG161222/Realistic_Vision_V5.1_noVAE`
 

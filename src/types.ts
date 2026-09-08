@@ -99,7 +99,7 @@ export type SizePresetsProps = {
   onChange: (next: GenerateParams) => void;
 };
 
-export type ModelPresetId = "ponyV6" | "cyberRealisticPony";
+export type ModelPresetId = "ponyV6" | "cyberRealisticPony" | "dreamShaper8";
 
 export type ModelPreset = {
   id: ModelPresetId;

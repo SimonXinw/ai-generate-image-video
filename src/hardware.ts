@@ -62,9 +62,9 @@ export const PROFILE_1660S: HardwareProfile = {
     "auto",
   ],
   recommendedModels: [
-    "DreamShaper 8（已推荐，NSFW 友好）",
-    "Realistic Vision 等 SD1.5；512–640 最稳",
-    "Pony/SDXL 仅试探；Flux 不推荐",
+    "DreamShaper 8（UI 方案「1660S · DreamShaper 8」）",
+    "Realistic Vision 等 SD1.5；512×768 最稳",
+    "Pony/SDXL 不要当默认；Flux 不推荐",
   ],
   defaultPrompt:
     "beautiful adult woman, looking at viewer, detailed face, natural lighting",
