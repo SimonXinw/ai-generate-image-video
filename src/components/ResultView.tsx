@@ -1,14 +1,4 @@
-import type { HistoryItem } from "../types";
-
-type Props = {
-  imageUrl: string;
-  error: string;
-  seed: number | null;
-  history: HistoryItem[];
-  onPick: (item: HistoryItem) => void;
-  onReuseSeed: (seed: number) => void;
-  onZoom: (url: string) => void;
-};
+import type { ResultViewProps } from "../types";
 
 export function ResultView({
   imageUrl,
@@ -18,7 +8,7 @@ export function ResultView({
   onPick,
   onReuseSeed,
   onZoom,
-}: Props) {
+}: ResultViewProps) {
   return (
     <section className="card result">
       {error ? <p className="err status-line">{error}</p> : null}

@@ -8,7 +8,7 @@ export const PROFILE_2080S: HardwareProfile = {
   gpu: "RTX 2080 Super 8GB",
   ram: "32GB",
   vramGb: 8,
-  imageOk: "Pony XL / SDXL + LoRA 可跑（768 竖图稳）",
+  imageOk: "Pony XL / CyberRealistic Pony 可跑（8G 单张）",
   fluxNote: "Flux / CHROMA 全精度不够；GGUF 量化能试，会很慢",
   videoNote: "图生视频基本不够，建议 24GB 显存",
   buyIfWantMore: "舒服跑 Flux：4060 Ti 16G / 3080 12G；视频：3090/4090 24G",
@@ -22,8 +22,8 @@ export const PROFILE_2080S: HardwareProfile = {
     "auto",
   ],
   recommendedModels: [
-    "Pony Diffusion V6 XL（主推）",
-    "SDXL + NSFW LoRA",
+    "CyberRealistic Pony v18（成人写实主推）",
+    "Pony Diffusion V6 XL（二次元/通用）",
     "勿优先全精度 Flux",
   ],
   defaultPrompt:

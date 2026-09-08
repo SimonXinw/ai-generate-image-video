@@ -1,11 +1,6 @@
-import type { ProgressState } from "../types";
+import type { ProgressPanelProps } from "../types";
 
-type Props = {
-  busy: boolean;
-  progress: ProgressState | null;
-};
-
-export function ProgressPanel({ busy, progress }: Props) {
+export function ProgressPanel({ busy, progress }: ProgressPanelProps) {
   if (!busy || !progress) return null;
   const percent = progress.percent;
   return (

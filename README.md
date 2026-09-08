@@ -1,7 +1,7 @@
 # 本地无审查出图
 
 本仓库是 **ComfyUI 本机出图 + 手机端网页**。不接在线平台，内容由本机模型决定。  
-**现在不要下载模型。** 模型清单和放置路径写在 `docs/`，以后让 AI 按文档执行即可。
+模型权重只存在本机并由 Git 忽略；安装清单和校验信息写在 `docs/`。
 
 仓库名含 video，当前 **只做本地文生图**。视频见 `docs/07-known-gaps.md`。
 
@@ -27,6 +27,9 @@
 | [docs/06-prompts.md](docs/06-prompts.md) | Pony / SD1.5 / SDXL 提示词不要混；含已验证写实向配方 |
 | [docs/07-known-gaps.md](docs/07-known-gaps.md) | 已修问题、未做能力、建议实现顺序 |
 | [docs/08-run-1660s.md](docs/08-run-1660s.md) | **1660S 开跑手册（照着启动）** |
+| [docs/09-prompt-keywords.md](docs/09-prompt-keywords.md) | 提示词存档 v1–v8 |
+| [docs/10-cyberrealistic-pony.md](docs/10-cyberrealistic-pony.md) | **2080S 成人写实模型安装与参数** |
+| [docs/11-prompt-keywords-v9-v11.md](docs/11-prompt-keywords-v9-v11.md) | 提示词存档 v9–v11 与草稿 |
 
 ## 以后真正开跑时（摘要）
 
@@ -41,22 +44,12 @@ npm run dev
 
 浏览器：`http://127.0.0.1:5173`，先选对「当前机子配置」。
 
-## 已验证提示词（Pony · 2080S · 写实）
+## 模型方案
 
-机器 A、checkpoint `ponyDiffusionV6XL_v6StartWithThisOne.safetensors`、竖图 **768×1152**。  
-要点：抬头、脸必须入画；从大腿之间往上看脸；去衣。完整说明见 [docs/06-prompts.md](docs/06-prompts.md)。
+- Pony V6：二次元/通用，使用现有 `score_9` 提示词。
+- CyberRealistic Pony v18：成人写实，仍兼容 Pony 标签；机器 A 推荐。
 
-正向：
-
-```text
-score_9, score_8_up, score_7_up, rating_explicit, source_photo, photorealistic, realistic photo, beautiful adult woman, looking at viewer, head tilted back, face clearly visible, full view from vulva to face, long wavy blue hair, deep phoenix-like eyes, detailed face, completely nude, bare breasts, pink nipples, D-cup breasts, dimples, natural skin texture, natural lighting, soft daylight, legs spread 45 degrees toward both bottom corners, thighs open, vagina facing the viewer, slightly enlarged vaginal opening, camera between the thighs looking up toward the face, abalone-shaped clitoris, detailed labia, detailed vulva, vertical navel, natural body lines
-```
-
-负向：
-
-```text
-score_4, score_5, score_6, blurry, lowres, jpeg artifacts, overexposed, underexposed, plastic skin, doll-like, anime, cartoon, illustration, 3d render, extra fingers, fused fingers, bad hands, bad anatomy, deformed, asymmetric eyes, watermark, text, logo, clothes, clothing, dressed, bikini, bra, panties, swimsuit, cropped head, head out of frame, face obscured, no face, child, loli, shota, underage, teen
-```
+提示词不再堆进 README，统一存档到 `docs/09-*` 和 `docs/11-*`。
 
 ## 硬红线
 

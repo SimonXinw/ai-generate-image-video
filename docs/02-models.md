@@ -18,14 +18,16 @@
 
 ### 机器 A · 2080 Super 8GB（必下）
 
-Civitai 搜索：
-
-1. `Pony Diffusion V6 XL` — 主 checkpoint（约 6–7GB）
-2. 可选：`pony nsfw lora` 或角色 LoRA，各几十到几百 MB
+1. `Pony Diffusion V6 XL` — 二次元/通用 Pony checkpoint（已验证）
+2. `CyberRealistic Pony v18 CoreShift FP16` — 成人写实主推（约 6.46 GiB）
+3. 可选：Pony 角色或风格 LoRA，各几十到几百 MB
 
 不要作为默认去下：全精度 Flux、CHROMA 全量、视频大模型。
 
-出图默认：768×1152，clip skip 2，步数 22。Pony 提示词可带 `score_9, score_8_up, score_7_up`。
+CyberRealistic Pony 安装、许可证、参数和烟测见
+[`docs/10-cyberrealistic-pony.md`](10-cyberrealistic-pony.md)。
+两款都兼容 `score_9, score_8_up, score_7_up`，但写实款推荐
+832×1216、CLIP Skip 2、30 steps、CFG 5、DPM++ 2M Karras。
 
 ### 机器 B · 1660 Super 6GB（必下）
 
@@ -49,7 +51,7 @@ Civitai 搜 `nsfw sd1.5` / `undress` 可再找更「去衣」的 merge（要账�
 
 | 搜索词 | 说明 | 建议显存 |
 |--------|------|----------|
-| `Juggernaut XL` / `RealVis XL` | 写实 SDXL | 8GB 可试，6GB 不优先 |
+| `Juggernaut XL` / `RealVis XL` | 通用写实 SDXL；需重写为自然语言提示词 | 8GB 可试，6GB 不优先 |
 | `aidmaNSFWunlock` / `Flux NSFW LoRA` | 给 Flux 解锁 | 需先有 Flux，12GB+ 再考虑 |
 | `CHROMA` / `Fluxed Up` / `Lustify` | 写实无审查 Flux 系 | 12GB+ |
 | `Z-Image Turbo NSFW` | 若社区仍提供 | 看体积，6GB 不优先 |

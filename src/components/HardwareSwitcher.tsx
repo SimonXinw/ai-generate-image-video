@@ -1,13 +1,8 @@
 import { useState } from "react";
-import type { HardwareId, HardwareProfile } from "../types";
 import { HARDWARE_IDS, HARDWARE_PROFILES } from "../hardware";
+import type { HardwareSwitcherProps } from "../types";
 
-type Props = {
-  profile: HardwareProfile;
-  onChange: (id: HardwareId) => void;
-};
-
-export function HardwareSwitcher({ profile, onChange }: Props) {
+export function HardwareSwitcher({ profile, onChange }: HardwareSwitcherProps) {
   const [open, setOpen] = useState(false);
   return (
     <section className="card switcher">

@@ -98,3 +98,67 @@ export type SizePresetsProps = {
   params: GenerateParams;
   onChange: (next: GenerateParams) => void;
 };
+
+export type ModelPresetId = "ponyV6" | "cyberRealisticPony";
+
+export type ModelPreset = {
+  id: ModelPresetId;
+  label: string;
+  description: string;
+  checkpointIncludes: string[];
+  width: number;
+  height: number;
+  steps: number;
+  cfg: number;
+  clipSkip: number;
+  sampler: string;
+  scheduler: string;
+  minVramGb: number;
+};
+
+export type ModelPresetPickerProps = {
+  activeId: ModelPresetId;
+  checkpoints: string[];
+  vramGb: number;
+  onChange: (id: ModelPresetId) => void;
+};
+
+export type ImageOptionsProps = {
+  params: GenerateParams;
+  onChange: (next: GenerateParams) => void;
+};
+
+export type ResultViewProps = {
+  imageUrl: string;
+  error: string;
+  seed: number | null;
+  history: HistoryItem[];
+  onPick: (item: HistoryItem) => void;
+  onReuseSeed: (seed: number) => void;
+  onZoom: (url: string) => void;
+};
+
+export type PromptFormProps = {
+  params: GenerateParams;
+  profile: HardwareProfile;
+  checkpoints: string[];
+  loras: string[];
+  busy: boolean;
+  onChange: (next: GenerateParams) => void;
+  onSubmit: () => void;
+};
+
+export type ProgressPanelProps = {
+  busy: boolean;
+  progress: ProgressState | null;
+};
+
+export type HardwareSwitcherProps = {
+  profile: HardwareProfile;
+  onChange: (id: HardwareId) => void;
+};
+
+export type HardwareBannerProps = {
+  comfyMessage: string;
+  comfyOk: boolean;
+};

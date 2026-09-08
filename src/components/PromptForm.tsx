@@ -1,15 +1,7 @@
-import type { GenerateParams, HardwareProfile, OutfitId } from "../types";
+import { InfoTip } from "./InfoTip";
 import { OUTFIT_CHIPS, OUTFIT_NEG } from "../presets";
-
-type Props = {
-  params: GenerateParams;
-  profile: HardwareProfile;
-  checkpoints: string[];
-  loras: string[];
-  busy: boolean;
-  onChange: (next: GenerateParams) => void;
-  onSubmit: () => void;
-};
+import { TIPS } from "../tips";
+import type { GenerateParams, OutfitId, PromptFormProps } from "../types";
 
 export function PromptForm({
   params,
@@ -19,7 +11,7 @@ export function PromptForm({
   busy,
   onChange,
   onSubmit,
-}: Props) {
+}: PromptFormProps) {
   const set = (patch: Partial<GenerateParams>) => onChange({ ...params, ...patch });
   const p = profile.sizeByAspect.portrait;
   const s = profile.sizeByAspect.square;
@@ -76,7 +68,9 @@ export function PromptForm({
         />
       </label>
       <label>
-        模型
+        <span className="field-label">
+          模型 <InfoTip text={TIPS.checkpoint} />
+        </span>
         <select value={params.checkpoint} onChange={(e) => set({ checkpoint: e.target.value })}>
           {checkpoints.length === 0 ? (
             <option value="">先启动 ComfyUI</option>
@@ -90,7 +84,9 @@ export function PromptForm({
         </select>
       </label>
       <label>
-        LoRA
+        <span className="field-label">
+          LoRA <InfoTip text={TIPS.lora} />
+        </span>
         <select value={params.lora} onChange={(e) => set({ lora: e.target.value })}>
           <option value="">不用</option>
           {loras.map((name) => (

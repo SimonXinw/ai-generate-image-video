@@ -47,12 +47,15 @@ npm run dev
 
 ## 3. 页面操作
 
-1. 满 18 岁确认。
-2. 顶部切到当前机子（2080 Super 或 1660 Super），分辨率会跟着变，不要混用。
-3. 选 checkpoint（及可选 LoRA）。
-4. 写提示词 → 开始生成。图显示在下方，可下载。
+1. 顶部切到当前机子（2080 Super 或 1660 Super），不要混用。
+2. 选模型方案；页面会匹配 checkpoint 并应用推荐采样参数。
+3. 需要时手动覆盖 checkpoint、LoRA、提示词或画幅。
+4. 写提示词 → 开始生成。左侧显示图片和本次参数，可放大、下载或复用种子。
 
 Comfy 未开时页面会提示先跑 start 脚本。
+
+机器 A 要写实真人：选“成人写实 · CyberRealistic Pony”，详细说明见
+[`docs/10-cyberrealistic-pony.md`](10-cyberrealistic-pony.md)。
 
 ## 4. 自检
 

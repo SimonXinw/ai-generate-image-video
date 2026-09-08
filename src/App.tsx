@@ -6,6 +6,7 @@ import { HardwareSwitcher } from "./components/HardwareSwitcher";
 import { ImageLightbox } from "./components/ImageLightbox";
 import { ImageOptions } from "./components/ImageOptions";
 import { MetaPanel } from "./components/MetaPanel";
+import { ModelPresetPicker } from "./components/ModelPresetPicker";
 import { ProgressPanel } from "./components/ProgressPanel";
 import { PromptForm } from "./components/PromptForm";
 import { SizePresets } from "./components/SizePresets";
@@ -13,12 +14,14 @@ import { ResultView } from "./components/ResultView";
 import { DEFAULT_PARAMS } from "./constants";
 import { HARDWARE_PROFILES, loadHardwareId, saveHardwareId } from "./hardware";
 import { findBlockedTerm } from "./lib/safety";
+import { applyPreset, findPresetCheckpoint, MODEL_PRESETS } from "./model-presets";
 import type {
   ComfyStatus,
   GenerateParams,
   GenerationMeta,
   HardwareId,
   HistoryItem,
+  ModelPresetId,
   ProgressState,
 } from "./types";
 
@@ -45,6 +48,7 @@ export function App() {
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [zoomUrl, setZoomUrl] = useState("");
   const [meta, setMeta] = useState<GenerationMeta | null>(null);
+  const [modelPresetId, setModelPresetId] = useState<ModelPresetId>("ponyV6");
 
   useEffect(() => {
     let stop = false;
@@ -54,7 +58,10 @@ export function App() {
       if (next.checkpoints[0]) {
         setParams((prev) => ({
           ...prev,
-          checkpoint: prev.checkpoint || next.checkpoints[0],
+          checkpoint:
+            prev.checkpoint ||
+            findPresetCheckpoint(MODEL_PRESETS.ponyV6, next.checkpoints) ||
+            next.checkpoints[0],
         }));
       }
     });
@@ -75,6 +82,18 @@ export function App() {
       steps: next.defaultSteps,
       cfg: next.defaultCfg,
     }));
+  };
+
+  const onModelPresetChange = (id: ModelPresetId) => {
+    const preset = MODEL_PRESETS[id];
+    const checkpoint = findPresetCheckpoint(preset, status.checkpoints);
+    if (!checkpoint) {
+      setError(`未安装 ${preset.label}，请先执行模型下载脚本并重启 ComfyUI`);
+      return;
+    }
+    setModelPresetId(id);
+    setError("");
+    setParams((prev) => applyPreset(prev, preset, checkpoint));
   };
 
   const onSubmit = async () => {
@@ -141,6 +160,12 @@ export function App() {
         <div className="col col-form">
           <HardwareSwitcher profile={profile} onChange={onHardwareChange} />
           <HardwareBanner comfyMessage={status.message} comfyOk={status.ok} />
+          <ModelPresetPicker
+            activeId={modelPresetId}
+            checkpoints={status.checkpoints}
+            vramGb={profile.vramGb}
+            onChange={onModelPresetChange}
+          />
           <PromptForm
             params={params}
             profile={profile}

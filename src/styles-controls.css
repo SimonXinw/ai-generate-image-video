@@ -1,0 +1,124 @@
+.model-preset-list {
+  display: grid;
+  gap: 8px;
+}
+
+.model-preset {
+  display: grid;
+  gap: 3px;
+  text-align: left;
+  border: 1px solid #343b52;
+}
+
+.model-preset.active {
+  border-color: var(--accent);
+  background: #223861;
+}
+
+.model-preset small {
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.model-preset .preset-ready {
+  color: var(--ok);
+}
+
+.model-preset .preset-missing {
+  color: var(--err);
+}
+
+.size-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.size-chips .chip {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: 0.82rem;
+  padding: 8px 10px;
+}
+
+.field-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.infotip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #2a3350;
+  color: var(--muted);
+  font-size: 0.66rem;
+  cursor: help;
+  outline: 0;
+  flex: 0 0 auto;
+}
+
+.infotip-bubble {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 6px);
+  z-index: 20;
+  width: max-content;
+  max-width: 260px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #0b0d13;
+  border: 1px solid #343b52;
+  color: var(--text);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  white-space: normal;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.infotip:hover .infotip-bubble,
+.infotip:focus-visible .infotip-bubble {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  margin: 0 0 10px;
+}
+
+.meta-item {
+  background: #0f121a;
+  border: 1px solid #2a3145;
+  border-radius: 8px;
+  padding: 6px 8px;
+  min-width: 0;
+}
+
+.meta-item dt {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.meta-item dd {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

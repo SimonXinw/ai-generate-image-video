@@ -1,14 +1,9 @@
 import { InfoTip } from "./InfoTip";
 import { SAMPLERS, SCHEDULERS } from "../presets";
 import { TIPS } from "../tips";
-import type { GenerateParams } from "../types";
+import type { GenerateParams, ImageOptionsProps } from "../types";
 
-type Props = {
-  params: GenerateParams;
-  onChange: (next: GenerateParams) => void;
-};
-
-export function ImageOptions({ params, onChange }: Props) {
+export function ImageOptions({ params, onChange }: ImageOptionsProps) {
   const set = (patch: Partial<GenerateParams>) => onChange({ ...params, ...patch });
 
   return (
