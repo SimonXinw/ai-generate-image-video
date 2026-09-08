@@ -1,8 +1,12 @@
+param(
+  [string]$Checkpoint = "CyberRealisticPony_V18.0_F16.safetensors",
+  # 相同 prompt + 相同 seed 会命中 ComfyUI 缓存并秒回，换 seed 才是真实重算
+  [long]$Seed = 20260909
+)
+
 $ErrorActionPreference = "Stop"
 
 $Comfy = "http://127.0.0.1:8188"
-$Checkpoint = "CyberRealisticPony_V18.0_F16.safetensors"
-$Seed = 20260909
 $env:NO_PROXY = "127.0.0.1,localhost"
 
 $Prompt = @{

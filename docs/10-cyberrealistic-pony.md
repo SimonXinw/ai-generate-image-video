@@ -100,6 +100,16 @@ powershell -ExecutionPolicy Bypass -File .\scripts\smoke-test-cyberrealistic.ps1
 烟测使用安全成人肖像、固定 seed `20260909`，输出前缀为
 `cyberrealistic_smoke`，不会改变或训练模型。
 
+相同 prompt 加相同 seed 会命中 ComfyUI 的任务缓存并秒回旧图，
+需要真实重算或回归另一个 checkpoint 时传参：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\smoke-test-cyberrealistic.ps1 -Seed 990909001
+powershell -ExecutionPolicy Bypass -File .\scripts\smoke-test-cyberrealistic.ps1 `
+  -Checkpoint "ponyDiffusionV6XL_v6StartWithThisOne.safetensors" -Seed 990909002
+```
+
 本机实测（2026-09-09）：RTX 2080 Super 8GB、832×1216、30 steps、
 CFG 5、DPM++ 2M Karras，首次含模型加载共 **24.2 秒**，无 OOM；
-输出 `cyberrealistic_smoke_00001_.png`。
+输出 `cyberrealistic_smoke_00001_.png`。换 seed 重算 **20.1 秒**，
+Pony V6 回归重算 **26.1 秒**，两个方案均正常出图。
