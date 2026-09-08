@@ -91,7 +91,7 @@ export const HW_KEY = "local-gen-hardware-id";
 export function loadHardwareId(): HardwareId {
   const raw = localStorage.getItem(HW_KEY);
   if (raw === "rtx2080s" || raw === "gtx1660s") return raw;
-  return "rtx2080s";
+  return "gtx1660s";
 }
 
 export function saveHardwareId(id: HardwareId): void {
