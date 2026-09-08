@@ -1,5 +1,7 @@
-import type { GenerateParams } from "../types";
+import { InfoTip } from "./InfoTip";
 import { SAMPLERS, SCHEDULERS } from "../presets";
+import { TIPS } from "../tips";
+import type { GenerateParams } from "../types";
 
 type Props = {
   params: GenerateParams;
@@ -14,22 +16,26 @@ export function ImageOptions({ params, onChange }: Props) {
       <p className="label">图片选项</p>
       <div className="row">
         <label>
-          宽
+          <span className="field-label">
+            宽 <InfoTip text={TIPS.width} />
+          </span>
           <input
             type="number"
             min={256}
-            max={1280}
+            max={1536}
             step={64}
             value={params.width}
             onChange={(e) => set({ width: Number(e.target.value) })}
           />
         </label>
         <label>
-          高
+          <span className="field-label">
+            高 <InfoTip text={TIPS.height} />
+          </span>
           <input
             type="number"
             min={256}
-            max={1280}
+            max={1536}
             step={64}
             value={params.height}
             onChange={(e) => set({ height: Number(e.target.value) })}
@@ -38,7 +44,9 @@ export function ImageOptions({ params, onChange }: Props) {
       </div>
       <div className="row">
         <label>
-          步数
+          <span className="field-label">
+            步数 <InfoTip text={TIPS.steps} />
+          </span>
           <input
             type="number"
             min={8}
@@ -48,7 +56,9 @@ export function ImageOptions({ params, onChange }: Props) {
           />
         </label>
         <label>
-          CFG
+          <span className="field-label">
+            CFG <InfoTip text={TIPS.cfg} />
+          </span>
           <input
             type="number"
             min={1}
@@ -61,7 +71,9 @@ export function ImageOptions({ params, onChange }: Props) {
       </div>
       <div className="row">
         <label>
-          CLIP Skip
+          <span className="field-label">
+            CLIP Skip <InfoTip text={TIPS.clipSkip} />
+          </span>
           <input
             type="number"
             min={1}
@@ -71,7 +83,9 @@ export function ImageOptions({ params, onChange }: Props) {
           />
         </label>
         <label>
-          LoRA 强度
+          <span className="field-label">
+            LoRA 强度 <InfoTip text={TIPS.loraStrength} />
+          </span>
           <input
             type="number"
             min={0}
@@ -83,7 +97,9 @@ export function ImageOptions({ params, onChange }: Props) {
         </label>
       </div>
       <label>
-        采样器
+        <span className="field-label">
+          采样器 <InfoTip text={TIPS.sampler} />
+        </span>
         <select value={params.sampler} onChange={(e) => set({ sampler: e.target.value })}>
           {SAMPLERS.map((s) => (
             <option key={s} value={s}>
@@ -93,7 +109,9 @@ export function ImageOptions({ params, onChange }: Props) {
         </select>
       </label>
       <label>
-        调度
+        <span className="field-label">
+          调度 <InfoTip text={TIPS.scheduler} />
+        </span>
         <select value={params.scheduler} onChange={(e) => set({ scheduler: e.target.value })}>
           {SCHEDULERS.map((s) => (
             <option key={s} value={s}>
@@ -103,7 +121,9 @@ export function ImageOptions({ params, onChange }: Props) {
         </select>
       </label>
       <label>
-        种子（-1 随机）
+        <span className="field-label">
+          种子（-1 随机） <InfoTip text={TIPS.seed} />
+        </span>
         <div className="row">
           <input
             type="number"

@@ -1,26 +1,28 @@
 import { useEffect, useState } from "react";
 import { newClientId, pingComfy, queuePrompt, waitForImage } from "./api/comfy-client";
 import { buildTxt2ImgPrompt, resolveSeed } from "./api/comfy-prompt";
-import { AgeGate } from "./components/AgeGate";
 import { HardwareBanner } from "./components/HardwareBanner";
 import { HardwareSwitcher } from "./components/HardwareSwitcher";
+import { ImageLightbox } from "./components/ImageLightbox";
 import { ImageOptions } from "./components/ImageOptions";
+import { MetaPanel } from "./components/MetaPanel";
 import { ProgressPanel } from "./components/ProgressPanel";
 import { PromptForm } from "./components/PromptForm";
+import { SizePresets } from "./components/SizePresets";
 import { ResultView } from "./components/ResultView";
-import { AGE_KEY, DEFAULT_PARAMS } from "./constants";
+import { DEFAULT_PARAMS } from "./constants";
 import { HARDWARE_PROFILES, loadHardwareId, saveHardwareId } from "./hardware";
 import { findBlockedTerm } from "./lib/safety";
 import type {
   ComfyStatus,
   GenerateParams,
+  GenerationMeta,
   HardwareId,
   HistoryItem,
   ProgressState,
 } from "./types";
 
 export function App() {
-  const [ageOk, setAgeOk] = useState(() => localStorage.getItem(AGE_KEY) === "1");
   const [hwId, setHwId] = useState<HardwareId>(() => loadHardwareId());
   const profile = HARDWARE_PROFILES[hwId];
   const [params, setParams] = useState<GenerateParams>(() => ({
@@ -41,6 +43,8 @@ export function App() {
   const [error, setError] = useState("");
   const [progress, setProgress] = useState<ProgressState | null>(null);
   const [history, setHistory] = useState<HistoryItem[]>([]);
+  const [zoomUrl, setZoomUrl] = useState("");
+  const [meta, setMeta] = useState<GenerationMeta | null>(null);
 
   useEffect(() => {
     let stop = false;
@@ -91,10 +95,15 @@ export function App() {
         lastPreview = p.previewUrl || lastPreview;
         setProgress(p);
       });
+      const snapshot = { ...params, seed: result.seed };
       setImageUrl(result.imageUrl);
       setSeedUsed(result.seed);
+      setMeta({ params: snapshot, seed: result.seed });
       setHistory((prev) =>
-        [{ url: result.imageUrl, seed: result.seed, at: Date.now() }, ...prev].slice(0, 8),
+        [
+          { url: result.imageUrl, seed: result.seed, at: Date.now(), params: snapshot },
+          ...prev,
+        ].slice(0, 8),
       );
     } catch (err) {
       setError(err instanceof Error ? err.message : "生成失败");
@@ -105,37 +114,49 @@ export function App() {
     }
   };
 
-  if (!ageOk) {
-    return <AgeGate onConfirm={() => setAgeOk(true)} />;
-  }
-
   return (
     <main className="page">
       <h1>本地出图</h1>
-      <HardwareSwitcher profile={profile} onChange={onHardwareChange} />
-      <HardwareBanner comfyMessage={status.message} comfyOk={status.ok} />
-      <ProgressPanel busy={busy} progress={progress} />
-      <ResultView
-        imageUrl={imageUrl}
-        error={error}
-        seed={seedUsed}
-        history={history}
-        onPick={(item) => {
-          setImageUrl(item.url);
-          setSeedUsed(item.seed);
-        }}
-        onReuseSeed={(seed) => setParams((p) => ({ ...p, seed }))}
-      />
-      <PromptForm
-        params={params}
-        profile={profile}
-        checkpoints={status.checkpoints}
-        loras={status.loras}
-        busy={busy}
-        onChange={setParams}
-        onSubmit={() => void onSubmit()}
-      />
-      <ImageOptions params={params} onChange={setParams} />
+      <div className="layout">
+        <div className="col col-preview">
+          <ProgressPanel busy={busy} progress={progress} />
+          <ResultView
+            imageUrl={imageUrl}
+            error={error}
+            seed={seedUsed}
+            history={history}
+            onPick={(item) => {
+              setImageUrl(item.url);
+              setSeedUsed(item.seed);
+              setMeta({ params: item.params, seed: item.seed });
+            }}
+            onReuseSeed={(seed) => setParams((p) => ({ ...p, seed }))}
+            onZoom={setZoomUrl}
+          />
+          <MetaPanel
+            meta={meta}
+            onReuseSeed={(seed) => setParams((p) => ({ ...p, seed }))}
+          />
+        </div>
+        <div className="col col-form">
+          <HardwareSwitcher profile={profile} onChange={onHardwareChange} />
+          <HardwareBanner comfyMessage={status.message} comfyOk={status.ok} />
+          <PromptForm
+            params={params}
+            profile={profile}
+            checkpoints={status.checkpoints}
+            loras={status.loras}
+            busy={busy}
+            onChange={setParams}
+            onSubmit={() => void onSubmit()}
+          />
+          <SizePresets params={params} onChange={setParams} />
+          <ImageOptions params={params} onChange={setParams} />
+        </div>
+      </div>
+      {zoomUrl ? (
+        <ImageLightbox imageUrl={zoomUrl} onClose={() => setZoomUrl("")} />
+      ) : null}
     </main>
   );
 }

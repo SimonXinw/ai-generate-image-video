@@ -63,6 +63,38 @@ export type HistoryItem = {
   url: string;
   seed: number;
   at: number;
+  params: GenerateParams;
+};
+
+export type GenerationMeta = {
+  params: GenerateParams;
+  seed: number;
+};
+
+export type MetaPanelProps = {
+  meta: GenerationMeta | null;
+  onReuseSeed: (seed: number) => void;
 };
 
 export type OutfitId = "clothed" | "topless" | "nude";
+
+export type LightboxProps = {
+  imageUrl: string;
+  onClose: () => void;
+};
+
+export type SizePreset = {
+  label: string;
+  width: number;
+  height: number;
+  note: string;
+};
+
+export type InfoTipProps = {
+  text: string;
+};
+
+export type SizePresetsProps = {
+  params: GenerateParams;
+  onChange: (next: GenerateParams) => void;
+};

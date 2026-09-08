@@ -1,0 +1,242 @@
+/* 手机端仍是单列；桌面宽屏才左右分栏 */
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.result-image {
+  padding: 0;
+  background: transparent;
+  border-radius: 8px;
+  width: 100%;
+  cursor: zoom-in;
+}
+
+.result-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  text-align: center;
+  border: 1px dashed #343b52;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+@media (min-width: 900px) {
+  .page {
+    max-width: 1440px;
+    padding: 16px 20px 40px;
+  }
+
+  .layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .col-preview {
+    flex: 1 1 60%;
+    position: sticky;
+    top: 16px;
+  }
+
+  .col-form {
+    flex: 0 0 420px;
+    max-height: calc(100dvh - 90px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: #3a4260 transparent;
+  }
+
+  .col-form::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .col-form::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .col-form::-webkit-scrollbar-thumb {
+    background: #3a4260;
+    border-radius: 99px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  .col-form::-webkit-scrollbar-thumb:hover {
+    background: #4d5880;
+    background-clip: content-box;
+  }
+
+  .result img,
+  .progress .preview {
+    max-height: calc(100dvh - 220px);
+    width: auto;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .result-empty {
+    min-height: 420px;
+  }
+
+  .thumb img {
+    height: 96px;
+  }
+}
+
+.size-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.size-chips .chip {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: 0.82rem;
+  padding: 8px 10px;
+}
+
+.field-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 问号气泡：hover 或键盘聚焦都能看 */
+.infotip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #2a3350;
+  color: var(--muted);
+  font-size: 0.66rem;
+  cursor: help;
+  outline: 0;
+  flex: 0 0 auto;
+}
+
+.infotip-bubble {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 6px);
+  z-index: 20;
+  width: max-content;
+  max-width: 260px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #0b0d13;
+  border: 1px solid #343b52;
+  color: var(--text);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  white-space: normal;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.infotip:hover .infotip-bubble,
+.infotip:focus-visible .infotip-bubble {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  margin: 0 0 10px;
+}
+
+.meta-item {
+  background: #0f121a;
+  border: 1px solid #2a3145;
+  border-radius: 8px;
+  padding: 6px 8px;
+  min-width: 0;
+}
+
+.meta-item dt {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.meta-item dd {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 放大弹窗：黑灰实底，不透明 */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: #1b1d22;
+  display: flex;
+  flex-direction: column;
+}
+
+.lightbox-stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.lightbox-stage img {
+  max-width: 92vw;
+  max-height: 82vh;
+  transform-origin: center center;
+  transition: transform 0.08s linear;
+  user-select: none;
+  cursor: grab;
+  touch-action: none;
+}
+
+/* 拖拽时去掉过渡，否则跟手会有延迟 */
+.lightbox-stage img.dragging {
+  cursor: grabbing;
+  transition: none;
+}
+
+.lightbox-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #14161a;
+  border-top: 1px solid #2a3145;
+}
+
+.lightbox-bar button {
+  background: #2a3350;
+}

@@ -24,7 +24,7 @@
 | [docs/03-run.md](docs/03-run.md) | 启动 ComfyUI + 前端出图 |
 | [docs/04-hardware.md](docs/04-hardware.md) | 两台机能力、不够时买什么 |
 | [docs/05-inventory.md](docs/05-inventory.md) | 每台机装了什么、双机如何共用模型 |
-| [docs/06-prompts.md](docs/06-prompts.md) | Pony / SD1.5 / SDXL 提示词不要混 |
+| [docs/06-prompts.md](docs/06-prompts.md) | Pony / SD1.5 / SDXL 提示词不要混；含已验证写实向配方 |
 | [docs/07-known-gaps.md](docs/07-known-gaps.md) | 已修问题、未做能力、建议实现顺序 |
 | [docs/08-run-1660s.md](docs/08-run-1660s.md) | **1660S 开跑手册（照着启动）** |
 
@@ -40,6 +40,23 @@ npm run dev
 ```
 
 浏览器：`http://127.0.0.1:5173`，先选对「当前机子配置」。
+
+## 已验证提示词（Pony · 2080S · 写实）
+
+机器 A、checkpoint `ponyDiffusionV6XL_v6StartWithThisOne.safetensors`、竖图 **768×1152**。  
+要点：抬头、脸必须入画；从大腿之间往上看脸；去衣。完整说明见 [docs/06-prompts.md](docs/06-prompts.md)。
+
+正向：
+
+```text
+score_9, score_8_up, score_7_up, rating_explicit, source_photo, photorealistic, realistic photo, beautiful adult woman, looking at viewer, head tilted back, face clearly visible, full view from vulva to face, long wavy blue hair, deep phoenix-like eyes, detailed face, completely nude, bare breasts, pink nipples, D-cup breasts, dimples, natural skin texture, natural lighting, soft daylight, legs spread 45 degrees toward both bottom corners, thighs open, vagina facing the viewer, slightly enlarged vaginal opening, camera between the thighs looking up toward the face, abalone-shaped clitoris, detailed labia, detailed vulva, vertical navel, natural body lines
+```
+
+负向：
+
+```text
+score_4, score_5, score_6, blurry, lowres, jpeg artifacts, overexposed, underexposed, plastic skin, doll-like, anime, cartoon, illustration, 3d render, extra fingers, fused fingers, bad hands, bad anatomy, deformed, asymmetric eyes, watermark, text, logo, clothes, clothing, dressed, bikini, bra, panties, swimsuit, cropped head, head out of frame, face obscured, no face, child, loli, shota, underage, teen
+```
 
 ## 硬红线
 

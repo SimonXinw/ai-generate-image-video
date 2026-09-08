@@ -7,17 +7,35 @@ type Props = {
   history: HistoryItem[];
   onPick: (item: HistoryItem) => void;
   onReuseSeed: (seed: number) => void;
+  onZoom: (url: string) => void;
 };
 
-export function ResultView({ imageUrl, error, seed, history, onPick, onReuseSeed }: Props) {
+export function ResultView({
+  imageUrl,
+  error,
+  seed,
+  history,
+  onPick,
+  onReuseSeed,
+  onZoom,
+}: Props) {
   return (
     <section className="card result">
       {error ? <p className="err status-line">{error}</p> : null}
       {!imageUrl ? (
-        <p className="muted">还没有成图。预览会在生成过程中出现在进度区。</p>
+        <div className="result-empty muted">
+          还没有成图。预览会在生成过程中出现在进度区。
+        </div>
       ) : (
         <>
-          <img src={imageUrl} alt="生成结果" />
+          <button
+            type="button"
+            className="result-image"
+            title="点击放大"
+            onClick={() => onZoom(imageUrl)}
+          >
+            <img src={imageUrl} alt="生成结果" />
+          </button>
           <div className="row">
             {seed !== null && (
               <button type="button" onClick={() => onReuseSeed(seed)}>

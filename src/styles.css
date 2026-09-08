@@ -94,8 +94,7 @@ button {
   cursor: pointer;
 }
 
-button[type="submit"],
-.gate button {
+button[type="submit"] {
   background: var(--accent);
   color: #fff;
   font-weight: 600;
@@ -164,18 +163,6 @@ button:disabled {
 .err {
   color: var(--err);
   background: #3a1820;
-}
-
-.gate {
-  min-height: 100dvh;
-  display: grid;
-  place-items: center;
-  padding: 16px;
-}
-
-.gate .card {
-  max-width: 420px;
-  width: 100%;
 }
 
 .result img {

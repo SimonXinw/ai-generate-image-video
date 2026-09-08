@@ -12,6 +12,24 @@
 - 负向可带：`score_4, score_5, score_6, extra fingers`
 - 负向里的 `child, loli` 是排除项；拦截 **只看正向**，不要删负向里这些词除非你改了代码
 
+### 已验证：写实、抬头可见脸、从下往上（2026-09-09）
+
+本机 2080S + Pony V6 XL，竖图 768×1152。不要用 `extreme close-up` / `strong perspective foreshortening`，否则脸容易出画。
+
+正向：
+
+```text
+score_9, score_8_up, score_7_up, rating_explicit, source_photo, photorealistic, realistic photo, beautiful adult woman, looking at viewer, head tilted back, face clearly visible, full view from vulva to face, long wavy blue hair, deep phoenix-like eyes, detailed face, completely nude, bare breasts, pink nipples, D-cup breasts, dimples, natural skin texture, natural lighting, soft daylight, legs spread 45 degrees toward both bottom corners, thighs open, vagina facing the viewer, slightly enlarged vaginal opening, camera between the thighs looking up toward the face, abalone-shaped clitoris, detailed labia, detailed vulva, vertical navel, natural body lines
+```
+
+负向：
+
+```text
+score_4, score_5, score_6, blurry, lowres, jpeg artifacts, overexposed, underexposed, plastic skin, doll-like, anime, cartoon, illustration, 3d render, extra fingers, fused fingers, bad hands, bad anatomy, deformed, asymmetric eyes, watermark, text, logo, clothes, clothing, dressed, bikini, bra, panties, swimsuit, cropped head, head out of frame, face obscured, no face, child, loli, shota, underage, teen
+```
+
+README 里也有同一份，方便复制。
+
 ## SD 1.5（机器 B 主推）
 
 - 训练分辨率约 **512**。优先 512×768 / 640×640，不要一上来 768×1152
