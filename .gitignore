@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.local
+vendor/
+*.safetensors
+*.ckpt
+*.pt
+*.gguf
+*.onnx
+.DS_Store
+Thumbs.db

@@ -1,0 +1,27 @@
+# 把模型放到 ComfyUI 目录之外时用这个
+
+1. 复制为 `vendor/ComfyUI/extra_model_paths.yaml`（或你的 `COMFYUI_ROOT` 下）。
+2. 改成你的真实路径（Windows 用正斜杠或引号）。
+3. 重启 ComfyUI。
+
+```yaml
+# 例：移动硬盘上的共用模型
+shared_drive:
+  base_path: D:/ai-models
+  checkpoints: checkpoints
+  loras: loras
+  vae: vae
+  embeddings: embeddings
+```
+
+也可指向已有的 Automatic1111：
+
+```yaml
+a1111:
+  base_path: C:/stable-diffusion-webui
+  checkpoints: models/Stable-diffusion
+  loras: models/Lora
+  vae: models/VAE
+```
+
+不要把 yaml 里的路径提交到 git（可能含本机盘符）。本 example 可以进仓库。
