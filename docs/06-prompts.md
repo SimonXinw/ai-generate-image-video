@@ -6,7 +6,7 @@
 ## Pony V6 XL（机器 A 主推）
 
 - CLIP skip：**2**（页面默认）
-- 分辨率：768×1152（8G）；6G 最多 640×960
+- 分辨率：768×1152（8G）；6G 不要用 Pony，用 DreamShaper 512×768
 - 正向建议带：`score_9, score_8_up, score_7_up, source_anime`
 - 人物用 Danbooru 风标签：`1girl, long hair, ...`
 - 负向可带：`score_4, score_5, score_6, extra fingers`

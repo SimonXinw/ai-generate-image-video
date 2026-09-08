@@ -15,8 +15,8 @@ nvidia-smi
 
 | nvidia-smi | 本机 | 页面档 | 启动 | 必下脚本 |
 |------------|------|--------|------|----------|
-| RTX 2080 Super / 约 8GB | 机器 A | `rtx2080s` | `scripts/start-comfyui-2080s.ps1` | 写实 Pony，见下 |
-| GTX 1660 Super / 约 6GB | 机器 B | `gtx1660s` | `scripts/start-comfyui-1660s.ps1`（必须 `--lowvram`） | DreamShaper 8 |
+| RTX 2080 Super / 约 8GB | 机器 A | `rtx2080s` | `scripts/start-comfyui-2080s.ps1` | 写实脚本 + Pony V6 直链 |
+| GTX 1660 Super / 约 6GB | 机器 B | `gtx1660s` | `scripts/start-comfyui-1660s.ps1`（必须 `--lowvram`） | `download-dreamshaper.ps1` |
 
 认显存，不认 CPU 名。未跑 `nvidia-smi` 前不要用 832×1216 去打 6GB 卡。
 
@@ -28,8 +28,9 @@ nvidia-smi
 2. `powershell -ExecutionPolicy Bypass -File .\scripts\setup-comfyui.ps1`
 3. `powershell -ExecutionPolicy Bypass -File .\scripts\pin-comfyui-v0326.ps1`
    （钉死 ComfyUI **v0.3.26**。最新 master 可能因 `comfy_kitchen` 起不来。）
-4. 按 `docs/01-setup.md` 建 `vendor/ComfyUI/venv`，Python **3.11** +
-   `torch 2.6.0+cu124`（或同系列 CUDA 轮子），`pip install -r requirements.txt`。
+4. **必须先建 venv 再启动**：按 `docs/01-setup.md` 在 `vendor/ComfyUI` 建
+   Python **3.11** venv，装 `torch` cu124 和 `requirements.txt`。
+   `setup-comfyui.ps1` 只克隆仓库，不装 PyTorch。
 5. 只跑本机「必下」脚本（下一节）。模型约 2GB 或 6.5GB，可用 Clash 代理
    `http://127.0.0.1:7897` 再执行脚本。
 6. 启动对应 `start-comfyui-*.ps1`，另开窗口 `npm run dev`。
@@ -71,7 +72,9 @@ curl.exe -L --fail --retry 8 --retry-delay 5 --continue-at - `
   "https://huggingface.co/LyliaEngine/Pony_Diffusion_V6_XL/resolve/main/ponyDiffusionV6XL_v6StartWithThisOne.safetensors"
 ```
 
-期望体积：`6938041050` bytes。更小就是下残了，删掉重下。
+期望体积：`6938041050` bytes。
+SHA-256：`67ab2fd8ec439a89b3fedb15cc65f54336af163c7eb5e4f2acc98f090a29b0b3`。
+更小就是下残了，删掉重下。
 
 ## 下完怎么验
 
@@ -90,8 +93,10 @@ ComfyUI 起来后：`GET http://127.0.0.1:8188/object_info` 的 checkpoint 列�
 ## 网络
 
 Hugging Face 超时：给当前终端设 `HTTP_PROXY`/`HTTPS_PROXY` 为本地 Clash
-（常见 `http://127.0.0.1:7897`），再跑下载脚本。不要把代理套到
-`127.0.0.1:5173` / `8188`（前端会白屏；start 脚本已对回环走 `NO_PROXY`）。
+（端口以本机为准，常见 `http://127.0.0.1:7897`），再跑下载脚本。
+前端请用 `scripts\start-frontend.ps1`（会设 `NO_PROXY=127.0.0.1`）。
+直接 `npm run dev` 且系统开了代理时，不要用 `localhost`，改开
+`http://127.0.0.1:5173`。Comfy 启动脚本本身不设 `NO_PROXY`。
 
 ## 不要做
 

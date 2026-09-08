@@ -22,6 +22,7 @@
 |------|------|--------|
 | B 1660S | `scripts/download-dreamshaper.ps1` | `DreamShaper_8_pruned.safetensors` |
 | A 2080S 写实 | `scripts/download-cyberrealistic-pony.ps1` | `CyberRealisticPony_V18.0_F16.safetensors` |
+| A 2080S 二次元 | 13 号文档里的 Pony V6 `curl` 直链 | `ponyDiffusionV6XL_v6StartWithThisOne.safetensors` |
 
 脚本可重复跑。Hugging Face 超时先给终端加 Clash 代理再跑，见 13 号文档。
 

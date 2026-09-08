@@ -41,9 +41,12 @@ if ($HasHub) {
     "'CyberRealisticPony_V18.0_F16.safetensors', local_dir=sys.argv[1]))"
   & $Python -c $Code $TargetDir
   if ($LASTEXITCODE -ne 0) {
-    throw "Hugging Face download failed with exit code $LASTEXITCODE"
+    Write-Host "Hugging Face download failed; falling back to curl." -ForegroundColor Yellow
+    $HasHub = $false
   }
-} else {
+}
+
+if (-not $HasHub) {
   Write-Host "Using curl; existing partial file will be resumed."
   & curl.exe -L --fail --retry 8 --retry-delay 5 --continue-at - `
     --output $Target $Url

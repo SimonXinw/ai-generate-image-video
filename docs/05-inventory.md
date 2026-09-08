@@ -32,7 +32,7 @@ loras：
 
 不要把权重拷进 git。任选：
 
-1. 移动硬盘：两台都指到同一目录（见 `extra_model_paths.yaml.example`）。
+1. 移动硬盘：两台都指到同一目录（仓库根目录 `extra_model_paths.yaml.example`）。
 2. 局域网共享文件夹（机械盘即可，首次加载会慢）。
 3. 各下一份：1660S 只留 SD1.5；2080S 再留 Pony。
 

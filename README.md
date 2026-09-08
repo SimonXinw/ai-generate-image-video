@@ -38,6 +38,7 @@
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\setup-comfyui.ps1
 powershell -ExecutionPolicy Bypass -File .\scripts\pin-comfyui-v0326.ps1
+# 再按 docs/01-setup.md 建 venv 并装 torch（脚本不会自动装）
 # 按 docs/13-new-machine.md 只下当前 GPU 的 checkpoint
 powershell -ExecutionPolicy Bypass -File .\scripts\start-comfyui-1660s.ps1
 # 或 start-comfyui-2080s.ps1
