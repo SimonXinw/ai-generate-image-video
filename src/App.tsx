@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
-import { pingComfy, queuePrompt, waitForImage } from "./api/comfy-client";
-import { buildTxt2ImgPrompt } from "./api/comfy-prompt";
+import { newClientId, pingComfy, queuePrompt, waitForImage } from "./api/comfy-client";
+import { buildTxt2ImgPrompt, resolveSeed } from "./api/comfy-prompt";
 import { AgeGate } from "./components/AgeGate";
 import { HardwareBanner } from "./components/HardwareBanner";
 import { HardwareSwitcher } from "./components/HardwareSwitcher";
+import { ImageOptions } from "./components/ImageOptions";
+import { ProgressPanel } from "./components/ProgressPanel";
 import { PromptForm } from "./components/PromptForm";
 import { ResultView } from "./components/ResultView";
 import { AGE_KEY, DEFAULT_PARAMS } from "./constants";
-import {
-  HARDWARE_PROFILES,
-  loadHardwareId,
-  saveHardwareId,
-} from "./hardware";
+import { HARDWARE_PROFILES, loadHardwareId, saveHardwareId } from "./hardware";
 import { findBlockedTerm } from "./lib/safety";
-import type { ComfyStatus, GenerateParams, HardwareId } from "./types";
+import type {
+  ComfyStatus,
+  GenerateParams,
+  HardwareId,
+  HistoryItem,
+  ProgressState,
+} from "./types";
 
 export function App() {
   const [ageOk, setAgeOk] = useState(() => localStorage.getItem(AGE_KEY) === "1");
@@ -33,7 +37,10 @@ export function App() {
   });
   const [busy, setBusy] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
+  const [seedUsed, setSeedUsed] = useState<number | null>(null);
   const [error, setError] = useState("");
+  const [progress, setProgress] = useState<ProgressState | null>(null);
+  const [history, setHistory] = useState<HistoryItem[]>([]);
 
   useEffect(() => {
     let stop = false;
@@ -74,13 +81,26 @@ export function App() {
     }
     setBusy(true);
     setError("");
+    setProgress({ percent: 1, step: 0, max: 1, label: "提交任务", previewUrl: "" });
+    const seed = resolveSeed(params);
+    const clientId = newClientId();
+    let lastPreview = "";
     try {
-      const promptId = await queuePrompt(buildTxt2ImgPrompt(params));
-      const result = await waitForImage(promptId);
+      const promptId = await queuePrompt(buildTxt2ImgPrompt(params, seed), clientId);
+      const result = await waitForImage(promptId, clientId, seed, (p) => {
+        lastPreview = p.previewUrl || lastPreview;
+        setProgress(p);
+      });
       setImageUrl(result.imageUrl);
+      setSeedUsed(result.seed);
+      setHistory((prev) =>
+        [{ url: result.imageUrl, seed: result.seed, at: Date.now() }, ...prev].slice(0, 8),
+      );
     } catch (err) {
       setError(err instanceof Error ? err.message : "生成失败");
     } finally {
+      if (lastPreview.startsWith("blob:")) URL.revokeObjectURL(lastPreview);
+      setProgress(null);
       setBusy(false);
     }
   };
@@ -94,6 +114,18 @@ export function App() {
       <h1>本地出图</h1>
       <HardwareSwitcher profile={profile} onChange={onHardwareChange} />
       <HardwareBanner comfyMessage={status.message} comfyOk={status.ok} />
+      <ProgressPanel busy={busy} progress={progress} />
+      <ResultView
+        imageUrl={imageUrl}
+        error={error}
+        seed={seedUsed}
+        history={history}
+        onPick={(item) => {
+          setImageUrl(item.url);
+          setSeedUsed(item.seed);
+        }}
+        onReuseSeed={(seed) => setParams((p) => ({ ...p, seed }))}
+      />
       <PromptForm
         params={params}
         profile={profile}
@@ -103,7 +135,7 @@ export function App() {
         onChange={setParams}
         onSubmit={() => void onSubmit()}
       />
-      <ResultView imageUrl={imageUrl} error={error} />
+      <ImageOptions params={params} onChange={setParams} />
     </main>
   );
 }

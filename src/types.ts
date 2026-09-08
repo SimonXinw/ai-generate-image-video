@@ -13,7 +13,6 @@ export type HardwareProfile = {
   fluxNote: string;
   videoNote: string;
   buyIfWantMore: string;
-  /** ComfyUI 启动建议参数 */
   comfyFlags: string[];
   recommendedModels: string[];
   defaultPrompt: string;
@@ -35,6 +34,8 @@ export type GenerateParams = {
   cfg: number;
   seed: number;
   clipSkip: number;
+  sampler: string;
+  scheduler: string;
 };
 
 export type ComfyStatus = {
@@ -47,4 +48,21 @@ export type ComfyStatus = {
 export type GenerateResult = {
   imageUrl: string;
   promptId: string;
+  seed: number;
 };
+
+export type ProgressState = {
+  percent: number;
+  step: number;
+  max: number;
+  label: string;
+  previewUrl: string;
+};
+
+export type HistoryItem = {
+  url: string;
+  seed: number;
+  at: number;
+};
+
+export type OutfitId = "clothed" | "topless" | "nude";

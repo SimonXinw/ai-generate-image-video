@@ -1,4 +1,5 @@
-import type { AspectPreset, GenerateParams, HardwareProfile } from "../types";
+import type { GenerateParams, HardwareProfile, OutfitId } from "../types";
+import { OUTFIT_CHIPS, OUTFIT_NEG } from "../presets";
 
 type Props = {
   params: GenerateParams;
@@ -20,14 +21,32 @@ export function PromptForm({
   onSubmit,
 }: Props) {
   const set = (patch: Partial<GenerateParams>) => onChange({ ...params, ...patch });
-
-  const setAspect = (aspect: AspectPreset) => {
-    set(profile.sizeByAspect[aspect]);
-  };
-
   const p = profile.sizeByAspect.portrait;
   const s = profile.sizeByAspect.square;
   const l = profile.sizeByAspect.landscape;
+
+  const applyOutfit = (id: OutfitId) => {
+    const chip = OUTFIT_CHIPS.find((c) => c.id === id);
+    if (!chip) return;
+    const stripped = params.prompt
+      .replace(/,?\s*(wearing clothes|fashionable outfit|topless|jeans|nude|completely nude|detailed skin)/gi, "")
+      .replace(/,\s*,/g, ",")
+      .trim()
+      .replace(/,$/, "");
+    set({
+      prompt: stripped ? `${stripped}, ${chip.tags}` : chip.tags,
+      negativePrompt: (() => {
+        const cleaned = params.negativePrompt
+          .replace(/,?\s*(clothes|dressed|bra|panties|covered|shirt|covered breasts)/gi, "")
+          .replace(/,\s*,/g, ",")
+          .trim()
+          .replace(/^,|,$/g, "");
+        const extra = OUTFIT_NEG[id];
+        if (!extra) return cleaned;
+        return cleaned ? `${cleaned}, ${extra}` : extra;
+      })(),
+    });
+  };
 
   return (
     <form
@@ -39,28 +58,28 @@ export function PromptForm({
     >
       <label>
         正向提示词
-        <textarea
-          rows={5}
-          value={params.prompt}
-          onChange={(e) => set({ prompt: e.target.value })}
-        />
+        <textarea rows={4} value={params.prompt} onChange={(e) => set({ prompt: e.target.value })} />
       </label>
+      <div className="row">
+        {OUTFIT_CHIPS.map((c) => (
+          <button key={c.id} type="button" className="chip" onClick={() => applyOutfit(c.id)}>
+            {c.label}
+          </button>
+        ))}
+      </div>
       <label>
         负向提示词
         <textarea
-          rows={3}
+          rows={2}
           value={params.negativePrompt}
           onChange={(e) => set({ negativePrompt: e.target.value })}
         />
       </label>
       <label>
-        模型 checkpoint
-        <select
-          value={params.checkpoint}
-          onChange={(e) => set({ checkpoint: e.target.value })}
-        >
+        模型
+        <select value={params.checkpoint} onChange={(e) => set({ checkpoint: e.target.value })}>
           {checkpoints.length === 0 ? (
-            <option value="">先启动 ComfyUI 并放入模型</option>
+            <option value="">先启动 ComfyUI</option>
           ) : (
             checkpoints.map((name) => (
               <option key={name} value={name}>
@@ -71,9 +90,9 @@ export function PromptForm({
         </select>
       </label>
       <label>
-        LoRA（可选）
+        LoRA
         <select value={params.lora} onChange={(e) => set({ lora: e.target.value })}>
-          <option value="">不用 LoRA</option>
+          <option value="">不用</option>
           {loras.map((name) => (
             <option key={name} value={name}>
               {name}
@@ -81,39 +100,17 @@ export function PromptForm({
           ))}
         </select>
       </label>
+      <p className="label">画幅</p>
       <div className="row">
-        <button type="button" onClick={() => setAspect("portrait")}>
+        <button type="button" className="chip" onClick={() => set(p)}>
           竖 {p.width}×{p.height}
         </button>
-        <button type="button" onClick={() => setAspect("square")}>
+        <button type="button" className="chip" onClick={() => set(s)}>
           方 {s.width}×{s.height}
         </button>
-        <button type="button" onClick={() => setAspect("landscape")}>
+        <button type="button" className="chip" onClick={() => set(l)}>
           横 {l.width}×{l.height}
         </button>
-      </div>
-      <div className="row">
-        <label>
-          步数
-          <input
-            type="number"
-            min={8}
-            max={40}
-            value={params.steps}
-            onChange={(e) => set({ steps: Number(e.target.value) })}
-          />
-        </label>
-        <label>
-          CFG
-          <input
-            type="number"
-            min={1}
-            max={12}
-            step={0.5}
-            value={params.cfg}
-            onChange={(e) => set({ cfg: Number(e.target.value) })}
-          />
-        </label>
       </div>
       <button type="submit" disabled={busy || !params.checkpoint}>
         {busy ? "生成中…" : "开始生成"}

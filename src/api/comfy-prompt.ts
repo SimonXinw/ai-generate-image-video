@@ -6,8 +6,14 @@ type Node = {
   inputs: Record<string, unknown>;
 };
 
-export function buildTxt2ImgPrompt(params: GenerateParams): Record<string, Node> {
-  const seed = params.seed < 0 ? randomSeed() : params.seed;
+export function resolveSeed(params: GenerateParams): number {
+  return params.seed < 0 ? randomSeed() : params.seed;
+}
+
+export function buildTxt2ImgPrompt(
+  params: GenerateParams,
+  seed: number,
+): Record<string, Node> {
   const useLora = params.lora.trim().length > 0;
   const graph: Record<string, Node> = {
     "1": {
@@ -59,8 +65,8 @@ export function buildTxt2ImgPrompt(params: GenerateParams): Record<string, Node>
       seed,
       steps: params.steps,
       cfg: params.cfg,
-      sampler_name: "euler_ancestral",
-      scheduler: "normal",
+      sampler_name: params.sampler || "euler_ancestral",
+      scheduler: params.scheduler || "normal",
       denoise: 1,
       model,
       positive: ["4", 0],

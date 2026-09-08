@@ -19,6 +19,8 @@ export const DEFAULT_PARAMS: GenerateParams = {
   cfg: PROFILE_1660S.defaultCfg,
   seed: -1,
   clipSkip: 2,
+  sampler: "euler_ancestral",
+  scheduler: "normal",
 };
 
 /** 硬红线：未成年人相关，本地也不做 */
