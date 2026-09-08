@@ -1,4 +1,4 @@
-import { PROFILE_2080S } from "./hardware";
+import { PROFILE_1660S } from "./hardware";
 import type { GenerateParams } from "./types";
 
 export const COMFY_URL =
@@ -6,17 +6,17 @@ export const COMFY_URL =
 
 export const AGE_KEY = "local-gen-age-ok";
 
+/** 默认按当前更常用的 1660S / SD1.5；切到 2080S 会换成 Pony 句 */
 export const DEFAULT_PARAMS: GenerateParams = {
-  prompt: "score_9, score_8_up, score_7_up, 1girl, looking at viewer, detailed face",
-  negativePrompt:
-    "score_4, score_5, score_6, blurry, extra fingers, bad anatomy, child, loli, shota, underage",
+  prompt: PROFILE_1660S.defaultPrompt,
+  negativePrompt: PROFILE_1660S.defaultNegative,
   checkpoint: "",
   lora: "",
   loraStrength: 0.8,
-  width: PROFILE_2080S.sizeByAspect.portrait.width,
-  height: PROFILE_2080S.sizeByAspect.portrait.height,
-  steps: PROFILE_2080S.defaultSteps,
-  cfg: PROFILE_2080S.defaultCfg,
+  width: PROFILE_1660S.sizeByAspect.portrait.width,
+  height: PROFILE_1660S.sizeByAspect.portrait.height,
+  steps: PROFILE_1660S.defaultSteps,
+  cfg: PROFILE_1660S.defaultCfg,
   seed: -1,
   clipSkip: 2,
 };

@@ -26,6 +26,7 @@
 | [docs/05-inventory.md](docs/05-inventory.md) | 每台机装了什么、双机如何共用模型 |
 | [docs/06-prompts.md](docs/06-prompts.md) | Pony / SD1.5 / SDXL 提示词不要混 |
 | [docs/07-known-gaps.md](docs/07-known-gaps.md) | 已修问题、未做能力、建议实现顺序 |
+| [docs/08-run-1660s.md](docs/08-run-1660s.md) | **1660S 开跑手册（照着启动）** |
 
 ## 以后真正开跑时（摘要）
 

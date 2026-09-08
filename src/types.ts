@@ -16,6 +16,8 @@ export type HardwareProfile = {
   /** ComfyUI 启动建议参数 */
   comfyFlags: string[];
   recommendedModels: string[];
+  defaultPrompt: string;
+  defaultNegative: string;
   sizeByAspect: Record<AspectPreset, { width: number; height: number }>;
   defaultSteps: number;
   defaultCfg: number;

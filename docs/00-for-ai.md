@@ -30,8 +30,9 @@
 1. 读 `README.md` 和本文件。
 2. 确认本机 GPU（`nvidia-smi`）：8G → 2080S 脚本；6G → 1660S 脚本。
 3. 做 `docs/01-setup.md`，直到 `vendor/ComfyUI/main.py` 存在且 venv 能 `python main.py --help`。
+   - **1660S 已验证组合**：ComfyUI **v0.3.26** + Python 3.11 + torch 2.6.0+cu124。最新 master 可能因 `comfy_kitchen` 起不来，见 `docs/08-run-1660s.md`。
 4. 仅当用户要模型：打开 `docs/02-models.md`，只下对应该 GPU 的「必下」项。
-5. 做 `docs/03-run.md`。前端页面切到对应机器档。
+5. 做 `docs/03-run.md` 或直接 `docs/08-run-1660s.md`。前端页面切到对应机器档。
 6. 验证：`GET http://127.0.0.1:8188/object_info` 能返回；页面能列出 checkpoint。
 7. 在对应机器填 `docs/05-inventory.md` 模板（不要把 NSFW 文件名推远程，除非用户要求）。
 

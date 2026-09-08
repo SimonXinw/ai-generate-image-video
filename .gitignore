@@ -8,5 +8,6 @@ vendor/
 *.pt
 *.gguf
 *.onnx
+docs/STATUS-*.md
 .DS_Store
 Thumbs.db

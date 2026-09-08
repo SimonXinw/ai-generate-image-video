@@ -29,14 +29,21 @@ Civitai 搜索：
 
 ### 机器 B · 1660 Super 6GB（必下）
 
-Civitai 搜索（**先下 1，不要先下 Pony**）：
+优先单文件 SD1.5（约 2GB），**不要先下 Pony**。
 
-1. `SD 1.5` + `NSFW` 或写实/二次元你常用的 1.5 检查点（约 2GB，512–640 最稳）
-2. 可选以后再试：`Pony Diffusion V6 XL`（6GB 卡会很紧，必须 `--lowvram`，分辨率 ≤640×960）
+已验证可直链（Hugging Face，无需登录）：
+
+1. **DreamShaper 8 pruned**（主推，NSFW 友好）  
+   `https://huggingface.co/Lykon/DreamShaper/resolve/main/DreamShaper_8_pruned.safetensors`  
+   保存为：`vendor/ComfyUI/models/checkpoints/DreamShaper_8_pruned.safetensors`
+2. 可选写实：`Realistic_Vision_V5.1_fp16-no-ema.safetensors`  
+   来自 `SG161222/Realistic_Vision_V5.1_noVAE`
+
+Civitai 搜 `nsfw sd1.5` / `undress` 可再找更「去衣」的 merge（要账号）。
+
+出图默认：512×768；OOM 再降。Pony/Flux 见「可选」。
 
 不要下：Flux、CHROMA、视频权重。
-
-出图默认：640×960，步数 20。若 OOM：再降到 512×768，或先只用 1.5。
 
 ## 可选（两台都暂缓）
 

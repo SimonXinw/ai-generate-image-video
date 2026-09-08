@@ -58,6 +58,8 @@ export function App() {
     saveHardwareId(id);
     setParams((prev) => ({
       ...prev,
+      prompt: next.defaultPrompt,
+      negativePrompt: next.defaultNegative,
       ...next.sizeByAspect.portrait,
       steps: next.defaultSteps,
       cfg: next.defaultCfg,

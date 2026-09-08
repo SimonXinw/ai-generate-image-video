@@ -26,6 +26,10 @@ export const PROFILE_2080S: HardwareProfile = {
     "SDXL + NSFW LoRA",
     "勿优先全精度 Flux",
   ],
+  defaultPrompt:
+    "score_9, score_8_up, score_7_up, 1girl, looking at viewer, detailed face",
+  defaultNegative:
+    "score_4, score_5, score_6, blurry, extra fingers, bad anatomy, child, loli, shota, underage",
   sizeByAspect: {
     portrait: { width: 768, height: 1152 },
     square: { width: 832, height: 832 },
@@ -58,17 +62,21 @@ export const PROFILE_1660S: HardwareProfile = {
     "auto",
   ],
   recommendedModels: [
-    "SD1.5 NSFW 检查点（最稳，512–640）",
-    "Pony / SDXL 仅 640×960 + lowvram",
-    "Flux 不推荐",
+    "DreamShaper 8（已推荐，NSFW 友好）",
+    "Realistic Vision 等 SD1.5；512–640 最稳",
+    "Pony/SDXL 仅试探；Flux 不推荐",
   ],
+  defaultPrompt:
+    "beautiful adult woman, looking at viewer, detailed face, natural lighting",
+  defaultNegative:
+    "blurry, extra fingers, bad anatomy, deformed, child, loli, shota, underage, teen",
   sizeByAspect: {
-    portrait: { width: 640, height: 960 },
-    square: { width: 640, height: 640 },
-    landscape: { width: 960, height: 640 },
+    portrait: { width: 512, height: 768 },
+    square: { width: 512, height: 512 },
+    landscape: { width: 768, height: 512 },
   },
-  defaultSteps: 20,
-  defaultCfg: 6.5,
+  defaultSteps: 24,
+  defaultCfg: 6,
 };
 
 export const HARDWARE_PROFILES: Record<HardwareId, HardwareProfile> = {
