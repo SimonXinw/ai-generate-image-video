@@ -15,7 +15,8 @@
 nvidia-smi
 ```
 
-记下显存：约 8GB → 机器 A；约 6GB → 机器 B。
+记下显存：约 8GB → 机器 A；约 6GB → 机器 B。换机完整命令见
+[`docs/13-new-machine.md`](13-new-machine.md)。
 
 ## 步骤 1：克隆 ComfyUI
 
@@ -23,6 +24,7 @@ nvidia-smi
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\setup-comfyui.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\pin-comfyui-v0326.ps1
 ```
 
 成功后应存在：

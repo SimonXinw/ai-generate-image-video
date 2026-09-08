@@ -18,7 +18,8 @@
 
 | 文件 | 用途 |
 |------|------|
-| [docs/00-for-ai.md](docs/00-for-ai.md) | 给后续 AI：能做什么、不能做什么、执行顺序 |
+| [docs/00-for-ai.md](docs/00-for-ai.md) | 给后续 AI：能做什么、不能做什么 |
+| [docs/13-new-machine.md](docs/13-new-machine.md) | **换电脑：识别 GPU、下载脚本、哈希、烟测** |
 | [docs/01-setup.md](docs/01-setup.md) | 装 Python / 克隆 ComfyUI / 装依赖（仍不下载模型） |
 | [docs/02-models.md](docs/02-models.md) | 模型搜什么、下到哪、按哪台机选 |
 | [docs/03-run.md](docs/03-run.md) | 启动 ComfyUI + 前端出图 |
@@ -36,7 +37,8 @@
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\setup-comfyui.ps1
-# 按 docs/02-models.md 下载 checkpoint / LoRA 到指定目录
+powershell -ExecutionPolicy Bypass -File .\scripts\pin-comfyui-v0326.ps1
+# 按 docs/13-new-machine.md 只下当前 GPU 的 checkpoint
 powershell -ExecutionPolicy Bypass -File .\scripts\start-comfyui-1660s.ps1
 # 或 start-comfyui-2080s.ps1
 npm install

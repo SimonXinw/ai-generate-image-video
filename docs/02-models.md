@@ -1,8 +1,10 @@
 # 模型下载清单（先读，后下）
 
-**默认不下。** 只有用户明确说「下载模型 / 安装检查点」时才执行。
+换电脑时的 GPU 对照、脚本和哈希以
+[`docs/13-new-machine.md`](13-new-machine.md) 为准。本文件是补充清单。
 
-来源以 [Civitai](https://civitai.com) 为主。Civitai 页面会变，**用搜索词找当前最热的同名/同系列文件**，下 `.safetensors`，不要下 exe。
+用户说「下载模型 / 安装检查点 / 换电脑跑起来」时，**只下当前 GPU 的必下脚本**，
+不要把两台机的 XL 权重都下到 6GB 卡上。不要下 exe。
 
 ## 放到哪
 
@@ -12,7 +14,16 @@
 | LoRA | `vendor/ComfyUI/models/loras/` |
 | 独立 VAE（仅当说明需要） | `vendor/ComfyUI/models/vae/` |
 
-文件名可保留原名。前端会从 ComfyUI `/object_info` 列出，不必改代码。
+文件名可保留原名。前端从 ComfyUI `/object_info` 列出，不必改代码。
+
+## 官方下载脚本（优先用）
+
+| 机器 | 脚本 | 文件名 |
+|------|------|--------|
+| B 1660S | `scripts/download-dreamshaper.ps1` | `DreamShaper_8_pruned.safetensors` |
+| A 2080S 写实 | `scripts/download-cyberrealistic-pony.ps1` | `CyberRealisticPony_V18.0_F16.safetensors` |
+
+脚本可重复跑。Hugging Face 超时先给终端加 Clash 代理再跑，见 13 号文档。
 
 ## 按机器选（只下对应档的「必下」）
 
@@ -64,7 +75,8 @@ Civitai 搜 `nsfw sd1.5` / `undress` 可再找更「去衣」的 merge（要账�
 4. 下完后重启 ComfyUI，前端刷新才能看到新名字。
 5. 若站点要登录：告诉用户去浏览器登录后手动下载，AI 不要硬撞验证码。
 
-无法稳定提供永久直链（会失效）。以搜索词 + 目录为准。
+无法稳定提供永久直链的 Civitai 文件，用搜索词 + 目录。
+已列入 `scripts/download-*.ps1` 的 Hugging Face 文件以脚本校验为准。
 
 ## 体积参考
 

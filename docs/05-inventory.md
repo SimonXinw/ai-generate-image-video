@@ -1,6 +1,7 @@
 # 本机记录（每台电脑填一份）
 
 模型不进 git。每台机自己记：装到哪了、下了什么、上次能不能出图。
+换电脑怎么识别 GPU、跑哪条下载脚本：见 [`docs/13-new-machine.md`](13-new-machine.md)。
 
 复制本文件到 `docs/STATUS-1660S.md` / `docs/STATUS-2080S.md` 再填（这两份可以 gitignore，见文末）。也可以只改下面的模板。
 
