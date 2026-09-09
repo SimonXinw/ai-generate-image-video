@@ -1,5 +1,10 @@
 import { InfoTip } from "./InfoTip";
-import { findPresetCheckpoint, MODEL_PRESET_IDS, MODEL_PRESETS } from "../model-presets";
+import {
+  findPresetCheckpoint,
+  MODEL_PRESET_IDS,
+  MODEL_PRESETS,
+  presetParamLine,
+} from "../model-presets";
 import type { ModelPresetPickerProps } from "../types";
 
 export function ModelPresetPicker({
@@ -29,6 +34,7 @@ export function ModelPresetPicker({
             >
               <span>{preset.label}</span>
               <small>{preset.description}</small>
+              <small>{presetParamLine(preset)}</small>
               <small className={installed ? "preset-ready" : "preset-missing"}>
                 {!supported
                   ? `需要至少 ${preset.minVramGb}GB 显存`

@@ -28,7 +28,8 @@ body {
 .page {
   max-width: 520px;
   margin: 0 auto;
-  padding: 16px 14px 40px;
+  /* 底部留出停靠条 + 手机安全区，最后一张卡片不会被盖住 */
+  padding: 16px 14px calc(84px + env(safe-area-inset-bottom, 0px));
   display: flex;
   flex-direction: column;
   gap: 12px;

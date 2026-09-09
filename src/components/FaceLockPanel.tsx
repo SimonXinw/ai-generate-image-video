@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { Field } from "./Field";
+import { InfoTip } from "./InfoTip";
+import { TIPS } from "../tips";
 import type { FaceLockPanelProps } from "../types";
 
 export function FaceLockPanel({
@@ -36,6 +39,7 @@ export function FaceLockPanel({
           onChange={(event) => set({ enabled: event.target.checked })}
         />
         启用参考脸锁定
+        <InfoTip text={TIPS.faceLock} />
       </label>
       <p className="small muted">
         {isLowVram
@@ -55,8 +59,11 @@ export function FaceLockPanel({
       </label>
       {previewUrl ? <img className="face-preview" src={previewUrl} alt="参考脸预览" /> : null}
       <div className="row">
-        <label>
-          身份强度 {settings.weight.toFixed(2)}
+        <Field
+          label={`身份强度 ${settings.weight.toFixed(2)}`}
+          tip={TIPS.faceWeight}
+          hint="越高越像参考脸，太高会僵。"
+        >
           <input
             type="range"
             min="0.4"
@@ -65,9 +72,12 @@ export function FaceLockPanel({
             value={settings.weight}
             onChange={(event) => set({ weight: Number(event.target.value) })}
           />
-        </label>
-        <label>
-          结束比例 {settings.endAt.toFixed(2)}
+        </Field>
+        <Field
+          label={`结束比例 ${settings.endAt.toFixed(2)}`}
+          tip={TIPS.faceEnd}
+          hint="0.9 表示最后一成步数放开。"
+        >
           <input
             type="range"
             min="0.5"
@@ -76,7 +86,7 @@ export function FaceLockPanel({
             value={settings.endAt}
             onChange={(event) => set({ endAt: Number(event.target.value) })}
           />
-        </label>
+        </Field>
       </div>
       <p className="small muted">
         仅使用本人或已获授权的成年人照片；图片会上传到本机 ComfyUI，不会传到在线平台。

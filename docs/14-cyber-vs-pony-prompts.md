@@ -123,7 +123,7 @@ SD1.5，和上面两个不同源：
 
 - **不要**写 `score_9` 那套，无效还占 token。
 - 用自然语言或短标签：`beautiful adult woman, looking at viewer, detailed face`。
-- 分辨率 512×768，Steps 24，CFG 6，`euler_ancestral` + `normal`。
+- 分辨率 512×768，Steps 28，CFG 7，`dpmpp_2m` + `karras`，CLIP Skip 1。
 - 加权语法 `(词:1.3)` 仍然可用。
 - 训练分辨率是 512，直接套 832×1216 会糊或 OOM。
 

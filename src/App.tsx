@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { pingComfy } from "./api/comfy-client";
+import { ActionDock } from "./components/ActionDock";
 import { FaceLockPanel } from "./components/FaceLockPanel";
 import { HardwareBanner } from "./components/HardwareBanner";
 import { HardwareSwitcher } from "./components/HardwareSwitcher";
 import { ImageLightbox } from "./components/ImageLightbox";
 import { ImageOptions } from "./components/ImageOptions";
-import { MetaPanel } from "./components/MetaPanel";
 import { ModelPresetPicker } from "./components/ModelPresetPicker";
+import { PreviewColumn } from "./components/PreviewColumn";
 import { QualityPresets } from "./components/QualityPresets";
-import { ProgressPanel } from "./components/ProgressPanel";
 import { PromptForm } from "./components/PromptForm";
+import { RecipePanel } from "./components/RecipePanel";
 import { SizePresets } from "./components/SizePresets";
-import { ResultView } from "./components/ResultView";
 import { DEFAULT_PARAMS } from "./constants";
 import { HARDWARE_PROFILES, loadHardwareId, saveHardwareId } from "./hardware";
 import { useImageGeneration } from "./hooks/useImageGeneration";
-import { balancedQuality } from "./quality-presets";
+import { useInView } from "./hooks/useInView";
 import {
   applyPreset,
   findPresetCheckpoint,
@@ -23,6 +23,7 @@ import {
   MODEL_PRESETS,
   preferredPresetId,
 } from "./model-presets";
+import type { Recipe } from "./recipe-types";
 import type {
   ComfyStatus,
   FaceLockSettings,
@@ -34,11 +35,9 @@ import type {
 export function App() {
   const [hwId, setHwId] = useState<HardwareId>(() => loadHardwareId());
   const profile = HARDWARE_PROFILES[hwId];
-  const [params, setParams] = useState<GenerateParams>(() => ({
-    ...DEFAULT_PARAMS,
-    ...profile.sizeByAspect.portrait,
-    ...balancedQuality(profile.id),
-  }));
+  const [params, setParams] = useState<GenerateParams>(() =>
+    mergeHardwarePreset(DEFAULT_PARAMS, profile, []),
+  );
   const [status, setStatus] = useState<ComfyStatus>({
     ok: false,
     message: "正在检测 ComfyUI…",
@@ -57,6 +56,8 @@ export function App() {
     preferredPresetId(loadHardwareId()),
   );
   const generation = useImageGeneration();
+  const submitRef = useRef<HTMLButtonElement>(null);
+  const submitInView = useInView(submitRef);
 
   useEffect(() => {
     let stop = false;
@@ -105,6 +106,15 @@ export function App() {
     setParams((prev) => applyPreset(prev, preset, checkpoint));
   };
 
+  const onImportRecipe = (recipe: Recipe) => {
+    setHwId(recipe.hardware);
+    saveHardwareId(recipe.hardware);
+    setModelPresetId(recipe.modelPreset);
+    setParams(recipe.params);
+    setFaceSettings(recipe.faceLock);
+    generation.setError("");
+  };
+
   const onSubmit = () =>
     generation.generate(params, hwId, faceSettings, faceFile);
 
@@ -112,22 +122,14 @@ export function App() {
     <main className="page">
       <h1>本地出图</h1>
       <div className="layout">
-        <div className="col col-preview">
-          <ProgressPanel busy={generation.busy} progress={generation.progress} />
-          <ResultView
-            imageUrl={generation.imageUrl}
-            error={generation.error}
-            seed={generation.seedUsed}
-            history={generation.history}
-            onPick={generation.pickHistory}
-            onReuseSeed={(seed) => setParams((p) => ({ ...p, seed }))}
-            onZoom={setZoomUrl}
-          />
-          <MetaPanel
-            meta={generation.meta}
-            onReuseSeed={(seed) => setParams((p) => ({ ...p, seed }))}
-          />
-        </div>
+        <PreviewColumn
+          generation={generation}
+          hardwareId={hwId}
+          modelPresetId={modelPresetId}
+          faceSettings={faceSettings}
+          onReuseSeed={(seed) => setParams((p) => ({ ...p, seed }))}
+          onZoom={setZoomUrl}
+        />
         <div className="col col-form">
           <HardwareSwitcher profile={profile} onChange={onHardwareChange} />
           <HardwareBanner comfyMessage={status.message} comfyOk={status.ok} />
@@ -150,17 +152,43 @@ export function App() {
             checkpoints={status.checkpoints}
             loras={status.loras}
             busy={generation.busy}
+            stopping={generation.stopping}
+            submitRef={submitRef}
             onChange={setParams}
             onSubmit={() => void onSubmit()}
+            onStop={() => void generation.stop()}
           />
           <SizePresets params={params} profile={profile} onChange={setParams} />
-          <QualityPresets params={params} profile={profile} onChange={setParams} />
+          <QualityPresets
+            params={params}
+            profile={profile}
+            modelPresetId={modelPresetId}
+            onChange={setParams}
+          />
           <ImageOptions params={params} onChange={setParams} />
+          <RecipePanel
+            hardwareId={hwId}
+            modelPresetId={modelPresetId}
+            params={params}
+            faceSettings={faceSettings}
+            checkpoints={status.checkpoints}
+            loras={status.loras}
+            onImport={onImportRecipe}
+          />
         </div>
       </div>
       {zoomUrl ? (
         <ImageLightbox imageUrl={zoomUrl} onClose={() => setZoomUrl("")} />
       ) : null}
+      <ActionDock
+        show={!zoomUrl && !submitInView}
+        busy={generation.busy}
+        stopping={generation.stopping}
+        canSubmit={Boolean(params.checkpoint)}
+        progress={generation.progress}
+        onSubmit={() => void onSubmit()}
+        onStop={() => void generation.stop()}
+      />
     </main>
   );
 }

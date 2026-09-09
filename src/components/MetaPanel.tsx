@@ -1,13 +1,23 @@
 import { useState } from "react";
 import { copyText } from "../lib/clipboard";
-import { metaRows, metaToText } from "../lib/meta";
-import type { MetaPanelProps } from "../types";
+import { metaRows } from "../lib/meta";
+import { buildRecipe, recipeToMarkdown } from "../lib/recipe-format";
+import type { MetaPanelProps } from "../recipe-types";
 
-export function MetaPanel({ meta, onReuseSeed }: MetaPanelProps) {
+export function MetaPanel({
+  meta,
+  hardwareId,
+  modelPresetId,
+  faceSettings,
+  onReuseSeed,
+}: MetaPanelProps) {
   const [hint, setHint] = useState("");
 
   if (!meta) return null;
   const rows = metaRows(meta.params, meta.seed);
+  const markdown = recipeToMarkdown(
+    buildRecipe(hardwareId, modelPresetId, meta.params, faceSettings, meta.seed),
+  );
 
   const copy = async (text: string, label: string) => {
     const ok = await copyText(text);
@@ -30,11 +40,8 @@ export function MetaPanel({ meta, onReuseSeed }: MetaPanelProps) {
         <button type="button" onClick={() => void copy(String(meta.seed), "种子")}>
           复制种子
         </button>
-        <button
-          type="button"
-          onClick={() => void copy(metaToText(meta.params, meta.seed), "全部参数")}
-        >
-          复制全部参数
+        <button type="button" onClick={() => void copy(markdown, "配方")}>
+          复制配方
         </button>
         <button type="button" onClick={() => onReuseSeed(meta.seed)}>
           复用种子

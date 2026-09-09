@@ -1,3 +1,5 @@
+import type { RefObject } from "react";
+
 export type AspectPreset = "portrait" | "square" | "landscape";
 
 export type HardwareId = "rtx2080s" | "gtx1660s";
@@ -72,11 +74,6 @@ export type GenerationMeta = {
   seed: number;
 };
 
-export type MetaPanelProps = {
-  meta: GenerationMeta | null;
-  onReuseSeed: (seed: number) => void;
-};
-
 export type OutfitId = "clothed" | "topless" | "nude";
 
 export type LightboxProps = {
@@ -111,6 +108,8 @@ export type ModelPreset = {
   clipSkip: number;
   sampler: string;
   scheduler: string;
+  width: number;
+  height: number;
   minVramGb: number;
 };
 
@@ -127,6 +126,7 @@ export type QualityPreset = {
 export type QualityPresetsProps = {
   params: GenerateParams;
   profile: HardwareProfile;
+  modelPresetId: ModelPresetId;
   onChange: (next: GenerateParams) => void;
 };
 
@@ -157,8 +157,11 @@ export type PromptFormProps = {
   checkpoints: string[];
   loras: string[];
   busy: boolean;
+  stopping: boolean;
+  submitRef: RefObject<HTMLButtonElement | null>;
   onChange: (next: GenerateParams) => void;
   onSubmit: () => void;
+  onStop: () => void;
 };
 
 export type ProgressPanelProps = {
@@ -176,24 +179,8 @@ export type HardwareBannerProps = {
   comfyOk: boolean;
 };
 
-export type FaceLockSettings = {
-  enabled: boolean;
-  weight: number;
-  endAt: number;
-};
-
-export type FaceLockWorkflow = {
-  imageName: string;
-  preset: "FACEID" | "FACEID PLUS V2";
-  weight: number;
-  endAt: number;
-};
-
-export type FaceLockPanelProps = {
-  hardwareId: HardwareId;
-  available: boolean;
-  file: File | null;
-  settings: FaceLockSettings;
-  onFileChange: (file: File | null) => void;
-  onChange: (next: FaceLockSettings) => void;
-};
+export type {
+  FaceLockSettings,
+  FaceLockWorkflow,
+  FaceLockPanelProps,
+} from "./face-lock-types";

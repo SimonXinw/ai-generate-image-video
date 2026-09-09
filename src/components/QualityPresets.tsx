@@ -3,9 +3,14 @@ import { activeQualityId, qualityList } from "../quality-presets";
 import { TIPS } from "../tips";
 import type { QualityPresetsProps } from "../types";
 
-export function QualityPresets({ params, profile, onChange }: QualityPresetsProps) {
-  const active = activeQualityId(params, profile.id);
-  const presets = qualityList(profile.id);
+export function QualityPresets({
+  params,
+  profile,
+  modelPresetId,
+  onChange,
+}: QualityPresetsProps) {
+  const active = activeQualityId(params, modelPresetId);
+  const presets = qualityList(modelPresetId);
 
   return (
     <section className="card">
@@ -13,7 +18,7 @@ export function QualityPresets({ params, profile, onChange }: QualityPresetsProp
         画质档位
         <InfoTip text={TIPS.quality} />
       </p>
-      <p className="muted small">按 {profile.label} 调过的步数与 CFG</p>
+      <p className="muted small">按当前模型调过的步数与 CFG（{profile.label}）</p>
       <div className="size-chips">
         {presets.map((q) => (
           <button
@@ -29,7 +34,7 @@ export function QualityPresets({ params, profile, onChange }: QualityPresetsProp
       </div>
       <p className="muted small">
         当前 {params.steps} 步 / CFG {params.cfg}
-        {active ? "" : "（自定义，来自图片选项里的手动改动）"}
+        {active ? ` · ${presets.find((q) => q.id === active)?.note}` : "（自定义）"}
       </p>
     </section>
   );

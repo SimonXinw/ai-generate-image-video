@@ -12,6 +12,26 @@
   transition: width 0.2s ease;
 }
 
+.stop {
+  background: #4a2230;
+  color: #ffb3bd;
+}
+
+.stop:hover:not(:disabled) {
+  background: #5d2a3b;
+}
+
+/* 开始生成 / 停止出图 一左一右，等宽 */
+.form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.form-actions button {
+  flex: 1;
+  min-width: 0;
+}
+
 .progress .preview,
 .result img {
   width: 100%;

@@ -1,12 +1,18 @@
 import { useState } from "react";
+import { InfoTip } from "./InfoTip";
 import { HARDWARE_IDS, HARDWARE_PROFILES } from "../hardware";
+import { TIPS } from "../tips";
 import type { HardwareSwitcherProps } from "../types";
 
 export function HardwareSwitcher({ profile, onChange }: HardwareSwitcherProps) {
   const [open, setOpen] = useState(false);
   return (
     <section className="card switcher">
-      <p className="label">当前机子</p>
+      <p className="label">
+        当前机子
+        <InfoTip text={TIPS.hardware} />
+      </p>
+      <p className="field-hint">按实际显卡选，会改分辨率和默认模型。</p>
       <div className="row">
         {HARDWARE_IDS.map((id) => {
           const item = HARDWARE_PROFILES[id];
@@ -15,6 +21,7 @@ export function HardwareSwitcher({ profile, onChange }: HardwareSwitcherProps) {
               key={id}
               type="button"
               className={id === profile.id ? "chip active" : "chip"}
+              title={`${item.gpu} · 默认 ${item.sizeByAspect.portrait.width}×${item.sizeByAspect.portrait.height}`}
               onClick={() => onChange(id)}
             >
               {item.label}

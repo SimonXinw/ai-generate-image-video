@@ -49,11 +49,11 @@ powershell -ExecutionPolicy Bypass -File .\scripts\start-comfyui-1660s.ps1
 
 - 分辨率：`512×768`（OOM 再降到 `512×512`）
 - Batch：1
-- 采样器：`euler_ancestral`
-- 调度：`normal`
-- Steps：24
-- CFG：6
-- CLIP Skip：2
+- 采样器：`dpmpp_2m`
+- 调度：`karras`
+- Steps：28
+- CFG：7
+- CLIP Skip：1
 
 不要叠多个 LoRA，不要开高分修复。Pony / Flux 权重不要当这台机默认。
 
@@ -90,7 +90,7 @@ blurry, extra fingers, bad anatomy, deformed, child, loli, shota, underage, teen
 成功标准：
 
 1. `/object_info` 能找到 `DreamShaper_8_pruned.safetensors`。
-2. UI 选择该方案后显示 CFG 6、Steps 24、CLIP Skip 2、512×768。
+2. UI 选择该方案后显示 CFG 7、Steps 28、CLIP Skip 1、512×768。
 3. 1660S + `--lowvram` 能完成一张安全成人肖像，无 OOM。
 4. 切回 2080S 档后 Pony 方案可再选。
 

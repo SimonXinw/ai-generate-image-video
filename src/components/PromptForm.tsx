@@ -1,5 +1,6 @@
-import { InfoTip } from "./InfoTip";
+import { Field } from "./Field";
 import { OUTFIT_CHIPS, OUTFIT_NEG } from "../presets";
+import { checkpointCaption } from "../select-options";
 import { TIPS } from "../tips";
 import type { GenerateParams, OutfitId, PromptFormProps } from "../types";
 
@@ -8,8 +9,11 @@ export function PromptForm({
   checkpoints,
   loras,
   busy,
+  stopping,
+  submitRef,
   onChange,
   onSubmit,
+  onStop,
 }: PromptFormProps) {
   const set = (patch: Partial<GenerateParams>) => onChange({ ...params, ...patch });
 
@@ -44,57 +48,77 @@ export function PromptForm({
         onSubmit();
       }}
     >
-      <label>
-        正向提示词
+      <Field
+        label="正向提示词"
+        tip={TIPS.prompt}
+        hint="Pony / Cyber 带 score_9；DreamShaper 不要写 score。"
+      >
         <textarea rows={4} value={params.prompt} onChange={(e) => set({ prompt: e.target.value })} />
-      </label>
-      <div className="row">
+      </Field>
+      <div className="outfit-chips">
         {OUTFIT_CHIPS.map((c) => (
-          <button key={c.id} type="button" className="chip" onClick={() => applyOutfit(c.id)}>
+          <button
+            key={c.id}
+            type="button"
+            className="chip"
+            title={TIPS.outfit}
+            onClick={() => applyOutfit(c.id)}
+          >
             {c.label}
           </button>
         ))}
       </div>
-      <label>
-        负向提示词
+      <p className="field-hint">{TIPS.outfit}</p>
+      <Field
+        label="负向提示词"
+        tip={TIPS.negative}
+        hint="不想出现的内容。红线排除词不要删。"
+      >
         <textarea
           rows={2}
           value={params.negativePrompt}
           onChange={(e) => set({ negativePrompt: e.target.value })}
         />
-      </label>
-      <label>
-        <span className="field-label">
-          模型 <InfoTip text={TIPS.checkpoint} />
-        </span>
+      </Field>
+      <Field
+        label="模型"
+        tip={TIPS.checkpoint}
+        hint="换模型等于换画风。下面方案按钮会同步采样参数。"
+      >
         <select value={params.checkpoint} onChange={(e) => set({ checkpoint: e.target.value })}>
           {checkpoints.length === 0 ? (
             <option value="">先启动 ComfyUI</option>
           ) : (
             checkpoints.map((name) => (
               <option key={name} value={name}>
-                {name}
+                {checkpointCaption(name)}
               </option>
             ))
           )}
         </select>
-      </label>
-      <label>
-        <span className="field-label">
-          LoRA <InfoTip text={TIPS.lora} />
-        </span>
+      </Field>
+      <Field
+        label="LoRA"
+        tip={TIPS.lora}
+        hint={params.lora ? "叠加在主模型上，强度在图片选项里调。" : "不用也可以，只靠主模型出图。"}
+      >
         <select value={params.lora} onChange={(e) => set({ lora: e.target.value })}>
-          <option value="">不用</option>
+          <option value="">不用 · 只靠主模型</option>
           {loras.map((name) => (
             <option key={name} value={name}>
               {name}
             </option>
           ))}
         </select>
-      </label>
-      <button type="submit" disabled={busy || !params.checkpoint}>
-        {busy ? "生成中…" : "开始生成"}
-      </button>
+      </Field>
+      <div className="form-actions">
+        <button ref={submitRef} type="submit" disabled={busy || !params.checkpoint}>
+          {busy ? "生成中…" : "开始生成"}
+        </button>
+        <button type="button" className="stop" onClick={onStop} disabled={!busy || stopping}>
+          {stopping ? "正在停止…" : "停止出图"}
+        </button>
+      </div>
     </form>
   );
 }

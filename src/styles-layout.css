@@ -31,10 +31,84 @@
   padding: 12px;
 }
 
+/* 主按钮滚出视口后的底部停靠条，盖在内容上但让开灯箱 */
+.action-dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #2a3145;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  animation: dock-in 0.18s ease-out;
+}
+
+@keyframes dock-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.dock-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.2s ease;
+}
+
+.dock-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 10px 14px;
+}
+
+.dock-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dock-action button {
+  flex: 1;
+}
+
+.dock-status {
+  flex: 0 0 auto;
+}
+
+.dock-submit {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action-dock {
+    animation: none;
+  }
+}
+
 @media (min-width: 900px) {
   .page {
     max-width: 1440px;
-    padding: 16px 20px 40px;
+    padding: 16px 20px 84px;
+  }
+
+  .dock-inner {
+    padding: 10px 20px;
+  }
+
+  /* 对齐右侧表单列，不横跨预览区 */
+  .dock-action {
+    width: 420px;
+    margin-left: auto;
   }
 
   .layout {
@@ -43,40 +117,13 @@
     gap: 20px;
   }
 
+  /* 两列都按内容自然撑高，滚动交给整页，避免列内再套一层滚动条 */
   .col-preview {
     flex: 1 1 60%;
-    position: sticky;
-    top: 16px;
   }
 
   .col-form {
     flex: 0 0 420px;
-    max-height: calc(100dvh - 90px);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    padding-right: 6px;
-    scrollbar-width: thin;
-    scrollbar-color: #3a4260 transparent;
-  }
-
-  .col-form::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  .col-form::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .col-form::-webkit-scrollbar-thumb {
-    background: #3a4260;
-    border-radius: 99px;
-    border: 2px solid transparent;
-    background-clip: content-box;
-  }
-
-  .col-form::-webkit-scrollbar-thumb:hover {
-    background: #4d5880;
-    background-clip: content-box;
   }
 
   .result img,

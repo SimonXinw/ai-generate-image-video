@@ -23,3 +23,15 @@ export async function copyText(text: string): Promise<boolean> {
     return false;
   }
 }
+
+/** 读剪贴板。权限被拒或非安全上下文时返回空串，交给手动粘贴 */
+export async function readText(): Promise<string> {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      return await navigator.clipboard.readText();
+    }
+  } catch {
+    return "";
+  }
+  return "";
+}

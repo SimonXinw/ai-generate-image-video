@@ -35,6 +35,21 @@
   margin-bottom: 8px;
 }
 
+/* 穿衣/半裸/裸体：只是快捷标签，按文字宽度收紧，不占满整行 */
+.outfit-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.outfit-chips .chip {
+  flex: 0 0 auto;
+  min-width: 0;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 99px;
+}
+
 .size-chips .chip {
   flex: 0 1 auto;
   min-width: 0;
@@ -46,6 +61,15 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
+}
+
+.field-hint {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--muted);
+  font-weight: 400;
 }
 
 .infotip {
@@ -89,7 +113,8 @@
 }
 
 .infotip:hover .infotip-bubble,
-.infotip:focus-visible .infotip-bubble {
+.infotip:focus-visible .infotip-bubble,
+.infotip.open .infotip-bubble {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);

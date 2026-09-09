@@ -15,7 +15,7 @@ export function SizePresets({ params, profile, onChange }: SizePresetsProps) {
         画幅预设
         <InfoTip text={TIPS.size} />
       </p>
-      <p className="muted small">按 {profile.label} 的显存挑过的尺寸</p>
+      <p className="field-hint">点尺寸即可。超过底模太多容易双头。</p>
       <div className="size-chips">
         {presets.map((p) => {
           const active = params.width === p.width && params.height === p.height;

@@ -14,11 +14,11 @@ export const DEFAULT_PARAMS: GenerateParams = {
   loraStrength: 0.8,
   width: PROFILE_1660S.sizeByAspect.portrait.width,
   height: PROFILE_1660S.sizeByAspect.portrait.height,
-  ...balancedQuality(PROFILE_1660S.id),
+  ...balancedQuality("dreamShaper8"),
   seed: -1,
-  clipSkip: 2,
-  sampler: "euler_ancestral",
-  scheduler: "normal",
+  clipSkip: 1,
+  sampler: "dpmpp_2m",
+  scheduler: "karras",
 };
 
 /** 放大弹窗的缩放范围与滚轮步长 */

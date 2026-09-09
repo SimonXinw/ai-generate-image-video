@@ -15,7 +15,7 @@ $Prompt = @{
   }
   "2" = @{
     class_type = "CLIPSetLastLayer"
-    inputs = @{ clip = @("1", 1); stop_at_clip_layer = -2 }
+    inputs = @{ clip = @("1", 1); stop_at_clip_layer = -1 }
   }
   "3" = @{
     class_type = "CLIPTextEncode"
@@ -39,10 +39,10 @@ $Prompt = @{
     class_type = "KSampler"
     inputs = @{
       seed = $Seed
-      steps = 24
-      cfg = 6
-      sampler_name = "euler_ancestral"
-      scheduler = "normal"
+      steps = 28
+      cfg = 7
+      sampler_name = "dpmpp_2m"
+      scheduler = "karras"
       denoise = 1
       model = @("1", 0)
       positive = @("3", 0)

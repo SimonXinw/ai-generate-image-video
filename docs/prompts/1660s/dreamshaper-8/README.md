@@ -4,7 +4,7 @@
 
 - checkpoint：`DreamShaper_8_pruned.safetensors`
 - 分辨率：`512×768`（OOM 再降 `512×512`）
-- Steps 24，CFG 6，`euler_ancestral` + `normal`，CLIP Skip 2
+- Steps 28，CFG 7，`dpmpp_2m` + `karras`，CLIP Skip 1
 - 不要叠多个 LoRA，不要高分修复
 
 ## 词法
@@ -19,4 +19,4 @@ SD1.5，**不吃** Pony 前缀。迁词只删这些，正文不动：
 
 | 文件 | 说明 |
 |------|------|
-| [explicit.md](explicit.md) | 露骨。v1 已验证；v3 三点半透微内衣（草稿） |
+| [explicit.md](explicit.md) | 露骨。v6 已验证（种子 103932912） |

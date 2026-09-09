@@ -87,6 +87,6 @@ docs/prompts/{机型}/{模型}/{类型}.md
 
 | 文件 | 类型 | 最新 |
 |------|------|------|
-| [1660s/dreamshaper-8/explicit.md](1660s/dreamshaper-8/explicit.md) | 露骨 | v3 草稿 |
+| [1660s/dreamshaper-8/explicit.md](1660s/dreamshaper-8/explicit.md) | 露骨 | v6 已验证 |
 | [2080s/cyberrealistic-pony/explicit.md](2080s/cyberrealistic-pony/explicit.md) | 露骨 | v2 |
 | [2080s/pony-v6/](2080s/pony-v6/README.md) | （新词再写） | 历史在 09 / 11 |
