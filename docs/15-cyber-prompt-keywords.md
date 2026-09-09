@@ -29,6 +29,7 @@ score_4, score_5, score_6, 2girls, multiple girls, duplicate, twins, cloned face
 ## v2 · 白衬衫、下体仍露（2026-09-09）
 
 在 v1 上**只动冲突**。姿势、外阴、脸、腹都没改。
+种子复用 **1083946597**。
 
 正向：删 `completely nude`，在原位置换成
 `(white oversized shirt:1.2), unbuttoned shirt, shirt lifted, (no panties:1.3)`。
