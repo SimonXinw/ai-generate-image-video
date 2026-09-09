@@ -29,6 +29,7 @@ export async function waitForImage(
   seed: number,
   onProgress: (p: ProgressState) => void,
   signal?: AbortSignal,
+  timeoutMs = 300_000,
 ): Promise<GenerateResult> {
   let previewUrl = "";
   let last: ProgressState = {
@@ -83,7 +84,7 @@ export async function waitForImage(
 
   const started = Date.now();
   try {
-    while (Date.now() - started < 300_000) {
+    while (Date.now() - started < timeoutMs) {
       if (signal?.aborted) throw new CancelledError();
       const history = (await getJson(`/history/${promptId}`, signal)) as Record<string, Hist>;
       const images = history[promptId]?.outputs
@@ -101,7 +102,7 @@ export async function waitForImage(
       }
       await sleep(800, signal);
     }
-    throw new Error("生成超时（5 分钟）");
+    throw new Error(`生成超时（${Math.round(timeoutMs / 60_000)} 分钟）`);
   } finally {
     ws.close();
   }

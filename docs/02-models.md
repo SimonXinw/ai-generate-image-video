@@ -16,6 +16,7 @@
 | FaceID / IP-Adapter | `vendor/ComfyUI/models/ipadapter/` |
 | CLIP Vision（FaceID 共用） | `vendor/ComfyUI/models/clip_vision/` |
 | InsightFace buffalo_l | `vendor/ComfyUI/models/insightface/models/buffalo_l/` |
+| 放大模型（ESRGAN 等） | `vendor/ComfyUI/models/upscale_models/` |
 
 文件名可保留原名。前端从 ComfyUI `/object_info` 列出，不必改代码。
 
@@ -26,6 +27,7 @@
 | B 1660S | `scripts/download-dreamshaper.ps1` | `DreamShaper_8_pruned.safetensors` |
 | A 2080S 写实 | `scripts/download-cyberrealistic-pony.ps1` | `CyberRealisticPony_V18.0_F16.safetensors` |
 | A 2080S 二次元 | 13 号文档里的 Pony V6 `curl` 直链 | `ponyDiffusionV6XL_v6StartWithThisOne.safetensors` |
+| 两台可选 | `scripts/download-upscale-model.ps1` | `RealESRGAN_x4plus.pth`（约 64MB） |
 
 脚本可重复跑。Hugging Face 超时先给终端加 Clash 代理再跑，见 13 号文档。
 

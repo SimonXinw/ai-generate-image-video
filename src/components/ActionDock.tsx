@@ -6,6 +6,7 @@ export function ActionDock({
   busy,
   stopping,
   canSubmit,
+  submitLabel,
   progress,
   onSubmit,
   onStop,
@@ -24,7 +25,7 @@ export function ActionDock({
             onClick={onSubmit}
             disabled={busy || !canSubmit}
           >
-            {busy ? `生成中 ${percent}%` : "开始生成"}
+            {busy ? `生成中 ${percent}%` : submitLabel}
           </button>
           <button
             type="button"
@@ -35,6 +36,9 @@ export function ActionDock({
             {stopping ? "正在停止…" : "停止出图"}
           </button>
         </div>
+        {progress?.label ? (
+          <p className="dock-hint muted small">{progress.label}</p>
+        ) : null}
       </div>
     </div>
   );

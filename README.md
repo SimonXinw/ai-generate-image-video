@@ -37,6 +37,7 @@
 | [docs/15-cyber-prompt-keywords.md](docs/15-cyber-prompt-keywords.md) | 已迁到 `docs/prompts/2080s/cyberrealistic-pony/` |
 | [docs/16-face-lock.md](docs/16-face-lock.md) | **1660S / 2080S 参考脸锁定安装与烟测** |
 | [docs/17-dreamshaper-prompt-keywords.md](docs/17-dreamshaper-prompt-keywords.md) | 已迁到 `docs/prompts/1660s/dreamshaper-8/` |
+| [docs/18-upscale.md](docs/18-upscale.md) | **高分修复 / ESRGAN 分块放大（2K·4K 文件）** |
 
 ## 以后真正开跑时（摘要）
 
@@ -47,13 +48,15 @@ powershell -ExecutionPolicy Bypass -File .\scripts\pin-comfyui-v0326.ps1
 # 按 docs/13-new-machine.md 只下当前 GPU 的 checkpoint
 # 可选：安装两台机器的参考脸锁定权重与节点
 powershell -ExecutionPolicy Bypass -File .\scripts\setup-face-lock.ps1 -Hardware all
+# 可选：高分 / ESRGAN 放大权重（约 64MB）
+powershell -ExecutionPolicy Bypass -File .\scripts\download-upscale-model.ps1
 powershell -ExecutionPolicy Bypass -File .\scripts\start-comfyui-1660s.ps1
 # 或 start-comfyui-2080s.ps1
 npm install
 npm run dev
 ```
 
-浏览器：`http://127.0.0.1:5173`，先选对「当前机子配置」。
+浏览器：`http://127.0.0.1:5173`，先选对「当前机子配置」。要 2K/4K 文件见 [`docs/18-upscale.md`](docs/18-upscale.md)。
 
 ## 模型方案
 

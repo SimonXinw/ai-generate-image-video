@@ -8,7 +8,10 @@ export function PreviewColumn({
   hardwareId,
   modelPresetId,
   faceSettings,
+  canUpscale,
   onReuseSeed,
+  onLoadParams,
+  onUpscaleRerun,
   onZoom,
 }: PreviewColumnProps) {
   return (
@@ -19,8 +22,12 @@ export function PreviewColumn({
         error={generation.error}
         seed={generation.seedUsed}
         history={generation.history}
+        metaUpscaleMode={generation.meta?.params.upscaleMode ?? null}
+        canUpscale={canUpscale}
         onPick={generation.pickHistory}
         onReuseSeed={onReuseSeed}
+        onLoadParams={onLoadParams}
+        onUpscaleRerun={onUpscaleRerun}
         onZoom={onZoom}
       />
       <MetaPanel

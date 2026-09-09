@@ -1,5 +1,6 @@
 import type { FaceLockWorkflow, GenerateParams } from "../types";
 import { randomSeed } from "../lib/safety";
+import { attachUpscale } from "./comfy-prompt-upscale";
 
 type Node = {
   class_type: string;
@@ -107,13 +108,7 @@ export function buildTxt2ImgPrompt(
       latent_image: ["6", 0],
     },
   };
-  graph["8"] = {
-    class_type: "VAEDecode",
-    inputs: { samples: ["7", 0], vae },
-  };
-  graph["9"] = {
-    class_type: "SaveImage",
-    inputs: { filename_prefix: "local_gen", images: ["8", 0] },
-  };
+
+  attachUpscale(graph, params, seed, model, vae, ["4", 0], ["5", 0]);
   return graph;
 }

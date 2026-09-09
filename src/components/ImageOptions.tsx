@@ -73,35 +73,40 @@ export function ImageOptions({ params, onChange }: ImageOptionsProps) {
           />
         </Field>
       </div>
-      <Field
-        label="采样器"
-        tip={TIPS.sampler}
-        hint={optionHint(SAMPLER_OPTIONS, params.sampler)}
-      >
-        <select value={params.sampler} onChange={(e) => set({ sampler: e.target.value })}>
-          {SAMPLER_OPTIONS.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.label}
-            </option>
-          ))}
-        </select>
-      </Field>
-      <Field
-        label="调度"
-        tip={TIPS.scheduler}
-        hint={optionHint(SCHEDULER_OPTIONS, params.scheduler)}
-      >
-        <select
-          value={params.scheduler}
-          onChange={(e) => set({ scheduler: e.target.value })}
+      <div className="row">
+        <Field
+          label="采样器"
+          tip={TIPS.sampler}
+          hint={optionHint(SAMPLER_OPTIONS, params.sampler)}
         >
-          {SCHEDULER_OPTIONS.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.label}
-            </option>
-          ))}
-        </select>
-      </Field>
+          <select
+            value={params.sampler}
+            onChange={(e) => set({ sampler: e.target.value })}
+          >
+            {SAMPLER_OPTIONS.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </Field>
+        <Field
+          label="调度"
+          tip={TIPS.scheduler}
+          hint={optionHint(SCHEDULER_OPTIONS, params.scheduler)}
+        >
+          <select
+            value={params.scheduler}
+            onChange={(e) => set({ scheduler: e.target.value })}
+          >
+            {SCHEDULER_OPTIONS.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </Field>
+      </div>
       <Field label="种子" tip={TIPS.seed} hint="-1 每次随机；固定数字才能复现同一张。">
         <div className="row">
           <input

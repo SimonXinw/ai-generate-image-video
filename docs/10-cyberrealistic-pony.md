@@ -52,7 +52,8 @@ vendor/ComfyUI/models/checkpoints/CyberRealisticPony_V18.0_F16.safetensors
 - CLIP Skip：2
 - VAE：模型内置
 
-8GB 显存首次不要同时开高分修复、ControlNet 或多个 LoRA。VAE 解码若 OOM，
+8GB 显存首次不要同时开「高分+ESRGAN」、ControlNet 或多个 LoRA。
+放大说明见 [`docs/18-upscale.md`](18-upscale.md)。VAE 解码若 OOM，
 先降回 `768×1152`；仍不够再用 `--lowvram --force-fp16` 启动。
 
 ## UI 使用

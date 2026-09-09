@@ -16,7 +16,9 @@ export function ProgressPanel({ busy, progress }: ProgressPanelProps) {
       {progress.previewUrl ? (
         <img className="preview" src={progress.previewUrl} alt="生成预览" />
       ) : (
-        <p className="muted">出图中，预览出现前请稍等（1660S 会慢一些）。</p>
+        <p className="muted">
+          出图中，预览出现前请稍等。开了放大会先出底图再后处理，总时间更长。
+        </p>
       )}
     </section>
   );

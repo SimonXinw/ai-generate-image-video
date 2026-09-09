@@ -31,6 +31,16 @@ export function recipeWarnings(recipe: Recipe, checkpoints: string[], loras: str
   if (recipe.faceLock.enabled) {
     notes.push("锁脸已打开，请重新选参考图");
   }
+  if (recipe.params.upscaleMode !== "off") {
+    notes.push(`放大模式：${recipe.params.upscaleMode}`);
+  }
+  if (
+    (recipe.params.upscaleMode === "esrgan" ||
+      recipe.params.upscaleMode === "hires_esrgan") &&
+    recipe.params.upscaleModel
+  ) {
+    notes.push("若本机没有该放大模型，请先 download-upscale-model.ps1");
+  }
   return notes;
 }
 
@@ -92,6 +102,7 @@ function asParams(raw: unknown): GenerateParams | null {
   ) {
     return null;
   }
+  const upscale = asUpscale(raw);
   return {
     prompt,
     negativePrompt,
@@ -106,6 +117,25 @@ function asParams(raw: unknown): GenerateParams | null {
     clipSkip,
     sampler,
     scheduler,
+    ...upscale,
+  };
+}
+
+function asUpscale(raw: Record<string, unknown>): Pick<
+  GenerateParams,
+  "upscaleMode" | "upscaleScale" | "hiresDenoise" | "hiresSteps" | "upscaleModel"
+> {
+  const mode = str(raw.upscaleMode);
+  const upscaleMode: GenerateParams["upscaleMode"] =
+    mode === "hires" || mode === "esrgan" || mode === "hires_esrgan"
+      ? mode
+      : "off";
+  return {
+    upscaleMode,
+    upscaleScale: num(raw.upscaleScale) ?? 1.5,
+    hiresDenoise: num(raw.hiresDenoise) ?? 0.4,
+    hiresSteps: num(raw.hiresSteps) ?? 12,
+    upscaleModel: str(raw.upscaleModel) ?? "",
   };
 }
 

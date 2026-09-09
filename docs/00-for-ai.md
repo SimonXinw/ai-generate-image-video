@@ -14,6 +14,7 @@
   - 2080S：`download-cyberrealistic-pony.ps1`（写实）+ Pony V6 XL 直链
   - 1660S：`download-dreamshaper.ps1`（SD1.5）
 - 参考脸锁定（可选，用户点名再装）：`scripts/setup-face-lock.ps1`，说明见 `docs/16-face-lock.md`。
+- 高分修复 / ESRGAN 放大（可选）：`scripts/download-upscale-model.ps1`，说明见 `docs/18-upscale.md`。
 - 其他模型未点名不要下。权重绝不进 Git。
 
 先 `nvidia-smi` 认卡。不问就按 13 号文档两套命令都写好，但**只执行当前 GPU 那一套**。
@@ -57,11 +58,13 @@ scripts/setup-comfyui.ps1
 scripts/pin-comfyui-v0326.ps1
 scripts/download-dreamshaper.ps1
 scripts/download-cyberrealistic-pony.ps1
+scripts/download-upscale-model.ps1
 scripts/start-comfyui-2080s.ps1
 scripts/start-comfyui-1660s.ps1
 ```
 
 可选：`COMFYUI_ROOT`。前端：`VITE_COMFY_URL` 默认 `http://127.0.0.1:8188`。
+放大模型目录：`vendor/ComfyUI/models/upscale_models/`。
 
 ## 规范
 

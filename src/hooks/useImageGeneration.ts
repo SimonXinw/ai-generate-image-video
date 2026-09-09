@@ -8,6 +8,8 @@ import {
 import { waitForImage } from "../api/comfy-progress";
 import { buildTxt2ImgPrompt, resolveSeed } from "../api/comfy-prompt";
 import { findBlockedTerm } from "../lib/safety";
+import { progressStartLabel } from "../lib/upscale-guard";
+import { needsUpscaleModel } from "../upscale-presets";
 import type {
   FaceLockSettings,
   GenerateParams,
@@ -46,16 +48,27 @@ export function useImageGeneration() {
       setError("启用脸锁定前，请先选择一张清晰的成人正脸参考图");
       return;
     }
+    if (needsUpscaleModel(params.upscaleMode) && !params.upscaleModel.trim()) {
+      setError("已选 ESRGAN，请先下载放大模型并在下拉框里选中");
+      return;
+    }
     setBusy(true);
     setStopping(false);
     setError("");
-    setProgress({ percent: 1, step: 0, max: 1, label: "提交任务", previewUrl: "" });
+    setProgress({
+      percent: 1,
+      step: 0,
+      max: 1,
+      label: progressStartLabel(params.upscaleMode),
+      previewUrl: "",
+    });
     const seed = resolveSeed(params);
     const clientId = newClientId();
     const controller = new AbortController();
     abortRef.current = controller;
     promptIdRef.current = "";
     let lastPreview = "";
+    const timeoutMs = params.upscaleMode === "off" ? 300_000 : 600_000;
     try {
       const imageName = face.enabled && faceFile
         ? await uploadInputImage(faceFile)
@@ -73,7 +86,6 @@ export function useImageGeneration() {
       const graph = buildTxt2ImgPrompt(params, seed, faceWorkflow);
       const promptId = await queuePrompt(graph, clientId);
       promptIdRef.current = promptId;
-      // 提交期间按了停止，这里补一次撤单
       if (controller.signal.aborted) await cancelPrompt(promptId);
       const result = await waitForImage(
         promptId,
@@ -84,6 +96,7 @@ export function useImageGeneration() {
           setProgress(next);
         },
         controller.signal,
+        timeoutMs,
       );
       const snapshot = { ...params, seed: result.seed };
       setImageUrl(result.imageUrl);
@@ -94,7 +107,6 @@ export function useImageGeneration() {
         ...prev,
       ].slice(0, 8));
     } catch (cause) {
-      // 主动停止不算失败，不用红字吓人
       if (!controller.signal.aborted) {
         setError(cause instanceof Error ? cause.message : "生成失败");
       }

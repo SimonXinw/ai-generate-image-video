@@ -1,0 +1,116 @@
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  margin: 0 0 10px;
+}
+
+.meta-item {
+  background: #0f121a;
+  border: 1px solid #2a3145;
+  border-radius: 8px;
+  padding: 6px 8px;
+  min-width: 0;
+}
+
+.meta-item dt {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.meta-item dd {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.face-lock {
+  display: grid;
+  gap: 10px;
+}
+
+.face-lock p {
+  margin: 0;
+}
+
+.face-lock-toggle {
+  flex-direction: row;
+  align-items: center;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.face-lock-toggle input {
+  width: auto;
+}
+
+.face-preview {
+  width: 96px;
+  height: 96px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid #343b52;
+}
+
+.err-text {
+  color: var(--err);
+}
+
+.workflow-hint {
+  margin: -4px 0 0;
+}
+
+.upscale-steps {
+  margin: 0 0 8px;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.upscale-steps .on {
+  color: var(--text);
+}
+
+.upscale-steps .on strong {
+  color: var(--accent);
+}
+
+.upscale-cta {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #2a3145;
+  display: grid;
+  gap: 8px;
+}
+
+.accent-btn {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.thumb {
+  position: relative;
+}
+
+.thumb-badge {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: rgba(12, 16, 28, 0.82);
+  color: #fff;
+  font-size: 0.65rem;
+  line-height: 1.4;
+}
+
+.dock-hint {
+  margin: 6px 0 0;
+  text-align: center;
+}

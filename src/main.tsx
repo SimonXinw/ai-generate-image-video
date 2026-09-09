@@ -5,6 +5,7 @@ import "./styles.css";
 import "./styles-studio.css";
 import "./styles-layout.css";
 import "./styles-controls.css";
+import "./styles-panels.css";
 import "./styles-lightbox.css";
 
 createRoot(document.getElementById("root")!).render(

@@ -15,6 +15,18 @@ export function metaRows(params: GenerateParams, seed: number): [string, string]
   if (params.lora.trim()) {
     rows.push(["LoRA", `${params.lora} @ ${params.loraStrength}`]);
   }
+  if (params.upscaleMode !== "off") {
+    rows.push(["放大", params.upscaleMode]);
+    if (params.upscaleMode === "hires" || params.upscaleMode === "hires_esrgan") {
+      rows.push([
+        "高分",
+        `${params.upscaleScale}× · denoise ${params.hiresDenoise} · ${params.hiresSteps} 步`,
+      ]);
+    }
+    if (params.upscaleMode === "esrgan" || params.upscaleMode === "hires_esrgan") {
+      rows.push(["ESRGAN", params.upscaleModel || "（未选）"]);
+    }
+  }
   return rows;
 }
 

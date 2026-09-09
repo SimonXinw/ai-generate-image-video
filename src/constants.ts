@@ -1,6 +1,7 @@
 import { PROFILE_1660S } from "./hardware";
 import { balancedQuality } from "./quality-presets";
 import type { GenerateParams } from "./types";
+import { DEFAULT_UPSCALE } from "./upscale-types";
 
 export const COMFY_URL =
   import.meta.env.VITE_COMFY_URL ?? "http://127.0.0.1:8188";
@@ -19,6 +20,7 @@ export const DEFAULT_PARAMS: GenerateParams = {
   clipSkip: 1,
   sampler: "dpmpp_2m",
   scheduler: "karras",
+  ...DEFAULT_UPSCALE,
 };
 
 /** 放大弹窗的缩放范围与滚轮步长 */

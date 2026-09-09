@@ -15,7 +15,9 @@ export function SizePresets({ params, profile, onChange }: SizePresetsProps) {
         画幅预设
         <InfoTip text={TIPS.size} />
       </p>
-      <p className="field-hint">点尺寸即可。超过底模太多容易双头。</p>
+      <p className="field-hint">
+        点尺寸即可。超过底模太多容易双头。要 2K/4K 请用下方放大，不要硬填大宽高。
+      </p>
       <div className="size-chips">
         {presets.map((p) => {
           const active = params.width === p.width && params.height === p.height;
@@ -39,7 +41,12 @@ export function SizePresets({ params, profile, onChange }: SizePresetsProps) {
       </p>
       {ratio > 2.5 ? (
         <p className="tip">
-          超过原生面积 2.5 倍，单次直出容易双头或多肢。要更大建议先小图定构图，再做二段式放大。
+          超过原生面积 2.5 倍，单次直出容易双头或多肢。要更大请用「放大 / 高分修复」。
+        </p>
+      ) : null}
+      {params.upscaleMode !== "off" ? (
+        <p className="tip">
+          已开放大：这里改的是底图像素，最终文件还会再放大一截。
         </p>
       ) : null}
       {pixels > profile.vramGb * 165_000 ? (

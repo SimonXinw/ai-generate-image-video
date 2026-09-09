@@ -123,3 +123,30 @@ v2 的 `babydoll` + 整件内衣会盖住肚子和胸，所以整段删掉。
 ```
 
 种子：`103932912`
+
+## v7 · 俯拍保腿保韩系脸（2026-09-09）已验证
+
+在 v6 上**只调结构**，不新开题材。内衣色（淡蓝纱 + 藕粉带）、平躺、空床、半透三点仍沿用。
+
+改动原因（SD1.5 不是词越多越好）：
+
+1. **脸提前并加重**：韩系五官紧跟 `korean woman`；去掉偏戏剧的 `phoenix-like eyes`；蓝发降到 `1.15`，避免彩发抢脸。
+2. **给腿留画布**：竖图俯拍时写清 `head near top` / `feet near bottom`，腿段放到内衣**之前**，并加 `full legs visible` / `calves visible`。
+3. **俯拍降权去重**：`top-down` 从 `1.5` 降到 `1.25`，删掉叠罗汉的 `overhead shot` + `camera looking down`；去掉和「平躺伸腿」打架的 `slightly arched back`。
+4. **内衣略降权**：罩杯等从 `1.5` 收到 `1.35`，把注意力还给脸和腿，衣服内容不改。
+
+实测种子 **209829114**（对比草稿时用过的 103932912 仅作结构对照）。
+
+正向：
+
+```text
+1girl, (solo:1.4), raw photo, film grain, full color photo, beautiful adult woman, (korean woman:1.45), (korean idol face:1.35), east asian features, (small face:1.2), soft round cheeks, high cheekbones, slim V-shaped jawline, small straight nose, soft double eyelids, gentle aegyo-sal, (looking at viewer:1.4), face clearly visible, (seductive expression:1.3), sultry gaze, half-lidded eyes, glossy lips, parted lips, slight smirk, (natural fair skin:1.2), healthy skin, warm rosy undertone, light natural flush, even skin tone, matching face and body skin color, subsurface scattering, k-pop idol makeup, (wavy blue hair:1.15), long tousled blue hair fanned out on the pillow, loose tousled waves, a few strands over one collarbone, (full body:1.45), (lying on bed:1.4), (lying flat on her back:1.4), supine, body lying flat against the sheet, shoulders on the sheet, (top-down view:1.25), high angle looking down, (head near top of frame:1.35), (feet near bottom of frame:1.45), (head to toe in frame:1.4), entire body visible, body oriented vertically on the bed, body on (plain seamless white sheet:1.3), unpatterned white fabric, (one plain white pillow:1.2), no other objects, one arm stretched above her head on the pillow, other hand resting on her slim waist, (full legs visible:1.5), (both legs complete to the toes:1.45), (feet visible:1.4), (legs together:1.35), legs stretched straight toward the bottom of the frame, (ankles crossed:1.2), thighs closed, calves visible, pointed toes, (wearing only tiny sheer micro lingerie:1.35), (pale blue sheer lace:1.2), (sheer triangle bra cups sitting on both breasts:1.35), (lace covering the tips of the breasts:1.3), (tiny sheer micro panties covering pussy only:1.35), see-through lace, (areola hint under lace:1.15), (vulva outline visible through sheer panties:1.25), fabric over the breasts, peekaboo, (bare stomach:1.25), bare waist, bare ribs, bare hips, bare thighs, bare shoulders, underboob, sideboob, thin straps staying on shoulders, blush rose ribbon ties, no other clothes, (flat toned stomach:1.2), slim waist, (vertical navel:1.2), narrow innie navel, natural skin texture, (soft dim indoor light:1.2), diffused warm light, natural color, clean unpatterned white sheet filling the background
+```
+
+负向：
+
+```text
+2girls, multiple girls, couple, two people, second person, extra girl, duplicate, twins, cloned face, extra person, extra arms, extra legs, extra limbs, missing legs, no legs, amputee, truncated body, legs cut off, cropped at thighs, short stubby legs, blurry, lowres, plastic skin, waxy skin, airbrushed, oversmoothed skin, blown out highlights, hdr, oversaturated, instagram filter, beauty filter, cgi, doll-like, anime, cartoon, illustration, 3d render, extra fingers, bad hands, bad anatomy, deformed, watermark, text, logo, caucasian, western facial features, european face, deep set eyes, heavy jawline, freckles, pale face, ghostly white skin, porcelain skin, overexposed face, white makeup, powdery face, mismatched skin tone, tan, tanned skin, dark skin, olive skin, suntan, sunburn, muddy skin, yellowish skin, blue skin, blue tint, cyan, teal lighting, cold color cast, monochrome blue, blue sheets, black and white, monochrome, grayscale, b&w, sepia, desaturated, clutter, objects on bed, extra pillows, multiple pillows, cushion, body pillow, stuffed animal, flowers, petals, books, lamp, toys, decorations, nightstand, wall art, patterned sheets, floral print, stripes on sheets, stained sheets, dirty sheets, crumbs, clothes on bed, throw blanket, quilt, duvet pile, completely nude, naked, no bra, no panties, topless, bottomless, exposed nipples, bare nipples, uncovered nipples, bra pulled down, bra above breasts, babydoll, nightgown, dress, robe, teddy, bodysuit, onesie, covered stomach, covered torso, covered thighs, full coverage bra, opaque bra, opaque panties, thick fabric, oversized shirt, pants, jeans, shorts, sweater, coat, fully clothed, sagging breasts, large dark areola, brown nipples, belly fat, chubby belly, protruding belly, bloated stomach, belly rolls, love handles, outie navel, cropped head, cropped feet, feet out of frame, head out of frame, top of head cut off, face obscured, no face, looking away, standing, sitting, sitting up, sitting on bed, upright, propped up, crouched, kneeling, on stomach, legs up, holding own legs, spread legs, thighs apart, open legs, frog pose, side view, eye-level shot, presenting, hands on the floor, propped up on hands, close-up crotch, view from between the legs, child, loli, shota, underage, teen, harsh sunlight, too bright, glare, overexposed
+```
+
+种子：`209829114`

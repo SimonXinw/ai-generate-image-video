@@ -55,7 +55,8 @@ powershell -ExecutionPolicy Bypass -File .\scripts\start-comfyui-1660s.ps1
 - CFG：7
 - CLIP Skip：1
 
-不要叠多个 LoRA，不要开高分修复。Pony / Flux 权重不要当这台机默认。
+不要叠多个 LoRA。高分修复 / ESRGAN **默认关闭**；要 2K/4K 文件再开，见
+[`docs/18-upscale.md`](18-upscale.md)。Pony / Flux 权重不要当这台机默认。
 
 ## UI 使用
 
@@ -64,6 +65,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\start-comfyui-1660s.ps1
 3. 在「模型方案」选择「1660S · DreamShaper 8」。
 4. 页面会匹配 checkpoint，并应用 512×768 与上面的采样参数。
 5. checkpoint 未安装时会提示先执行下载脚本。
+6. 可选：跑 `download-upscale-model.ps1` 后，用「ESRGAN」或「高分+ESRGAN」出大图。
 
 切到这台机时，页面会改用自然语言默认提示词，并丢掉 `score_9` 前缀。
 

@@ -5,6 +5,12 @@
   gap: 12px;
 }
 
+.form-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .col {
   display: flex;
   flex-direction: column;
@@ -64,7 +70,7 @@
 }
 
 .dock-inner {
-  max-width: 1440px;
+  max-width: 1760px;
   margin: 0 auto;
   padding: 10px 14px;
 }
@@ -97,33 +103,42 @@
 
 @media (min-width: 900px) {
   .page {
-    max-width: 1440px;
-    padding: 16px 20px 84px;
+    max-width: 1760px;
+    padding: 16px 24px 84px;
   }
 
   .dock-inner {
-    padding: 10px 20px;
+    padding: 10px 24px;
   }
 
   /* 对齐右侧表单列，不横跨预览区 */
   .dock-action {
-    width: 420px;
+    width: 640px;
     margin-left: auto;
   }
 
   .layout {
     flex-direction: row;
     align-items: flex-start;
-    gap: 20px;
+    gap: 24px;
   }
 
   /* 两列都按内容自然撑高，滚动交给整页，避免列内再套一层滚动条 */
   .col-preview {
-    flex: 1 1 60%;
+    flex: 1 1 58%;
+    min-width: 0;
   }
 
   .col-form {
-    flex: 0 0 420px;
+    flex: 0 0 640px;
+  }
+
+  /* 画幅 / 画质并排，缩短参数区纵向长度 */
+  .form-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: start;
   }
 
   .result img,

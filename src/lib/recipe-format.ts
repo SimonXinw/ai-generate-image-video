@@ -42,6 +42,14 @@ export function recipeToMarkdown(recipe: Recipe): string {
     params.lora.trim()
       ? `- LoRA：\`${params.lora}\` @ ${params.loraStrength}`
       : "- LoRA：无",
+    `- 放大：${params.upscaleMode}${
+      params.upscaleMode === "off"
+        ? ""
+        : ` · scale ${params.upscaleScale} · denoise ${params.hiresDenoise} · 高分 ${params.hiresSteps} 步`
+    }`,
+    params.upscaleModel.trim()
+      ? `- 放大模型：\`${params.upscaleModel}\``
+      : "- 放大模型：无",
     `- 锁脸：${faceLock.enabled ? `开 · 权重 ${faceLock.weight} · 结束 ${faceLock.endAt}` : "关"}（参考图不进配方）`,
     "",
     "## 正向",

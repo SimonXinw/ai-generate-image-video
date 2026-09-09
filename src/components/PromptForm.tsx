@@ -2,7 +2,8 @@ import { Field } from "./Field";
 import { OUTFIT_CHIPS, OUTFIT_NEG } from "../presets";
 import { checkpointCaption } from "../select-options";
 import { TIPS } from "../tips";
-import type { GenerateParams, OutfitId, PromptFormProps } from "../types";
+import type { GenerateParams, OutfitId } from "../types";
+import type { PromptFormProps } from "../ui-types";
 
 export function PromptForm({
   params,
@@ -10,6 +11,7 @@ export function PromptForm({
   loras,
   busy,
   stopping,
+  submitLabel,
   submitRef,
   onChange,
   onSubmit,
@@ -111,9 +113,14 @@ export function PromptForm({
           ))}
         </select>
       </Field>
+      <p className="field-hint">
+        {params.upscaleMode === "off"
+          ? "当前：只出小图。构图满意后可在结果区点「同种子放大」。"
+          : "当前：生成后会自动走放大管线，耗时更长。"}
+      </p>
       <div className="form-actions">
         <button ref={submitRef} type="submit" disabled={busy || !params.checkpoint}>
-          {busy ? "生成中…" : "开始生成"}
+          {submitLabel}
         </button>
         <button type="button" className="stop" onClick={onStop} disabled={!busy || stopping}>
           {stopping ? "正在停止…" : "停止出图"}

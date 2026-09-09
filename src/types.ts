@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { UpscaleMode } from "./upscale-types";
 
 export type AspectPreset = "portrait" | "square" | "landscape";
 
@@ -38,6 +38,11 @@ export type GenerateParams = {
   clipSkip: number;
   sampler: string;
   scheduler: string;
+  upscaleMode: UpscaleMode;
+  upscaleScale: number;
+  hiresDenoise: number;
+  hiresSteps: number;
+  upscaleModel: string;
 };
 
 export type ComfyStatus = {
@@ -46,6 +51,7 @@ export type ComfyStatus = {
   checkpoints: string[];
   loras: string[];
   faceLockAvailable: boolean;
+  upscaleModels: string[];
 };
 
 export type GenerateResult = {
@@ -142,28 +148,6 @@ export type ImageOptionsProps = {
   onChange: (next: GenerateParams) => void;
 };
 
-export type ResultViewProps = {
-  imageUrl: string;
-  error: string;
-  seed: number | null;
-  history: HistoryItem[];
-  onPick: (item: HistoryItem) => void;
-  onReuseSeed: (seed: number) => void;
-  onZoom: (url: string) => void;
-};
-
-export type PromptFormProps = {
-  params: GenerateParams;
-  checkpoints: string[];
-  loras: string[];
-  busy: boolean;
-  stopping: boolean;
-  submitRef: RefObject<HTMLButtonElement | null>;
-  onChange: (next: GenerateParams) => void;
-  onSubmit: () => void;
-  onStop: () => void;
-};
-
 export type ProgressPanelProps = {
   busy: boolean;
   progress: ProgressState | null;
@@ -184,3 +168,10 @@ export type {
   FaceLockWorkflow,
   FaceLockPanelProps,
 } from "./face-lock-types";
+
+export type {
+  UpscaleMode,
+  UpscalePanelProps,
+} from "./upscale-types";
+
+export type { PromptFormProps, ResultViewProps } from "./ui-types";

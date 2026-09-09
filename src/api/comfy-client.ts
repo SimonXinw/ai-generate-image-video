@@ -18,12 +18,16 @@ export async function pingComfy(): Promise<ComfyStatus> {
     const faceLockAvailable = Boolean(
       info.IPAdapterUnifiedLoaderFaceID && info.IPAdapterFaceID,
     );
+    const up = info.UpscaleModelLoader?.input?.required?.model_name;
+    const upscaleModels =
+      Array.isArray(up) && Array.isArray(up[0]) ? (up[0] as string[]) : [];
     return {
       ok: true,
       message: `已连接 ${COMFY_URL}`,
       checkpoints,
       loras,
       faceLockAvailable,
+      upscaleModels,
     };
   } catch (error) {
     const message = error instanceof Error ? error.message : "连接失败";
@@ -33,6 +37,7 @@ export async function pingComfy(): Promise<ComfyStatus> {
       checkpoints: [],
       loras: [],
       faceLockAvailable: false,
+      upscaleModels: [],
     };
   }
 }
