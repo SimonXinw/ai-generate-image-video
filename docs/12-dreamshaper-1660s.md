@@ -82,6 +82,8 @@ blurry, extra fingers, bad anatomy, deformed, child, loli, shota, underage, teen
 ```
 
 更细的 NSFW 写法见 `docs/08-run-1660s.md`。
+已验证露骨词见
+[`prompts/1660s/dreamshaper-8/explicit.md`](prompts/1660s/dreamshaper-8/explicit.md)。
 
 ## 验证
 

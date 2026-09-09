@@ -1,4 +1,4 @@
-import type { GenerateParams } from "../types";
+import type { FaceLockWorkflow, GenerateParams } from "../types";
 import { randomSeed } from "../lib/safety";
 
 type Node = {
@@ -13,6 +13,7 @@ export function resolveSeed(params: GenerateParams): number {
 export function buildTxt2ImgPrompt(
   params: GenerateParams,
   seed: number,
+  faceLock?: FaceLockWorkflow,
 ): Record<string, Node> {
   const useLora = params.lora.trim().length > 0;
   const graph: Record<string, Node> = {
@@ -39,6 +40,38 @@ export function buildTxt2ImgPrompt(
     };
     model = ["2", 0];
     clip = ["2", 1];
+  }
+
+  if (faceLock) {
+    graph["10"] = {
+      class_type: "IPAdapterUnifiedLoaderFaceID",
+      inputs: {
+        model,
+        preset: faceLock.preset,
+        lora_strength: 0.6,
+        provider: "CPU",
+      },
+    };
+    graph["11"] = {
+      class_type: "LoadImage",
+      inputs: { image: faceLock.imageName },
+    };
+    graph["12"] = {
+      class_type: "IPAdapterFaceID",
+      inputs: {
+        model: ["10", 0],
+        ipadapter: ["10", 1],
+        image: ["11", 0],
+        weight: faceLock.weight,
+        weight_faceidv2: 1,
+        weight_type: "linear",
+        combine_embeds: "concat",
+        start_at: 0,
+        end_at: faceLock.endAt,
+        embeds_scaling: "V only",
+      },
+    };
+    model = ["12", 0];
   }
 
   graph["3"] = {

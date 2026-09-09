@@ -1,7 +1,7 @@
 # 提示词存档（v1–v8）
 
-只存已跑过、想留的正向/负向。不覆盖旧版。v9 以后见
-[`11-prompt-keywords-v9-v11.md`](11-prompt-keywords-v9-v11.md)。
+本文件只读，不要再追加。新词走 [`prompts/README.md`](prompts/README.md)。
+v9 以后见 [`11-prompt-keywords-v9-v11.md`](11-prompt-keywords-v9-v11.md)。
 机器 A、checkpoint `ponyDiffusionV6XL_v6StartWithThisOne.safetensors`、竖图
 **768×1152**，除非某条另写。
 

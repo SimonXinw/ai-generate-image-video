@@ -5,7 +5,6 @@ import type { GenerateParams, OutfitId, PromptFormProps } from "../types";
 
 export function PromptForm({
   params,
-  profile,
   checkpoints,
   loras,
   busy,
@@ -13,9 +12,6 @@ export function PromptForm({
   onSubmit,
 }: PromptFormProps) {
   const set = (patch: Partial<GenerateParams>) => onChange({ ...params, ...patch });
-  const p = profile.sizeByAspect.portrait;
-  const s = profile.sizeByAspect.square;
-  const l = profile.sizeByAspect.landscape;
 
   const applyOutfit = (id: OutfitId) => {
     const chip = OUTFIT_CHIPS.find((c) => c.id === id);
@@ -96,18 +92,6 @@ export function PromptForm({
           ))}
         </select>
       </label>
-      <p className="label">画幅</p>
-      <div className="row">
-        <button type="button" className="chip" onClick={() => set(p)}>
-          竖 {p.width}×{p.height}
-        </button>
-        <button type="button" className="chip" onClick={() => set(s)}>
-          方 {s.width}×{s.height}
-        </button>
-        <button type="button" className="chip" onClick={() => set(l)}>
-          横 {l.width}×{l.height}
-        </button>
-      </div>
       <button type="submit" disabled={busy || !params.checkpoint}>
         {busy ? "生成中…" : "开始生成"}
       </button>

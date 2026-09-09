@@ -35,8 +35,7 @@ export const PROFILE_2080S: HardwareProfile = {
     square: { width: 832, height: 832 },
     landscape: { width: 1152, height: 768 },
   },
-  defaultSteps: 22,
-  defaultCfg: 7,
+  basePixels: 1024 * 1024,
 };
 
 /** 机器 B：9600X + 1660 Super 6G + 64G —— 显存更紧，内存可换速度 */
@@ -75,8 +74,7 @@ export const PROFILE_1660S: HardwareProfile = {
     square: { width: 512, height: 512 },
     landscape: { width: 768, height: 512 },
   },
-  defaultSteps: 24,
-  defaultCfg: 6,
+  basePixels: 512 * 512,
 };
 
 export const HARDWARE_PROFILES: Record<HardwareId, HardwareProfile> = {

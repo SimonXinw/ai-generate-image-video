@@ -13,6 +13,7 @@
 - 已授权本机必下：
   - 2080S：`download-cyberrealistic-pony.ps1`（写实）+ Pony V6 XL 直链
   - 1660S：`download-dreamshaper.ps1`（SD1.5）
+- 参考脸锁定（可选，用户点名再装）：`scripts/setup-face-lock.ps1`，说明见 `docs/16-face-lock.md`。
 - 其他模型未点名不要下。权重绝不进 Git。
 
 先 `nvidia-smi` 认卡。不问就按 13 号文档两套命令都写好，但**只执行当前 GPU 那一套**。
@@ -68,3 +69,5 @@ scripts/start-comfyui-1660s.ps1
 - `.tsx` 只导出 function component；类型放 `.ts`。
 - UI 默认按手机端。
 - 回复用户用简体中文。
+- 提示词按 [`docs/prompts/README.md`](prompts/README.md)：
+  `机型/模型/类型.md`。不要往 `09` / `11` / `15` / `17` 追加。

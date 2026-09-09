@@ -20,7 +20,16 @@ export async function pingComfy(): Promise<ComfyStatus> {
     const lora = info.LoraLoader?.input?.required?.lora_name;
     const checkpoints = Array.isArray(ckpt) && Array.isArray(ckpt[0]) ? (ckpt[0] as string[]) : [];
     const loras = Array.isArray(lora) && Array.isArray(lora[0]) ? (lora[0] as string[]) : [];
-    return { ok: true, message: `已连接 ${COMFY_URL}`, checkpoints, loras };
+    const faceLockAvailable = Boolean(
+      info.IPAdapterUnifiedLoaderFaceID && info.IPAdapterFaceID,
+    );
+    return {
+      ok: true,
+      message: `已连接 ${COMFY_URL}`,
+      checkpoints,
+      loras,
+      faceLockAvailable,
+    };
   } catch (error) {
     const message = error instanceof Error ? error.message : "连接失败";
     return {
@@ -28,8 +37,26 @@ export async function pingComfy(): Promise<ComfyStatus> {
       message: `${message}。先运行 start-comfyui-1660s.ps1`,
       checkpoints: [],
       loras: [],
+      faceLockAvailable: false,
     };
   }
+}
+
+export async function uploadInputImage(file: File): Promise<string> {
+  const safeName = file.name.replace(/[^\w.-]+/g, "_");
+  const data = new FormData();
+  data.append("image", file, `face_${crypto.randomUUID()}_${safeName}`);
+  data.append("type", "input");
+  data.append("overwrite", "true");
+  const res = await fetch(`${COMFY_URL}/upload/image`, {
+    method: "POST",
+    body: data,
+  });
+  if (!res.ok) throw new Error((await res.text()) || `参考脸上传失败 ${res.status}`);
+  const uploaded = (await res.json()) as { name: string; subfolder?: string };
+  return uploaded.subfolder
+    ? `${uploaded.subfolder}/${uploaded.name}`
+    : uploaded.name;
 }
 
 type Hist = {

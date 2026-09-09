@@ -5,6 +5,8 @@
 
 Cyber / Pony / DreamShaper 三者的逐项差异与迁移清单见
 [`14-cyber-vs-pony-prompts.md`](14-cyber-vs-pony-prompts.md)。
+已验证词按机型 / 模型 / 类型存在 [`prompts/README.md`](prompts/README.md)，
+不要再往本文件或 `09` / `11` / `15` / `17` 追加。
 
 ## Pony V6 XL（机器 A 主推）
 

@@ -1,7 +1,8 @@
 # Cyber 与 Pony 提示词差异
 
 同一段词换模型不重写，出图就会偏。本文件只讲**差在哪、怎么改**。
-具体版本存档仍在 `docs/09-*`（v1–v8）和 `docs/11-*`（v9–v11）。
+新存档按 [`prompts/README.md`](prompts/README.md)。
+Pony 历史仍在 `docs/09-*` / `11-*`（只读）。
 
 存档默认写给 Pony V6 XL。用 CyberRealistic Pony 跑同一段词能出图，
 但采样参数和风格词要按下表改。
@@ -103,9 +104,9 @@ instagram filter, beauty filter, cgi, 3d render
 
 想让它穿衣服，两处都得改，只删正向没用——负向那串会把衣服直接否掉。
 Cyber 存档：全裸 v1、白衬衫 v2 见
-[`15-cyber-prompt-keywords.md`](15-cyber-prompt-keywords.md)。
+[`prompts/2080s/cyberrealistic-pony/explicit.md`](prompts/2080s/cyberrealistic-pony/explicit.md)。
 
-v8 迁到 Cyber 的可粘贴全文已收到 15 号文档 v1，不要在本文件再改一版。
+v8 迁到 Cyber 的全文在该文件 v1，不要在本文件再改一版。
 
 1. 参数按上表改，尤其 CFG 7 → 5。
 2. 正向删掉多余的 `photorealistic` / `realistic photo` 同义堆叠，只留一个。
@@ -127,6 +128,7 @@ SD1.5，和上面两个不同源：
 - 训练分辨率是 512，直接套 832×1216 会糊或 OOM。
 
 细节见 `docs/12-dreamshaper-1660s.md`。
+已验证存档见 [`prompts/1660s/dreamshaper-8/explicit.md`](prompts/1660s/dreamshaper-8/explicit.md)。
 
 ## 红线
 

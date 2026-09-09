@@ -1,4 +1,5 @@
 import { PROFILE_1660S } from "./hardware";
+import { balancedQuality } from "./quality-presets";
 import type { GenerateParams } from "./types";
 
 export const COMFY_URL =
@@ -13,8 +14,7 @@ export const DEFAULT_PARAMS: GenerateParams = {
   loraStrength: 0.8,
   width: PROFILE_1660S.sizeByAspect.portrait.width,
   height: PROFILE_1660S.sizeByAspect.portrait.height,
-  steps: PROFILE_1660S.defaultSteps,
-  cfg: PROFILE_1660S.defaultCfg,
+  ...balancedQuality(PROFILE_1660S.id),
   seed: -1,
   clipSkip: 2,
   sampler: "euler_ancestral",

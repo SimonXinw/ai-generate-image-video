@@ -1,3 +1,4 @@
+import { balancedQuality } from "./quality-presets";
 import type {
   GenerateParams,
   HardwareId,
@@ -12,10 +13,6 @@ export const MODEL_PRESETS: Record<ModelPresetId, ModelPreset> = {
     label: "1660S · DreamShaper 8",
     description: "SD1.5 约 2GB；6GB 显存主推，用自然语言提示词，不要写 score_9。",
     checkpointIncludes: ["dreamshaper_8_pruned", "dreamshaper_8"],
-    width: 512,
-    height: 768,
-    steps: 24,
-    cfg: 6,
     clipSkip: 2,
     sampler: "euler_ancestral",
     scheduler: "normal",
@@ -26,10 +23,6 @@ export const MODEL_PRESETS: Record<ModelPresetId, ModelPreset> = {
     label: "Pony V6 · 二次元/通用",
     description: "现有 Pony 模型，适合 score 标签和角色 LoRA。",
     checkpointIncludes: ["ponydiffusionv6xl", "ponyDiffusionV6XL"],
-    width: 768,
-    height: 1152,
-    steps: 22,
-    cfg: 7,
     clipSkip: 2,
     sampler: "euler_ancestral",
     scheduler: "normal",
@@ -40,10 +33,6 @@ export const MODEL_PRESETS: Record<ModelPresetId, ModelPreset> = {
     label: "成人写实 · CyberRealistic Pony",
     description: "v18 CoreShift FP16；保留 Pony 标签，强化真人皮肤与摄影光线。",
     checkpointIncludes: ["cyberrealisticpony_v18", "cyberrealisticpony"],
-    width: 832,
-    height: 1216,
-    steps: 30,
-    cfg: 5,
     clipSkip: 2,
     sampler: "dpmpp_2m",
     scheduler: "karras",
@@ -73,8 +62,7 @@ export function mergeHardwarePreset(
     prompt: profile.defaultPrompt,
     negativePrompt: profile.defaultNegative,
     ...profile.sizeByAspect.portrait,
-    steps: profile.defaultSteps,
-    cfg: profile.defaultCfg,
+    ...balancedQuality(profile.id),
   };
   return checkpoint ? applyPreset(withHw, preset, checkpoint) : withHw;
 }
@@ -89,6 +77,7 @@ export function findPresetCheckpoint(
   });
 }
 
+/** 只改跟模型强绑定的项，画幅和画质档位保留用户当前的选择 */
 export function applyPreset(
   params: GenerateParams,
   preset: ModelPreset,
@@ -97,10 +86,6 @@ export function applyPreset(
   return {
     ...params,
     checkpoint,
-    width: preset.width,
-    height: preset.height,
-    steps: preset.steps,
-    cfg: preset.cfg,
     clipSkip: preset.clipSkip,
     sampler: preset.sampler,
     scheduler: preset.scheduler,

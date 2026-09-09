@@ -1,6 +1,7 @@
 # 提示词存档（v9–v11）
 
-前置版本见 [`09-prompt-keywords.md`](09-prompt-keywords.md)。继续追加时按 v12 往后，不覆盖旧版。
+本文件只读，不要再追加。新词走 [`prompts/README.md`](prompts/README.md)。
+前置版本见 [`09-prompt-keywords.md`](09-prompt-keywords.md)。
 
 模型间差异（Cyber / Pony / DreamShaper）见
 [`14-cyber-vs-pony-prompts.md`](14-cyber-vs-pony-prompts.md)。

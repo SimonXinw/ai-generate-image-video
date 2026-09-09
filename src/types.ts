@@ -18,8 +18,8 @@ export type HardwareProfile = {
   defaultPrompt: string;
   defaultNegative: string;
   sizeByAspect: Record<AspectPreset, { width: number; height: number }>;
-  defaultSteps: number;
-  defaultCfg: number;
+  /** 该机器主用底模的原生训练面积：SD1.5 是 512²，SDXL 是 1024² */
+  basePixels: number;
 };
 
 export type GenerateParams = {
@@ -43,6 +43,7 @@ export type ComfyStatus = {
   message: string;
   checkpoints: string[];
   loras: string[];
+  faceLockAvailable: boolean;
 };
 
 export type GenerateResult = {
@@ -96,6 +97,7 @@ export type InfoTipProps = {
 
 export type SizePresetsProps = {
   params: GenerateParams;
+  profile: HardwareProfile;
   onChange: (next: GenerateParams) => void;
 };
 
@@ -106,14 +108,26 @@ export type ModelPreset = {
   label: string;
   description: string;
   checkpointIncludes: string[];
-  width: number;
-  height: number;
-  steps: number;
-  cfg: number;
   clipSkip: number;
   sampler: string;
   scheduler: string;
   minVramGb: number;
+};
+
+export type QualityId = "fast" | "balanced" | "fine";
+
+export type QualityPreset = {
+  id: QualityId;
+  label: string;
+  steps: number;
+  cfg: number;
+  note: string;
+};
+
+export type QualityPresetsProps = {
+  params: GenerateParams;
+  profile: HardwareProfile;
+  onChange: (next: GenerateParams) => void;
 };
 
 export type ModelPresetPickerProps = {
@@ -140,7 +154,6 @@ export type ResultViewProps = {
 
 export type PromptFormProps = {
   params: GenerateParams;
-  profile: HardwareProfile;
   checkpoints: string[];
   loras: string[];
   busy: boolean;
@@ -161,4 +174,26 @@ export type HardwareSwitcherProps = {
 export type HardwareBannerProps = {
   comfyMessage: string;
   comfyOk: boolean;
+};
+
+export type FaceLockSettings = {
+  enabled: boolean;
+  weight: number;
+  endAt: number;
+};
+
+export type FaceLockWorkflow = {
+  imageName: string;
+  preset: "FACEID" | "FACEID PLUS V2";
+  weight: number;
+  endAt: number;
+};
+
+export type FaceLockPanelProps = {
+  hardwareId: HardwareId;
+  available: boolean;
+  file: File | null;
+  settings: FaceLockSettings;
+  onFileChange: (file: File | null) => void;
+  onChange: (next: FaceLockSettings) => void;
 };

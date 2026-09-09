@@ -13,6 +13,9 @@
 | 大模型 checkpoint | `vendor/ComfyUI/models/checkpoints/` |
 | LoRA | `vendor/ComfyUI/models/loras/` |
 | 独立 VAE（仅当说明需要） | `vendor/ComfyUI/models/vae/` |
+| FaceID / IP-Adapter | `vendor/ComfyUI/models/ipadapter/` |
+| CLIP Vision（FaceID 共用） | `vendor/ComfyUI/models/clip_vision/` |
+| InsightFace buffalo_l | `vendor/ComfyUI/models/insightface/models/buffalo_l/` |
 
 文件名可保留原名。前端从 ComfyUI `/object_info` 列出，不必改代码。
 

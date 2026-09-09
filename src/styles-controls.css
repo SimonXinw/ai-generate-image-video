@@ -122,3 +122,35 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.face-lock {
+  display: grid;
+  gap: 10px;
+}
+
+.face-lock p {
+  margin: 0;
+}
+
+.face-lock-toggle {
+  flex-direction: row;
+  align-items: center;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.face-lock-toggle input {
+  width: auto;
+}
+
+.face-preview {
+  width: 96px;
+  height: 96px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid #343b52;
+}
+
+.err-text {
+  color: var(--err);
+}

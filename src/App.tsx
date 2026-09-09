@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
-import { newClientId, pingComfy, queuePrompt, waitForImage } from "./api/comfy-client";
-import { buildTxt2ImgPrompt, resolveSeed } from "./api/comfy-prompt";
+import { pingComfy } from "./api/comfy-client";
+import { FaceLockPanel } from "./components/FaceLockPanel";
 import { HardwareBanner } from "./components/HardwareBanner";
 import { HardwareSwitcher } from "./components/HardwareSwitcher";
 import { ImageLightbox } from "./components/ImageLightbox";
 import { ImageOptions } from "./components/ImageOptions";
 import { MetaPanel } from "./components/MetaPanel";
 import { ModelPresetPicker } from "./components/ModelPresetPicker";
+import { QualityPresets } from "./components/QualityPresets";
 import { ProgressPanel } from "./components/ProgressPanel";
 import { PromptForm } from "./components/PromptForm";
 import { SizePresets } from "./components/SizePresets";
 import { ResultView } from "./components/ResultView";
 import { DEFAULT_PARAMS } from "./constants";
 import { HARDWARE_PROFILES, loadHardwareId, saveHardwareId } from "./hardware";
-import { findBlockedTerm } from "./lib/safety";
+import { useImageGeneration } from "./hooks/useImageGeneration";
+import { balancedQuality } from "./quality-presets";
 import {
   applyPreset,
   findPresetCheckpoint,
@@ -23,12 +25,10 @@ import {
 } from "./model-presets";
 import type {
   ComfyStatus,
+  FaceLockSettings,
   GenerateParams,
-  GenerationMeta,
   HardwareId,
-  HistoryItem,
   ModelPresetId,
-  ProgressState,
 } from "./types";
 
 export function App() {
@@ -37,26 +37,26 @@ export function App() {
   const [params, setParams] = useState<GenerateParams>(() => ({
     ...DEFAULT_PARAMS,
     ...profile.sizeByAspect.portrait,
-    steps: profile.defaultSteps,
-    cfg: profile.defaultCfg,
+    ...balancedQuality(profile.id),
   }));
   const [status, setStatus] = useState<ComfyStatus>({
     ok: false,
     message: "正在检测 ComfyUI…",
     checkpoints: [],
     loras: [],
+    faceLockAvailable: false,
   });
-  const [busy, setBusy] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
-  const [seedUsed, setSeedUsed] = useState<number | null>(null);
-  const [error, setError] = useState("");
-  const [progress, setProgress] = useState<ProgressState | null>(null);
-  const [history, setHistory] = useState<HistoryItem[]>([]);
+  const [faceFile, setFaceFile] = useState<File | null>(null);
+  const [faceSettings, setFaceSettings] = useState<FaceLockSettings>({
+    enabled: false,
+    weight: 0.8,
+    endAt: 0.9,
+  });
   const [zoomUrl, setZoomUrl] = useState("");
-  const [meta, setMeta] = useState<GenerationMeta | null>(null);
   const [modelPresetId, setModelPresetId] = useState<ModelPresetId>(() =>
     preferredPresetId(loadHardwareId()),
   );
+  const generation = useImageGeneration();
 
   useEffect(() => {
     let stop = false;
@@ -87,78 +87,44 @@ export function App() {
     saveHardwareId(id);
     setModelPresetId(preferredPresetId(id));
     setParams((prev) => mergeHardwarePreset(prev, next, status.checkpoints));
+    setFaceSettings((prev) => ({
+      ...prev,
+      weight: id === "gtx1660s" ? 0.75 : 0.8,
+    }));
   };
 
   const onModelPresetChange = (id: ModelPresetId) => {
     const preset = MODEL_PRESETS[id];
     const checkpoint = findPresetCheckpoint(preset, status.checkpoints);
     if (!checkpoint) {
-      setError(`未安装 ${preset.label}，请先执行模型下载脚本并重启 ComfyUI`);
+      generation.setError(`未安装 ${preset.label}，请先执行模型下载脚本并重启 ComfyUI`);
       return;
     }
     setModelPresetId(id);
-    setError("");
+    generation.setError("");
     setParams((prev) => applyPreset(prev, preset, checkpoint));
   };
 
-  const onSubmit = async () => {
-    const blocked = findBlockedTerm(params.prompt);
-    if (blocked) {
-      setError(`禁止未成年人相关内容（命中：${blocked}）`);
-      return;
-    }
-    setBusy(true);
-    setError("");
-    setProgress({ percent: 1, step: 0, max: 1, label: "提交任务", previewUrl: "" });
-    const seed = resolveSeed(params);
-    const clientId = newClientId();
-    let lastPreview = "";
-    try {
-      const promptId = await queuePrompt(buildTxt2ImgPrompt(params, seed), clientId);
-      const result = await waitForImage(promptId, clientId, seed, (p) => {
-        lastPreview = p.previewUrl || lastPreview;
-        setProgress(p);
-      });
-      const snapshot = { ...params, seed: result.seed };
-      setImageUrl(result.imageUrl);
-      setSeedUsed(result.seed);
-      setMeta({ params: snapshot, seed: result.seed });
-      setHistory((prev) =>
-        [
-          { url: result.imageUrl, seed: result.seed, at: Date.now(), params: snapshot },
-          ...prev,
-        ].slice(0, 8),
-      );
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "生成失败");
-    } finally {
-      if (lastPreview.startsWith("blob:")) URL.revokeObjectURL(lastPreview);
-      setProgress(null);
-      setBusy(false);
-    }
-  };
+  const onSubmit = () =>
+    generation.generate(params, hwId, faceSettings, faceFile);
 
   return (
     <main className="page">
       <h1>本地出图</h1>
       <div className="layout">
         <div className="col col-preview">
-          <ProgressPanel busy={busy} progress={progress} />
+          <ProgressPanel busy={generation.busy} progress={generation.progress} />
           <ResultView
-            imageUrl={imageUrl}
-            error={error}
-            seed={seedUsed}
-            history={history}
-            onPick={(item) => {
-              setImageUrl(item.url);
-              setSeedUsed(item.seed);
-              setMeta({ params: item.params, seed: item.seed });
-            }}
+            imageUrl={generation.imageUrl}
+            error={generation.error}
+            seed={generation.seedUsed}
+            history={generation.history}
+            onPick={generation.pickHistory}
             onReuseSeed={(seed) => setParams((p) => ({ ...p, seed }))}
             onZoom={setZoomUrl}
           />
           <MetaPanel
-            meta={meta}
+            meta={generation.meta}
             onReuseSeed={(seed) => setParams((p) => ({ ...p, seed }))}
           />
         </div>
@@ -171,16 +137,24 @@ export function App() {
             vramGb={profile.vramGb}
             onChange={onModelPresetChange}
           />
+          <FaceLockPanel
+            hardwareId={hwId}
+            available={status.faceLockAvailable}
+            file={faceFile}
+            settings={faceSettings}
+            onFileChange={setFaceFile}
+            onChange={setFaceSettings}
+          />
           <PromptForm
             params={params}
-            profile={profile}
             checkpoints={status.checkpoints}
             loras={status.loras}
-            busy={busy}
+            busy={generation.busy}
             onChange={setParams}
             onSubmit={() => void onSubmit()}
           />
-          <SizePresets params={params} onChange={setParams} />
+          <SizePresets params={params} profile={profile} onChange={setParams} />
+          <QualityPresets params={params} profile={profile} onChange={setParams} />
           <ImageOptions params={params} onChange={setParams} />
         </div>
       </div>

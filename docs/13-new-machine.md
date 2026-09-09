@@ -87,6 +87,7 @@ ComfyUI 起来后：`GET http://127.0.0.1:8188/object_info` 的 checkpoint 列�
 
 - 1660S 烟测：`scripts\smoke-test-dreamshaper.ps1 -Seed 990909101`
 - 2080S 写实烟测：`scripts\smoke-test-cyberrealistic.ps1 -Seed 990909001`
+- 参考脸锁定（可选）：`scripts\setup-face-lock.ps1`，烟测见 `docs/16-face-lock.md`
 
 相同 prompt + 相同 seed 会命中 Comfy 缓存并秒回，换 seed 才是真算。
 
