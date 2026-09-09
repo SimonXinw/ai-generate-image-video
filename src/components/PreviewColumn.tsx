@@ -1,6 +1,5 @@
 import { MetaPanel } from "./MetaPanel";
-import { ProgressPanel } from "./ProgressPanel";
-import { ResultView } from "./ResultView";
+import { PreviewStage } from "./PreviewStage";
 import type { PreviewColumnProps } from "../ui-types";
 
 export function PreviewColumn({
@@ -16,16 +15,15 @@ export function PreviewColumn({
 }: PreviewColumnProps) {
   return (
     <div className="col col-preview">
-      <ProgressPanel busy={generation.busy} progress={generation.progress} />
-      <ResultView
+      <PreviewStage
         imageUrl={generation.imageUrl}
         error={generation.error}
-        seed={generation.seedUsed}
         history={generation.history}
-        metaUpscaleMode={generation.meta?.params.upscaleMode ?? null}
+        meta={generation.meta}
         canUpscale={canUpscale}
+        busy={generation.busy}
+        progress={generation.progress}
         onPick={generation.pickHistory}
-        onReuseSeed={onReuseSeed}
         onLoadParams={onLoadParams}
         onUpscaleRerun={onUpscaleRerun}
         onZoom={onZoom}

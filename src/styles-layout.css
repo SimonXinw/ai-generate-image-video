@@ -18,25 +18,6 @@
   min-width: 0;
 }
 
-.result-image {
-  padding: 0;
-  background: transparent;
-  border-radius: 8px;
-  width: 100%;
-  cursor: zoom-in;
-}
-
-.result-empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-  text-align: center;
-  border: 1px dashed #343b52;
-  border-radius: 8px;
-  padding: 12px;
-}
-
 /* 主按钮滚出视口后的底部停靠条，盖在内容上但让开灯箱 */
 .action-dock {
   position: fixed;
@@ -123,10 +104,17 @@
     gap: 24px;
   }
 
-  /* 两列都按内容自然撑高，滚动交给整页，避免列内再套一层滚动条 */
+  /* 预览列钉在视口里：右侧参数区滚动时它原地不动，
+     等 .layout 底部到顶（右侧滚完）才随页面一起上移。
+     max-height + auto 只是兜底，正常内容不会出现列内滚动条。 */
   .col-preview {
     flex: 1 1 58%;
     min-width: 0;
+    position: sticky;
+    top: 12px;
+    align-self: flex-start;
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
   }
 
   .col-form {
@@ -141,19 +129,22 @@
     align-items: start;
   }
 
-  .result img,
-  .progress .preview {
-    max-height: calc(100dvh - 220px);
-    width: auto;
-    max-width: 100%;
-    margin-inline: auto;
+  /* 让出：sticky 偏移 + 操作条 + 缩略图行 + 本次参数卡 + 底部停靠条 */
+  .preview-stage {
+    --stage-reserve: 340px;
   }
 
-  .result-empty {
-    min-height: 420px;
+  .stage-empty {
+    min-height: 320px;
+  }
+
+  /* 参数格更密，本次参数卡压到两行，给大图腾高度 */
+  .meta-grid {
+    grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
   }
 
   .thumb img {
-    height: 96px;
+    width: 62px;
+    height: 86px;
   }
 }

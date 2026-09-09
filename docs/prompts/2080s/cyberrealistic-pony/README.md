@@ -20,4 +20,5 @@
 
 | 文件 | 说明 |
 |------|------|
-| [explicit.md](explicit.md) | 露骨。v1 全裸，v2 白衬衫下体仍露 |
+| [explicit.md](explicit.md) | 露骨。v11 脸红 + 半眯，v12 冰蓝 bralette，v13 宝蓝半杯蕾丝，v14 深紫三角片露乳沟，v15 天蓝三角片，v16 黑发 + 酒红挤胸，v17 堵插入，v18 三角片下移露上乳，v19 酒红浅 V 领，v20 V 形蕾丝滚边，v21 V 尖抬到上胸（会走光）|
+| [explicit-v1-v6.md](explicit-v1-v6.md) | 历史 v1–v6 |

@@ -1,6 +1,6 @@
 import type { GenerateParams, HardwareId } from "../types";
 import type { UpscaleMode } from "../upscale-types";
-import { needsHires, needsUpscaleModel } from "../upscale-presets";
+import { hiresTarget, needsHires, needsUpscaleModel } from "../upscale-presets";
 
 const ESRGAN_FACTOR = 4;
 
@@ -11,18 +11,14 @@ export function finalSize(
   scale: number,
 ): { width: number; height: number } {
   if (mode === "off") return { width, height };
-  if (mode === "hires") {
-    return {
-      width: Math.round(width * scale),
-      height: Math.round(height * scale),
-    };
-  }
   if (mode === "esrgan") {
     return { width: width * ESRGAN_FACTOR, height: height * ESRGAN_FACTOR };
   }
+  const hires = hiresTarget(width, height, scale);
+  if (mode === "hires") return hires;
   return {
-    width: Math.round(width * scale) * ESRGAN_FACTOR,
-    height: Math.round(height * scale) * ESRGAN_FACTOR,
+    width: hires.width * ESRGAN_FACTOR,
+    height: hires.height * ESRGAN_FACTOR,
   };
 }
 

@@ -5,6 +5,7 @@ import type {
   ComfyStatus,
   FaceLockSettings,
   GenerateParams,
+  GenerationMeta,
   HardwareId,
   HardwareProfile,
   HistoryItem,
@@ -36,18 +37,47 @@ export type ActionDockProps = {
   onStop: () => void;
 };
 
-export type ResultViewProps = {
+/** 左侧预览区：进度条 + 大图 + 操作条 + 一行缩略图 */
+export type PreviewStageProps = {
   imageUrl: string;
   error: string;
-  seed: number | null;
   history: HistoryItem[];
-  metaUpscaleMode: UpscaleMode | null;
+  /** 当前显示这张图的参数快照：种子、放大管线、下载文件名都从它来 */
+  meta: GenerationMeta | null;
   canUpscale: boolean;
+  busy: boolean;
+  progress: ProgressState | null;
   onPick: (item: HistoryItem) => void;
-  onReuseSeed: (seed: number) => void;
   onLoadParams: (params: GenerateParams) => void;
   onUpscaleRerun: (mode: UpscaleMode) => void;
   onZoom: (url: string) => void;
+};
+
+/** 大图下面那条矮操作条：只放放大管线（下载按钮浮在大图上，种子在参数卡里） */
+export type StageActionsProps = {
+  imageUrl: string;
+  seed: number | null;
+  metaUpscaleMode: UpscaleMode | null;
+  canUpscale: boolean;
+  onUpscaleRerun: (mode: UpscaleMode) => void;
+};
+
+/** 浮在大图右下角的下载按钮，文件名由 meta 拼出来 */
+export type StageDownloadProps = {
+  imageUrl: string;
+  meta: GenerationMeta | null;
+};
+
+export type StageStripProps = {
+  history: HistoryItem[];
+  onPick: (item: HistoryItem) => void;
+  onLoadParams: (params: GenerateParams) => void;
+};
+
+export type StageThumbProps = {
+  item: HistoryItem;
+  onPick: (item: HistoryItem) => void;
+  onLoadParams: (params: GenerateParams) => void;
 };
 
 export type PromptFormProps = {

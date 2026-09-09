@@ -36,18 +36,30 @@ export function MetaPanel({
           </div>
         ))}
       </dl>
-      <div className="row">
-        <button type="button" onClick={() => void copy(String(meta.seed), "种子")}>
+      <div className="stage-bar">
+        <button
+          type="button"
+          className="btn-sm"
+          onClick={() => void copy(String(meta.seed), "种子")}
+        >
           复制种子
         </button>
-        <button type="button" onClick={() => void copy(markdown, "配方")}>
+        <button
+          type="button"
+          className="btn-sm"
+          onClick={() => void copy(markdown, "配方")}
+        >
           复制配方
         </button>
-        <button type="button" onClick={() => onReuseSeed(meta.seed)}>
+        <button
+          type="button"
+          className="btn-sm"
+          onClick={() => onReuseSeed(meta.seed)}
+        >
           复用种子
         </button>
+        {hint ? <span className="stage-note muted small">{hint}</span> : null}
       </div>
-      {hint ? <p className="muted small">{hint}</p> : null}
     </section>
   );
 }

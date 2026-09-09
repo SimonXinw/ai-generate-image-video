@@ -78,6 +78,8 @@ export type HistoryItem = {
 export type GenerationMeta = {
   params: GenerateParams;
   seed: number;
+  /** 出图时刻，下载文件名用它，重复下载同一张图名字才不会变 */
+  at: number;
 };
 
 export type OutfitId = "clothed" | "topless" | "nude";
@@ -174,4 +176,4 @@ export type {
   UpscalePanelProps,
 } from "./upscale-types";
 
-export type { PromptFormProps, ResultViewProps } from "./ui-types";
+export type { PromptFormProps, PreviewStageProps } from "./ui-types";

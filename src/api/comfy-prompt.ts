@@ -1,4 +1,4 @@
-import type { FaceLockWorkflow, GenerateParams } from "../types";
+import type { FaceLockWorkflow, GenerateParams, HardwareId } from "../types";
 import { randomSeed } from "../lib/safety";
 import { attachUpscale } from "./comfy-prompt-upscale";
 
@@ -14,6 +14,7 @@ export function resolveSeed(params: GenerateParams): number {
 export function buildTxt2ImgPrompt(
   params: GenerateParams,
   seed: number,
+  hardwareId: HardwareId,
   faceLock?: FaceLockWorkflow,
 ): Record<string, Node> {
   const useLora = params.lora.trim().length > 0;
@@ -109,6 +110,15 @@ export function buildTxt2ImgPrompt(
     },
   };
 
-  attachUpscale(graph, params, seed, model, vae, ["4", 0], ["5", 0]);
+  attachUpscale(
+    graph,
+    params,
+    seed,
+    model,
+    vae,
+    ["4", 0],
+    ["5", 0],
+    hardwareId === "gtx1660s",
+  );
   return graph;
 }

@@ -166,14 +166,10 @@ button:disabled {
   background: #3a1820;
 }
 
-.result img {
-  width: 100%;
+/* 操作条上的矮按钮：种子 / 下载 / 同种子放大共用 */
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 0.76rem;
+  line-height: 1.5;
   border-radius: 8px;
-  display: block;
-}
-
-.result a {
-  display: inline-block;
-  margin-top: 8px;
-  color: var(--accent);
 }

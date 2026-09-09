@@ -83,7 +83,7 @@ export function useImageGeneration() {
             endAt: face.endAt,
           }
         : undefined;
-      const graph = buildTxt2ImgPrompt(params, seed, faceWorkflow);
+      const graph = buildTxt2ImgPrompt(params, seed, hwId, faceWorkflow);
       const promptId = await queuePrompt(graph, clientId);
       promptIdRef.current = promptId;
       if (controller.signal.aborted) await cancelPrompt(promptId);
@@ -99,11 +99,12 @@ export function useImageGeneration() {
         timeoutMs,
       );
       const snapshot = { ...params, seed: result.seed };
+      const at = Date.now();
       setImageUrl(result.imageUrl);
       setSeedUsed(result.seed);
-      setMeta({ params: snapshot, seed: result.seed });
+      setMeta({ params: snapshot, seed: result.seed, at });
       setHistory((prev) => [
-        { url: result.imageUrl, seed: result.seed, at: Date.now(), params: snapshot },
+        { url: result.imageUrl, seed: result.seed, at, params: snapshot },
         ...prev,
       ].slice(0, 8));
     } catch (cause) {
@@ -131,7 +132,7 @@ export function useImageGeneration() {
   const pickHistory = (item: HistoryItem) => {
     setImageUrl(item.url);
     setSeedUsed(item.seed);
-    setMeta({ params: item.params, seed: item.seed });
+    setMeta({ params: item.params, seed: item.seed, at: item.at });
   };
 
   return {
