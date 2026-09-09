@@ -32,6 +32,8 @@
 | [docs/10-cyberrealistic-pony.md](docs/10-cyberrealistic-pony.md) | **2080S 成人写实模型安装与参数** |
 | [docs/11-prompt-keywords-v9-v11.md](docs/11-prompt-keywords-v9-v11.md) | 提示词存档 v9–v11 与草稿 |
 | [docs/12-dreamshaper-1660s.md](docs/12-dreamshaper-1660s.md) | **1660S DreamShaper 8 安装与参数** |
+| [docs/14-cyber-vs-pony-prompts.md](docs/14-cyber-vs-pony-prompts.md) | **Cyber / Pony / DreamShaper 提示词差异与迁移** |
+| [docs/15-cyber-prompt-keywords.md](docs/15-cyber-prompt-keywords.md) | **Cyber 提示词存档** |
 
 ## 以后真正开跑时（摘要）
 

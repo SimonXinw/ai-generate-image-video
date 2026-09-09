@@ -5,6 +5,9 @@
 机器 A、checkpoint `ponyDiffusionV6XL_v6StartWithThisOne.safetensors`、竖图
 **768×1152**，除非某条另写。
 
+换成 CyberRealistic Pony 跑这些词时，参数和风格词要改，见
+[`14-cyber-vs-pony-prompts.md`](14-cyber-vs-pony-prompts.md)。
+
 不要用 `extreme close-up` / `strong perspective foreshortening`，脸容易出画。
 
 ## v1 · 写实、抬头可见脸、从大腿之间往上看（2026-09-09）

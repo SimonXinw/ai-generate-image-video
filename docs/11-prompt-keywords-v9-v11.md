@@ -2,6 +2,9 @@
 
 前置版本见 [`09-prompt-keywords.md`](09-prompt-keywords.md)。继续追加时按 v12 往后，不覆盖旧版。
 
+模型间差异（Cyber / Pony / DreamShaper）见
+[`14-cyber-vs-pony-prompts.md`](14-cyber-vs-pony-prompts.md)。
+
 ## v9 · 外阴掰开可见内部、裸体前置加权（2026-09-09）
 
 在 v8 上重做外阴与裸体两处。外阴改成「张开」信号：`(spread pussy:1.4)` / `(open pussy:1.3)`，逐个点名内瓣、阴道口、蒂头并各自加权；删掉所有闭合词（`innie pussy` / `closed outer lips` / `neat vertical slit`）并移进负向。裸体词提到第一段并加权，负向补全衣物类别（`lingerie` / `dress` / `stockings` / `towel` 等），否则韩系写实先验会自动把衣服补回来。部位统一叫 `pussy`，不要和 `vulva` 混用。种子复用 **1083946597**。

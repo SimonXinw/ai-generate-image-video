@@ -65,6 +65,9 @@ vendor/ComfyUI/models/checkpoints/CyberRealisticPony_V18.0_F16.safetensors
 
 ## 提示词
 
+完整存档（含种子）见 [`15-cyber-prompt-keywords.md`](15-cyber-prompt-keywords.md)。
+和 Pony 的差异见 [`14-cyber-vs-pony-prompts.md`](14-cyber-vs-pony-prompts.md)。
+
 正向继续使用 Pony score 链：
 
 ```text

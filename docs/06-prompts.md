@@ -3,6 +3,9 @@
 前端目前 **只有一套工作流**：Checkpoint + 可选 LoRA + CLIP skip + KSampler。  
 换模型类型时，**改提示词和分辨率**，不要指望代码自动识别。
 
+Cyber / Pony / DreamShaper 三者的逐项差异与迁移清单见
+[`14-cyber-vs-pony-prompts.md`](14-cyber-vs-pony-prompts.md)。
+
 ## Pony V6 XL（机器 A 主推）
 
 - CLIP skip：**2**（页面默认）
