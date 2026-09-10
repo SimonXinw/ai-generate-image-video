@@ -1,4 +1,5 @@
 import { COMFY_URL } from "../constants";
+import { comboNames } from "./comfy-combo";
 import { getJson } from "./comfy-http";
 import type { ComfyStatus } from "../types";
 
@@ -11,16 +12,16 @@ export function newClientId(): string {
 export async function pingComfy(): Promise<ComfyStatus> {
   try {
     const info = (await getJson("/object_info")) as ObjectInfo;
-    const ckpt = info.CheckpointLoaderSimple?.input?.required?.ckpt_name;
-    const lora = info.LoraLoader?.input?.required?.lora_name;
-    const checkpoints = Array.isArray(ckpt) && Array.isArray(ckpt[0]) ? (ckpt[0] as string[]) : [];
-    const loras = Array.isArray(lora) && Array.isArray(lora[0]) ? (lora[0] as string[]) : [];
+    const checkpoints = comboNames(
+      info.CheckpointLoaderSimple?.input?.required?.ckpt_name,
+    );
+    const loras = comboNames(info.LoraLoader?.input?.required?.lora_name);
     const faceLockAvailable = Boolean(
       info.IPAdapterUnifiedLoaderFaceID && info.IPAdapterFaceID,
     );
-    const up = info.UpscaleModelLoader?.input?.required?.model_name;
-    const upscaleModels =
-      Array.isArray(up) && Array.isArray(up[0]) ? (up[0] as string[]) : [];
+    const upscaleModels = comboNames(
+      info.UpscaleModelLoader?.input?.required?.model_name,
+    );
     return {
       ok: true,
       message: `已连接 ${COMFY_URL}`,

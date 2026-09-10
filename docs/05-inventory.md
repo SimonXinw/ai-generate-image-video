@@ -12,7 +12,7 @@
 日期：
 nvidia-smi 显存 / 驱动：
 Python：
-ComfyUI 路径：vendor/ComfyUI 或 COMFYUI_ROOT=
+ComfyUI 路径：vendor/ComfyUI（v0.35.0 / 8188）
 venv 能否 torch.cuda：True/False
 磁盘剩余：
 

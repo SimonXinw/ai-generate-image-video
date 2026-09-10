@@ -26,16 +26,12 @@ nvidia-smi
 
 1. `git clone` 或 `git pull` 本仓库，`npm install`。
 2. `powershell -ExecutionPolicy Bypass -File .\scripts\setup-comfyui.ps1`
-3. `powershell -ExecutionPolicy Bypass -File .\scripts\pin-comfyui-v0326.ps1`
-   （钉死 ComfyUI **v0.3.26**。最新 master 可能因 `comfy_kitchen` 起不来。）
-4. **必须先建 venv 再启动**：按 `docs/01-setup.md` 在 `vendor/ComfyUI` 建
-   Python **3.11** venv，装 `torch` cu124 和 `requirements.txt`。
-   `setup-comfyui.ps1` 只克隆仓库，不装 PyTorch。
-5. 只跑本机「必下」脚本（下一节）。模型约 2GB 或 6.5GB，可用 Clash 代理
+   （钉死 ComfyUI **v0.35.0** + torch 2.7.1+cu126。不要把这个目录升到 master。）
+3. 只跑本机「必下」脚本（下一节）。模型约 2GB 或 6.5GB，可用 Clash 代理
    `http://127.0.0.1:7897` 再执行脚本。
-6. 启动对应 `start-comfyui-*.ps1`，另开窗口 `npm run dev`。
-7. 浏览器用 `http://127.0.0.1:5173`（不要用 `localhost`，代理会白屏）。
-8. 页面顶部切到当前机器。烟测脚本见对应模型文档。
+4. 启动对应 `start-comfyui-*.ps1`，另开窗口 `scripts\start-frontend.ps1`。
+5. 浏览器用 `http://127.0.0.1:5173`（不要用 `localhost`，代理会白屏）。
+6. 页面顶部切到当前机器。烟测脚本见对应模型文档。
 
 ## 必下（只下本机这一行）
 
@@ -105,4 +101,4 @@ Hugging Face 超时：给当前终端设 `HTTP_PROXY`/`HTTPS_PROXY` 为本地 Cl
 - 未确认 GPU 就按另一台机的分辨率出图。
 - 1660S 上装全精度 Flux / 视频大模型当默认。
 - 改 `src/lib/safety.ts` 去放行未成年词。
-- `git pull` 把 `vendor/ComfyUI` 升到最新 master。
+- `git pull` 把 `vendor/ComfyUI` 升到最新 master。钉 **v0.35.0**。

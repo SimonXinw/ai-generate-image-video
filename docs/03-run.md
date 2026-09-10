@@ -32,7 +32,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\start-comfyui-1660s.ps1
 
 同一 WiFi 用手机打开 5173 **还不够**：见 `docs/07-known-gaps.md` 第 10 条。
 
-保持该窗口开着。
+保持该窗口开着。版本说明见 [`docs/21-comfyui.md`](21-comfyui.md)。
 
 ## 2. 启动本仓库前端
 

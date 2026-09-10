@@ -1,4 +1,4 @@
-# Pin ComfyUI to a Torch-2.6-compatible tag (run inside vendor/ComfyUI if needed)
+# Pin vendor/ComfyUI to v0.35.0 (torch 2.7 + cu126).
 $ErrorActionPreference = "Stop"
 $Root = Join-Path $PSScriptRoot "..\vendor\ComfyUI"
 if (-not (Test-Path (Join-Path $Root "main.py"))) {
@@ -7,9 +7,9 @@ if (-not (Test-Path (Join-Path $Root "main.py"))) {
 }
 Push-Location $Root
 try {
-  git fetch --tags
-  git checkout v0.3.26
+  git fetch --tags --depth 1 origin tag v0.35.0
+  git checkout v0.35.0
 } finally {
   Pop-Location
 }
-Write-Host "Pinned ComfyUI to v0.3.26. Start with scripts\start-comfyui-1660s.ps1" -ForegroundColor Green
+Write-Host "Pinned ComfyUI to v0.35.0." -ForegroundColor Green

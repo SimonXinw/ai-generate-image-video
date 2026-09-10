@@ -38,13 +38,13 @@
 | [docs/16-face-lock.md](docs/16-face-lock.md) | **1660S / 2080S 参考脸锁定安装与烟测** |
 | [docs/17-dreamshaper-prompt-keywords.md](docs/17-dreamshaper-prompt-keywords.md) | 已迁到 `docs/prompts/1660s/dreamshaper-8/` |
 | [docs/18-upscale.md](docs/18-upscale.md) | **高分修复 / ESRGAN 分块放大（2K·4K 文件）** |
+| [docs/21-comfyui.md](docs/21-comfyui.md) | **ComfyUI v0.35.0（8188）** |
 
 ## 以后真正开跑时（摘要）
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\setup-comfyui.ps1
-powershell -ExecutionPolicy Bypass -File .\scripts\pin-comfyui-v0326.ps1
-# 再按 docs/01-setup.md 建 venv 并装 torch（脚本不会自动装）
+# 脚本会钉 v0.35.0 并装 torch 2.7.1+cu126
 # 按 docs/13-new-machine.md 只下当前 GPU 的 checkpoint
 # 可选：安装两台机器的参考脸锁定权重与节点
 powershell -ExecutionPolicy Bypass -File .\scripts\setup-face-lock.ps1 -Hardware all
@@ -56,7 +56,8 @@ npm install
 npm run dev
 ```
 
-浏览器：`http://127.0.0.1:5173`，先选对「当前机子配置」。要 2K/4K 文件见 [`docs/18-upscale.md`](docs/18-upscale.md)。
+浏览器：`http://127.0.0.1:5173`，先选对「当前机子配置」。要 2K/4K 文件见 [`docs/18-upscale.md`](docs/18-upscale.md)。  
+ComfyUI：**v0.35.0 / 8188**，见 [`docs/21-comfyui.md`](docs/21-comfyui.md)。
 
 ## 模型方案
 

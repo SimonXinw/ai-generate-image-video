@@ -14,8 +14,8 @@
 ## 仍未做（按需再开）
 
 1. **页面档 ≠ 真 GPU**：选 2080S 不会检查你是不是插着 1660S。选错只会分辨率过大然后 OOM。
-2. **无 extra_model_paths 自动安装**：只有 example 文件。
-3. **setup-comfyui.ps1 不建 venv、不装 torch**：仍要按 `01-setup.md` 手做。可以后合成一键脚本。
+2. **共用盘 extra_model_paths**：根目录只有 example；当前权重默认在 `vendor/ComfyUI/models/`。
+3. **按 nvidia-smi 自动选 start 脚本**仍未做（venv / torch 已由 `setup-comfyui.ps1` 处理）。
 4. **Flux / CHROMA / 视频**：需要别的 loader 节点，当前 `buildTxt2ImgPrompt` 不支持。
 5. **手机访问**：Vite `host: 0.0.0.0`，但 Comfy 只听 `127.0.0.1`。**同一局域网用手机打开 5173，出图仍会失败**（图片 URL 指向电脑的 127.0.0.1）。要对手机：Comfy 改 `--listen 0.0.0.0`，且 `VITE_COMFY_URL` 改成电脑局域网 IP。这是常见坑，尚未做成开关。
 6. **电源与散热**：1660S + 长时间 SDXL lowvram 会把权重打到 64G 内存，注意虚拟内存盘符空间。

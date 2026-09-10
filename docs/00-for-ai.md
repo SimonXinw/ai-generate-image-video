@@ -6,9 +6,10 @@
 用户可能说：「按文档把环境装好 / 把模型下好 / 跑起来 / 换电脑继续」。
 按 13 号文档做，不要发明另一套目录。
 
-## 当前状态（2026-09-09）
+## 当前状态（2026-09-11）
 
-- 前端在仓库里；ComfyUI 在 `vendor/ComfyUI`（gitignore），版本钉 **v0.3.26**。
+- 前端在仓库里；ComfyUI 在 `vendor/ComfyUI`（gitignore），**v0.35.0**，端口 **8188**。
+- 说明见 `docs/21-comfyui.md`。工作流节点图不改。
 - 两台物理机：机器 A RTX 2080 Super **8GB**；机器 B GTX 1660 Super **6GB**。
 - 已授权本机必下：
   - 2080S：`download-cyberrealistic-pony.ps1`（写实）+ Pony V6 XL 直链
@@ -21,11 +22,10 @@
 
 ## 允许做
 
-1. `scripts/setup-comfyui.ps1` + `scripts/pin-comfyui-v0326.ps1`。
-2. 按 `docs/01-setup.md` 建 venv、装 PyTorch cu124 + ComfyUI 依赖。
-3. 用户要下载或换机跑通时：只跑 13 号文档里该 GPU 的脚本。
-4. 按 `docs/03-run.md` 启动对应 `start-comfyui-*.ps1` 和 `npm run dev`。
-5. 修前端以对接 `http://127.0.0.1:8188`。
+1. `scripts/setup-comfyui.ps1`（钉 v0.35.0 + torch 2.7.1+cu126）。
+2. 用户要下载或换机跑通时：只跑 13 号文档里该 GPU 的脚本。
+3. 按 `docs/03-run.md` 启动对应 `start-comfyui-*.ps1` 和 `start-frontend.ps1`。
+4. 修前端以对接 `http://127.0.0.1:8188`。不要改 `src/api/comfy-prompt*.ts` 构图。
 
 ## 禁止做
 
@@ -34,14 +34,14 @@
 - 把模型提交进 git。
 - 在 1660S 上装全精度 Flux / 视频大模型当默认。
 - 未确认 GPU 就用 2080S 分辨率去打 1660S。
-- 把 `vendor/ComfyUI` 升到最新 master。
+- 把 `vendor/ComfyUI` 升到最新 master，或再造 `ComfyUI-next` / 8189。
 
 ## 执行顺序（用户说「按文档处理」）
 
 1. 读本文件和 `docs/13-new-machine.md`。
 2. `nvidia-smi`：8G → 2080S；6G → 1660S。
-3. `docs/01-setup.md` 直到 `vendor/ComfyUI/main.py` 存在，并 pin 到 v0.3.26。
-   已验证：ComfyUI **v0.3.26** + Python 3.11 + torch 2.6.0+cu124。
+3. `docs/01-setup.md` 直到 `vendor/ComfyUI/main.py` 存在（v0.35.0）。
+   已验证：ComfyUI **v0.35.0** + Python 3.11 + torch **2.7.1+cu126**。
 4. 下载：`docs/13-new-machine.md` 必下表；细节见
    `docs/10-cyberrealistic-pony.md` / `docs/12-dreamshaper-1660s.md`。
 5. 启动：`docs/03-run.md`；1660S 也可直接 `docs/08-run-1660s.md`。
@@ -55,12 +55,13 @@ vendor/ComfyUI/
 vendor/ComfyUI/models/checkpoints/
 vendor/ComfyUI/models/loras/
 scripts/setup-comfyui.ps1
-scripts/pin-comfyui-v0326.ps1
+scripts/pin-comfyui-v0350.ps1
 scripts/download-dreamshaper.ps1
 scripts/download-cyberrealistic-pony.ps1
 scripts/download-upscale-model.ps1
 scripts/start-comfyui-2080s.ps1
 scripts/start-comfyui-1660s.ps1
+scripts/start-frontend.ps1
 ```
 
 可选：`COMFYUI_ROOT`。前端：`VITE_COMFY_URL` 默认 `http://127.0.0.1:8188`。
