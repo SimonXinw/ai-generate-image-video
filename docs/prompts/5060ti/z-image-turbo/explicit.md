@@ -1,4 +1,171 @@
-﻿# 露骨 · CyberRealistic Pony
+﻿# 露骨 · CyberRealistic Pony · v1–v6 历史
+
+默认参数见 [README.md](README.md)。现行词从 [explicit.md](explicit.md) 的 v7 起。
+规范见 [`../../README.md`](../../README.md)。
+Pony 原版 v8 在 [`../../../09-prompt-keywords.md`](../../../09-prompt-keywords.md)。
+
+## v1 · 全裸（Pony v8 迁过来，2026-09-09）
+
+只改风格词和负向「防假」组。姿势、构图、裸体、脸、腹、外阴与 Pony v8 相同。
+种子复用 **1083946597**（换模型后不会得到同一张图）。
+
+正向：
+
+```text
+score_9, score_8_up, score_7_up, rating_explicit, source_photo, 1girl, solo, raw photo, film grain, beautiful adult woman, (korean woman:1.3), east asian features, (seductive expression:1.2), sultry gaze, half-lidded eyes, glossy lips, slight smirk, high cheekbones, slim V-shaped jawline, small straight nose, (natural fair skin:1.2), healthy skin, warm rosy undertone, light natural flush, even skin tone, matching face and body skin color, subsurface scattering, k-pop idol makeup, (lying on back:1.4), (legs up:1.3), (spread legs:1.3), (holding own legs:1.4), arms under her knees, knees pulled back toward her chest, thighs wide apart, presenting, feet out of frame, (looking at viewer:1.3), (whole head inside the frame:1.3), face clearly visible, long wavy blue hair, deep phoenix-like eyes, detailed face, completely nude, perky round breasts, firm breasts, tender pink nipples, small pale pink areola, (flat toned stomach:1.2), slim waist, (vertical navel:1.2), narrow innie navel, natural skin texture, soft daylight, (fully exposed vulva:1.3), vulva at the center of the frame, front view of the vulva, puffy vulva, plump outer labia, small neat inner labia, neat vertical slit, visible clitoral hood, small pink clitoris, glistening moist labia, slightly enlarged vaginal opening, view from between the legs toward the face
+```
+
+负向：
+
+```text
+score_4, score_5, score_6, 2girls, multiple girls, duplicate, twins, cloned face, extra person, extra arms, extra legs, extra limbs, blurry, lowres, plastic skin, waxy skin, airbrushed, oversmoothed skin, blown out highlights, hdr, oversaturated, instagram filter, beauty filter, cgi, doll-like, anime, cartoon, illustration, 3d render, extra fingers, bad hands, bad anatomy, deformed, watermark, text, logo, caucasian, western facial features, deep set eyes, heavy jawline, freckles, pale face, ghostly white skin, porcelain skin, overexposed face, white makeup, powdery face, mismatched skin tone, tan, tanned skin, dark skin, olive skin, suntan, sunburn, muddy skin, yellowish skin, clothes, dressed, bikini, bra, panties, swimsuit, sagging breasts, large dark areola, brown nipples, belly fat, chubby belly, protruding belly, bloated stomach, belly rolls, love handles, outie navel, deformed vulva, uneven labia, hairy vulva, hands covering the vulva, hands between the legs, hands on the floor, propped up on hands, cropped head, head out of frame, top of head cut off, face obscured, no face, looking away, standing, sitting, kneeling, on stomach, legs closed, child, loli, shota, underage, teen
+```
+
+种子：`1083946597`
+
+## v2 · 白衬衫、下体仍露（2026-09-09）
+
+在 v1 上**只动冲突**。姿势、外阴、脸、腹都没改。
+种子复用 **1083946597**。
+
+正向：删 `completely nude`，换成
+`(white oversized shirt:1.2), unbuttoned shirt, shirt lifted, (no panties:1.3)`。
+负向：删 `clothes, dressed, bikini, bra, panties, swimsuit`，
+换成 `fully clothed, pants, jeans, shorts, covered pussy, crotch covered`。
+
+正向：
+
+```text
+score_9, score_8_up, score_7_up, rating_explicit, source_photo, 1girl, solo, raw photo, film grain, beautiful adult woman, (korean woman:1.3), east asian features, (seductive expression:1.2), sultry gaze, half-lidded eyes, glossy lips, slight smirk, high cheekbones, slim V-shaped jawline, small straight nose, (natural fair skin:1.2), healthy skin, warm rosy undertone, light natural flush, even skin tone, matching face and body skin color, subsurface scattering, k-pop idol makeup, (lying on back:1.4), (legs up:1.3), (spread legs:1.3), (holding own legs:1.4), arms under her knees, knees pulled back toward her chest, thighs wide apart, presenting, feet out of frame, (looking at viewer:1.3), (whole head inside the frame:1.3), face clearly visible, long wavy blue hair, deep phoenix-like eyes, detailed face, (white oversized shirt:1.2), unbuttoned shirt, shirt lifted, (no panties:1.3), perky round breasts, firm breasts, tender pink nipples, small pale pink areola, (flat toned stomach:1.2), slim waist, (vertical navel:1.2), narrow innie navel, natural skin texture, soft daylight, (fully exposed vulva:1.3), vulva at the center of the frame, front view of the vulva, puffy vulva, plump outer labia, small neat inner labia, neat vertical slit, visible clitoral hood, small pink clitoris, glistening moist labia, slightly enlarged vaginal opening, view from between the legs toward the face
+```
+
+负向：
+
+```text
+score_4, score_5, score_6, 2girls, multiple girls, duplicate, twins, cloned face, extra person, extra arms, extra legs, extra limbs, blurry, lowres, plastic skin, waxy skin, airbrushed, oversmoothed skin, blown out highlights, hdr, oversaturated, instagram filter, beauty filter, cgi, doll-like, anime, cartoon, illustration, 3d render, extra fingers, bad hands, bad anatomy, deformed, watermark, text, logo, caucasian, western facial features, deep set eyes, heavy jawline, freckles, pale face, ghostly white skin, porcelain skin, overexposed face, white makeup, powdery face, mismatched skin tone, tan, tanned skin, dark skin, olive skin, suntan, sunburn, muddy skin, yellowish skin, fully clothed, pants, jeans, shorts, covered pussy, crotch covered, sagging breasts, large dark areola, brown nipples, belly fat, chubby belly, protruding belly, bloated stomach, belly rolls, love handles, outie navel, deformed vulva, uneven labia, hairy vulva, hands covering the vulva, hands between the legs, hands on the floor, propped up on hands, cropped head, head out of frame, top of head cut off, face obscured, no face, looking away, standing, sitting, kneeling, on stomach, legs closed, child, loli, shota, underage, teen
+```
+
+种子：`1083946597`
+
+## v3 · 白衬衫、下体仍露、换种子（2026-09-09）已验证
+
+词与 v2 完全相同，只换种子 **1988610920**。
+
+正向：
+
+```text
+score_9, score_8_up, score_7_up, rating_explicit, source_photo, 1girl, solo, raw photo, film grain, beautiful adult woman, (korean woman:1.3), east asian features, (seductive expression:1.2), sultry gaze, half-lidded eyes, glossy lips, slight smirk, high cheekbones, slim V-shaped jawline, small straight nose, (natural fair skin:1.2), healthy skin, warm rosy undertone, light natural flush, even skin tone, matching face and body skin color, subsurface scattering, k-pop idol makeup, (lying on back:1.4), (legs up:1.3), (spread legs:1.3), (holding own legs:1.4), arms under her knees, knees pulled back toward her chest, thighs wide apart, presenting, feet out of frame, (looking at viewer:1.3), (whole head inside the frame:1.3), face clearly visible, long wavy blue hair, deep phoenix-like eyes, detailed face, (white oversized shirt:1.2), unbuttoned shirt, shirt lifted, (no panties:1.3), perky round breasts, firm breasts, tender pink nipples, small pale pink areola, (flat toned stomach:1.2), slim waist, (vertical navel:1.2), narrow innie navel, natural skin texture, soft daylight, (fully exposed vulva:1.3), vulva at the center of the frame, front view of the vulva, puffy vulva, plump outer labia, small neat inner labia, neat vertical slit, visible clitoral hood, small pink clitoris, glistening moist labia, slightly enlarged vaginal opening, view from between the legs toward the face
+```
+
+负向：
+
+```text
+score_4, score_5, score_6, 2girls, multiple girls, duplicate, twins, cloned face, extra person, extra arms, extra legs, extra limbs, blurry, lowres, plastic skin, waxy skin, airbrushed, oversmoothed skin, blown out highlights, hdr, oversaturated, instagram filter, beauty filter, cgi, doll-like, anime, cartoon, illustration, 3d render, extra fingers, bad hands, bad anatomy, deformed, watermark, text, logo, caucasian, western facial features, deep set eyes, heavy jawline, freckles, pale face, ghostly white skin, porcelain skin, overexposed face, white makeup, powdery face, mismatched skin tone, tan, tanned skin, dark skin, olive skin, suntan, sunburn, muddy skin, yellowish skin, fully clothed, pants, jeans, shorts, covered pussy, crotch covered, sagging breasts, large dark areola, brown nipples, belly fat, chubby belly, protruding belly, bloated stomach, belly rolls, love handles, outie navel, deformed vulva, uneven labia, hairy vulva, hands covering the vulva, hands between the legs, hands on the floor, propped up on hands, cropped head, head out of frame, top of head cut off, face obscured, no face, looking away, standing, sitting, kneeling, on stomach, legs closed, child, loli, shota, underage, teen
+```
+
+种子：`1988610920`
+
+## v4 · 半透明情趣内衣、乳头隔纱可见（2026-09-09）已验证
+
+修前几版「衣服既没盖住乳头、也不透」。姿势、脸、腹、外阴一律没动，只换上身那一组。
+种子复用 **1988610920**。
+
+上身失败的三个原因：
+
+1. 全段没有一个透视词。`white oversized shirt` 在 Booru 语义里就是不透光的棉质大衬衫。
+2. `unbuttoned shirt, shirt lifted` 在反向做功。字面是「解开扣子 + 掀起下摆」，
+   等于露胸，和「遮住乳头」对冲，而且紧跟 `shirt`，抢赢了。
+3. `tender pink nipples, small pale pink areola` 是**裸皮**描述。
+   要隔着纱看见得用 `covered nipples` / `nipples visible through sheer fabric`，
+   否则模型先满足乳头质感、再把布挪开。
+
+另外衣服只有 1.2，同句 `(holding own legs:1.4)`、`(fully exposed vulva:1.3)` 加
+`rating_explicit` 一起往全裸拉，所以提到 1.4；半透明在纯 `soft daylight` 下没层次，
+补一条逆光透光。
+
+正向：删 `(white oversized shirt:1.2), unbuttoned shirt, shirt lifted`
+和 `tender pink nipples, small pale pink areola`，换成
+`(sheer white lace babydoll lingerie:1.4), (see-through:1.35), (covered nipples:1.35), (nipples visible through sheer fabric:1.3), transparent mesh fabric, thin spaghetti straps, (open front:1.2)`；
+`soft daylight` 后加 `(backlight through the fabric:1.2)`。
+负向：服装组补 `opaque fabric, thick fabric, cotton shirt, oversized shirt, open shirt, unbuttoned shirt, shirt lifted, topless, bare breasts, exposed nipples, clothes pulled aside`。
+
+正向：
+
+```text
+score_9, score_8_up, score_7_up, rating_explicit, source_photo, 1girl, solo, raw photo, film grain, beautiful adult woman, (korean woman:1.3), east asian features, (seductive expression:1.2), sultry gaze, half-lidded eyes, glossy lips, slight smirk, high cheekbones, slim V-shaped jawline, small straight nose, (natural fair skin:1.2), healthy skin, warm rosy undertone, light natural flush, even skin tone, matching face and body skin color, subsurface scattering, k-pop idol makeup, (lying on back:1.4), (legs up:1.3), (spread legs:1.3), (holding own legs:1.4), arms under her knees, knees pulled back toward her chest, thighs wide apart, presenting, feet out of frame, (looking at viewer:1.3), (whole head inside the frame:1.3), face clearly visible, long wavy blue hair, deep phoenix-like eyes, detailed face, (sheer white lace babydoll lingerie:1.4), (see-through:1.35), (covered nipples:1.35), (nipples visible through sheer fabric:1.3), transparent mesh fabric, thin spaghetti straps, (open front:1.2), (no panties:1.3), perky round breasts, firm breasts, (flat toned stomach:1.2), slim waist, (vertical navel:1.2), narrow innie navel, natural skin texture, soft daylight, (backlight through the fabric:1.2), (fully exposed vulva:1.3), vulva at the center of the frame, front view of the vulva, puffy vulva, plump outer labia, small neat inner labia, neat vertical slit, visible clitoral hood, small pink clitoris, glistening moist labia, slightly enlarged vaginal opening, view from between the legs toward the face
+```
+
+负向：
+
+```text
+score_4, score_5, score_6, 2girls, multiple girls, duplicate, twins, cloned face, extra person, extra arms, extra legs, extra limbs, blurry, lowres, plastic skin, waxy skin, airbrushed, oversmoothed skin, blown out highlights, hdr, oversaturated, instagram filter, beauty filter, cgi, doll-like, anime, cartoon, illustration, 3d render, extra fingers, bad hands, bad anatomy, deformed, watermark, text, logo, caucasian, western facial features, deep set eyes, heavy jawline, freckles, pale face, ghostly white skin, porcelain skin, overexposed face, white makeup, powdery face, mismatched skin tone, tan, tanned skin, dark skin, olive skin, suntan, sunburn, muddy skin, yellowish skin, fully clothed, pants, jeans, shorts, opaque fabric, thick fabric, cotton shirt, oversized shirt, open shirt, unbuttoned shirt, shirt lifted, topless, bare breasts, exposed nipples, clothes pulled aside, covered pussy, crotch covered, sagging breasts, large dark areola, brown nipples, belly fat, chubby belly, protruding belly, bloated stomach, belly rolls, love handles, outie navel, deformed vulva, uneven labia, hairy vulva, hands covering the vulva, hands between the legs, hands on the floor, propped up on hands, cropped head, head out of frame, top of head cut off, face obscured, no face, looking away, standing, sitting, kneeling, on stomach, legs closed, child, loli, shota, underage, teen
+```
+
+种子：`1988610920`
+
+## v5 · 半透明情趣内衣、乳头隔纱可见、换种子（2026-09-09）已验证
+
+词与 v4 完全相同，只换种子 **138724103**。
+
+正向：
+
+```text
+score_9, score_8_up, score_7_up, rating_explicit, source_photo, 1girl, solo, raw photo, film grain, beautiful adult woman, (korean woman:1.3), east asian features, (seductive expression:1.2), sultry gaze, half-lidded eyes, glossy lips, slight smirk, high cheekbones, slim V-shaped jawline, small straight nose, (natural fair skin:1.2), healthy skin, warm rosy undertone, light natural flush, even skin tone, matching face and body skin color, subsurface scattering, k-pop idol makeup, (lying on back:1.4), (legs up:1.3), (spread legs:1.3), (holding own legs:1.4), arms under her knees, knees pulled back toward her chest, thighs wide apart, presenting, feet out of frame, (looking at viewer:1.3), (whole head inside the frame:1.3), face clearly visible, long wavy blue hair, deep phoenix-like eyes, detailed face, (sheer white lace babydoll lingerie:1.4), (see-through:1.35), (covered nipples:1.35), (nipples visible through sheer fabric:1.3), transparent mesh fabric, thin spaghetti straps, (open front:1.2), (no panties:1.3), perky round breasts, firm breasts, (flat toned stomach:1.2), slim waist, (vertical navel:1.2), narrow innie navel, natural skin texture, soft daylight, (backlight through the fabric:1.2), (fully exposed vulva:1.3), vulva at the center of the frame, front view of the vulva, puffy vulva, plump outer labia, small neat inner labia, neat vertical slit, visible clitoral hood, small pink clitoris, glistening moist labia, slightly enlarged vaginal opening, view from between the legs toward the face
+```
+
+负向：
+
+```text
+score_4, score_5, score_6, 2girls, multiple girls, duplicate, twins, cloned face, extra person, extra arms, extra legs, extra limbs, blurry, lowres, plastic skin, waxy skin, airbrushed, oversmoothed skin, blown out highlights, hdr, oversaturated, instagram filter, beauty filter, cgi, doll-like, anime, cartoon, illustration, 3d render, extra fingers, bad hands, bad anatomy, deformed, watermark, text, logo, caucasian, western facial features, deep set eyes, heavy jawline, freckles, pale face, ghostly white skin, porcelain skin, overexposed face, white makeup, powdery face, mismatched skin tone, tan, tanned skin, dark skin, olive skin, suntan, sunburn, muddy skin, yellowish skin, fully clothed, pants, jeans, shorts, opaque fabric, thick fabric, cotton shirt, oversized shirt, open shirt, unbuttoned shirt, shirt lifted, topless, bare breasts, exposed nipples, clothes pulled aside, covered pussy, crotch covered, sagging breasts, large dark areola, brown nipples, belly fat, chubby belly, protruding belly, bloated stomach, belly rolls, love handles, outie navel, deformed vulva, uneven labia, hairy vulva, hands covering the vulva, hands between the legs, hands on the floor, propped up on hands, cropped head, head out of frame, top of head cut off, face obscured, no face, looking away, standing, sitting, kneeling, on stomach, legs closed, child, loli, shota, underage, teen
+```
+
+种子：`138724103`
+
+## v6 · 韩系勾人脸、咬下唇（2026-09-10）已验证
+
+在 v4 上**只动脸这一组**。姿势、内衣、腹部、外阴、光照全部没改。
+种子 **1988610920**。
+
+脸部四处改动的理由：
+
+1. `slight smirk` 和咬唇互斥。smirk 是闭口坏笑，`lip biting` 是下唇被咬进去，
+   模型只能选一个口型，smirk 是更常见的 booru 标签会赢，所以必须删。
+2. `deep phoenix-like eyes` 不是 booru 词。CLIP 拆开后 `phoenix` 往鸟类 / 火焰跑，
+   给到「丹凤眼」的贡献很小，偶尔在背景蹭出羽毛。换 `upturned almond eyes`。
+3. 勾人眼神原本只有 `sultry gaze` + `half-lidded eyes`，核心词 `bedroom eyes` 缺席。
+   补睫毛、眼线、`aegyo sal`（韩系卧蚕）和 `catchlights`，眼神才活。
+4. 韩系只靠 `(korean woman:1.3)` 一个词扛。补 `korean idol face` 和
+   `soft straight eyebrows`（韩式平眉，与西式挑眉的主要区分点）。
+
+正向：删 `slight smirk` 和 `deep phoenix-like eyes`，
+`(seductive expression:1.2)` 提到 1.35，补
+`(korean idol face:1.2), (bedroom eyes:1.3), (upturned almond eyes:1.2), long eyelashes, sharp winged eyeliner, aegyo sal, soft straight eyebrows, (lip biting:1.35), (biting her own lower lip:1.3), teeth on lower lip, plump lips` 与
+`(detailed seductive eyes:1.25), glistening eyes, catchlights in the eyes, sharp focus on the face`。
+负向：`heavy jawline` 后插表情防呆组
+`round eyes, droopy eyes, wide open eyes, expressionless, blank stare, neutral expression, closed eyes, wide smile, grin, laughing, open mouth, tongue out, thin lips, smeared lipstick`。
+`teeth showing` 不能进负向，会打掉咬唇露出的牙。
+（此条从 v7 起作废：改为不露齿，牙齿一律进负向。）
+
+此构图脸只占很小一块像素，词到头了就挂 FaceDetailer / ADetailer 二次采样，
+比继续加权重有效。咬唇不出：`lip biting` 提到 1.45，或把嘴部三词挪到 `1girl, solo` 之后。
+
+正向：
+
+```text
+score_9, score_8_up, score_7_up, rating_explicit, source_photo, 1girl, solo, raw photo, film grain, beautiful adult woman, (korean woman:1.3), (korean idol face:1.2), east asian features, (seductive expression:1.35), (bedroom eyes:1.3), sultry gaze, half-lidded eyes, (upturned almond eyes:1.2), long eyelashes, sharp winged eyeliner, aegyo sal, soft straight eyebrows, (lip biting:1.35), (biting her own lower lip:1.3), teeth on lower lip, glossy lips, plump lips, high cheekbones, slim V-shaped jawline, small straight nose, (natural fair skin:1.2), healthy skin, warm rosy undertone, light natural flush, even skin tone, matching face and body skin color, subsurface scattering, k-pop idol makeup, (lying on back:1.4), (legs up:1.3), (spread legs:1.3), (holding own legs:1.4), arms under her knees, knees pulled back toward her chest, thighs wide apart, presenting, feet out of frame, (looking at viewer:1.3), (whole head inside the frame:1.3), face clearly visible, long wavy blue hair, (detailed seductive eyes:1.25), glistening eyes, catchlights in the eyes, detailed face, sharp focus on the face, (sheer white lace babydoll lingerie:1.4), (see-through:1.35), (covered nipples:1.35), (nipples visible through sheer fabric:1.3), transparent mesh fabric, thin spaghetti straps, (open front:1.2), (no panties:1.3), perky round breasts, firm breasts, (flat toned stomach:1.2), slim waist, (vertical navel:1.2), narrow innie navel, natural skin texture, soft daylight, (backlight through the fabric:1.2), (fully exposed vulva:1.3), vulva at the center of the frame, front view of the vulva, puffy vulva, plump outer labia, small neat inner labia, neat vertical slit, visible clitoral hood, small pink clitoris, glistening moist labia, slightly enlarged vaginal opening, view from between the legs toward the face
+```
+
+负向：
+
+```text
+score_4, score_5, score_6, 2girls, multiple girls, duplicate, twins, cloned face, extra person, extra arms, extra legs, extra limbs, blurry, lowres, plastic skin, waxy skin, airbrushed, oversmoothed skin, blown out highlights, hdr, oversaturated, instagram filter, beauty filter, cgi, doll-like, anime, cartoon, illustration, 3d render, extra fingers, bad hands, bad anatomy, deformed, watermark, text, logo, caucasian, western facial features, deep set eyes, heavy jawline, round eyes, droopy eyes, wide open eyes, expressionless, blank stare, neutral expression, closed eyes, wide smile, grin, laughing, open mouth, tongue out, thin lips, smeared lipstick, freckles, pale face, ghostly white skin, porcelain skin, overexposed face, white makeup, powdery face, mismatched skin tone, tan, tanned skin, dark skin, olive skin, suntan, sunburn, muddy skin, yellowish skin, fully clothed, pants, jeans, shorts, opaque fabric, thick fabric, cotton shirt, oversized shirt, open shirt, unbuttoned shirt, shirt lifted, topless, bare breasts, exposed nipples, clothes pulled aside, covered pussy, crotch covered, sagging breasts, large dark areola, brown nipples, belly fat, chubby belly, protruding belly, bloated stomach, belly rolls, love handles, outie navel, deformed vulva, uneven labia, hairy vulva, hands covering the vulva, hands between the legs, hands on the floor, propped up on hands, cropped head, head out of frame, top of head cut off, face obscured, no face, looking away, standing, sitting, kneeling, on stomach, legs closed, child, loli, shota, underage, teen
+```
+
+种子：`1988610920`
+
+
+
+# 露骨 · CyberRealistic Pony
 
 默认参数见 [README.md](README.md)。不覆盖旧版，往后追加。
 规范见 [`../../README.md`](../../README.md)。
@@ -432,13 +599,50 @@ score_4, score_5, score_6, (penis:1.5), (disembodied penis:1.5), (penetration:1.
 正向：
 
 ```text
-score_9, score_8_up, score_7_up, rating_explicit, source_photo, 1girl, (solo:1.35), (solo focus:1.2), raw photo, film grain, beautiful adult woman, (korean woman:1.3), (korean idol face:1.2), east asian features, (lewd expression:1.4), (lustful expression:1.35), (aroused expression:1.3), (enjoying the pleasure:1.25), blissful lustful look, (seductive expression:1.25), (bedroom eyes:1.35), (lustful gaze:1.3), (half-closed eyes:1.25), narrowed eyes, sultry gaze, hazy eyes, slightly furrowed brows, (looking at viewer:1.35), (upturned almond eyes:1.2), long eyelashes, sharp winged eyeliner, aegyo sal, soft straight eyebrows, (slightly biting lower lip:1.15), soft lip bite, (closed mouth:1.1), (glossy lips:1.2), plump lips, wet lips, (flushed face:1.35), (flushed cheeks:1.3), blush across the nose, pink ears, aroused flush, high cheekbones, slim tapered jawline, small straight nose, (natural fair skin:1.2), healthy skin, warm rosy undertone, even skin tone, matching face and body skin color, subsurface scattering, k-pop idol makeup, (lying on back:1.4), (legs up:1.3), (spread legs:1.3), (holding own legs:1.4), arms under her knees, knees pulled back toward her chest, thighs wide apart, feet out of frame, (whole head inside the frame:1.3), face clearly visible, (long wavy jet black hair:1.3), glossy black hair, (detailed seductive eyes:1.25), glistening eyes, catchlights in the eyes, detailed face, sharp focus on the face, (sheer wine red mesh top:1.45), (v-neck:1.45), (V-shaped dark red lace trim:1.45), (high V apex on the upper chest:1.45), (V apex above the breasts:1.45), (V apex between the collarbones and the breasts:1.4), (shallow short V:1.4), wide V opening, small V notch high on the chest, straight diagonal lace edges forming a V, angular V outline on the chest, (mesh continuing well below the V apex:1.4), (wide span of mesh between the V apex and the bottom hem:1.35), (bottom hem under the breasts:1.3), long mesh front panel, (continuous sheer mesh panel under the V trim:1.4), (mesh covering the entire chest:1.35), (nipples covered by the mesh:1.5), (covered nipples:1.4), (nipples visible through the mesh:1.35), (skin visible through the mesh:1.4), (see-through:1.45), (transparent fine mesh:1.4), thin shoulder straps, gossamer mesh, open weave, single layer of thin fabric, (damp sheer fabric:1.2), fabric clinging to the skin, (cleavage visible through the mesh:1.35), (deep cleavage:1.4), (breasts pressed together:1.35), (lifted from below:1.15), (cleavage line continuing down between the breasts:1.3), inner lower curves of the breasts touching, (squeezed between the arms:1.25), (upper arms pressing the breasts inward:1.25), (full round breasts:1.3), heavy soft breasts, (wine red lace choker:1.2), (bare midriff:1.3), (exposed navel:1.25), (no panties:1.3), (flat toned stomach:1.2), slim waist, (vertical navel:1.2), narrow innie navel, natural skin texture, soft daylight, (backlight through the fabric:1.4), (light passing through the fabric:1.3), strong rim light through the mesh, (fully exposed vulva:1.3), vulva at the center of the frame, front view of the vulva, puffy vulva, plump outer labia, small neat inner labia, neat vertical slit, visible clitoral hood, small pink clitoris, glistening moist labia, (low camera angle at crotch level:1.2), looking up along her body toward her face
+1girl, (solo:1.35), (solo focus:1.2), raw photo, film grain, beautiful adult woman, (korean woman:1.3), (korean idol face:1.2), east asian features, (lewd expression:1.4), (lustful expression:1.35), (aroused expression:1.3), (enjoying the pleasure:1.25), blissful lustful look, (seductive expression:1.25), (bedroom eyes:1.35), (lustful gaze:1.3), (half-closed eyes:1.25), narrowed eyes, sultry gaze, hazy eyes, slightly furrowed brows, (looking at viewer:1.35), (upturned almond eyes:1.2), long eyelashes, sharp winged eyeliner, aegyo sal, soft straight eyebrows, (slightly biting lower lip:1.15), soft lip bite, (closed mouth:1.1), (glossy lips:1.2), plump lips, wet lips, (flushed face:1.35), (flushed cheeks:1.3), blush across the nose, pink ears, aroused flush, high cheekbones, slim tapered jawline, small straight nose, (natural fair skin:1.2), healthy skin, warm rosy undertone, even skin tone, matching face and body skin color, subsurface scattering, k-pop idol makeup, (lying on back:1.4), (legs up:1.3), (spread legs:1.3), (holding own legs:1.4), arms under her knees, knees pulled back toward her chest, thighs wide apart, feet out of frame, (whole head inside the frame:1.3), face clearly visible, (long wavy jet black hair:1.3), glossy black hair, (detailed seductive eyes:1.25), glistening eyes, catchlights in the eyes, detailed face, sharp focus on the face, (sheer wine red mesh top:1.45), (v-neck:1.45), (V-shaped dark red lace trim:1.45), (high V apex on the upper chest:1.45), (V apex above the breasts:1.45), (V apex between the collarbones and the breasts:1.4), (shallow short V:1.4), wide V opening, small V notch high on the chest, straight diagonal lace edges forming a V, angular V outline on the chest, (mesh continuing well below the V apex:1.4), (wide span of mesh between the V apex and the bottom hem:1.35), (bottom hem under the breasts:1.3), long mesh front panel, (continuous sheer mesh panel under the V trim:1.4), (mesh covering the entire chest:1.35), (nipples covered by the mesh:1.5), (covered nipples:1.4), (nipples visible through the mesh:1.35), (skin visible through the mesh:1.4), (see-through:1.45), (transparent fine mesh:1.4), thin shoulder straps, gossamer mesh, open weave, single layer of thin fabric, (damp sheer fabric:1.2), fabric clinging to the skin, (cleavage visible through the mesh:1.35), (deep cleavage:1.4), (breasts pressed together:1.35), (lifted from below:1.15), (cleavage line continuing down between the breasts:1.3), inner lower curves of the breasts touching, (squeezed between the arms:1.25), (upper arms pressing the breasts inward:1.25), (full round breasts:1.3), heavy soft breasts, (wine red lace choker:1.2), (bare midriff:1.3), (exposed navel:1.25), (no panties:1.3), (flat toned stomach:1.2), slim waist, (vertical navel:1.2), narrow innie navel, natural skin texture, soft daylight, (backlight through the fabric:1.4), (light passing through the fabric:1.3), strong rim light through the mesh, (fully exposed vulva:1.3), vulva at the center of the frame, front view of the vulva, puffy vulva, plump outer labia, small neat inner labia, neat vertical slit, visible clitoral hood, small pink clitoris, glistening moist labia, (low camera angle at crotch level:1.2), looking up along her body toward her face
 ```
 
-负向：
-
-```text
-score_4, score_5, score_6, (penis:1.5), (disembodied penis:1.5), (penetration:1.5), (vaginal penetration:1.5), (insertion:1.45), (object insertion:1.4), (dildo:1.4), (sex toy:1.4), vibrator, (sex:1.4), (hetero:1.4), (1boy:1.4), male, man, testicles, (disembodied hand:1.4), another person's hand, second person, fingering, fingers inside, cum, semen, pov, male pov, first person view, 2girls, multiple girls, duplicate, twins, cloned face, extra person, extra arms, extra legs, extra limbs, blurry, lowres, plastic skin, waxy skin, airbrushed, oversmoothed skin, blown out highlights, hdr, oversaturated, instagram filter, beauty filter, cgi, doll-like, anime, cartoon, illustration, 3d render, extra fingers, bad hands, bad anatomy, deformed, watermark, text, logo, blue hair, colored hair, dyed hair, caucasian, western facial features, deep set eyes, heavy jawline, round eyes, droopy eyes, wide open eyes, sleepy, drowsy, tired eyes, squinting, dead eyes, unfocused eyes, expressionless, blank stare, neutral expression, closed eyes, innocent expression, cute smile, cheerful, shy expression, pure look, soft smile, wide smile, grin, laughing, open mouth, tongue out, ahegao, rolling eyes, (teeth:1.4), (visible teeth:1.35), (buck teeth:1.4), rabbit teeth, two large front teeth, toothy smile, crooked teeth, gap teeth, yellow teeth, heavy lip biting, chewing lip, extreme lip bite, thin lips, smeared lipstick, freckles, pale face, pale cheeks, unblushed, ashen face, ghostly white skin, porcelain skin, overexposed face, white makeup, powdery face, mismatched skin tone, tan, tanned skin, dark skin, olive skin, suntan, sunburn, muddy skin, yellowish skin, fully clothed, pants, jeans, shorts, bra, molded cups, structured cups, underwire, padded bra, thick padding, foam cup, lined bra, opaque cups, (oval neckline:1.45), (u-shaped neckline:1.45), (round neckline:1.45), curved neckline, rounded neckline, scoop neck, scoop neckline, keyhole neckline, boat neck, straight neckline, wide neckline, halter neck, (plunging neckline:1.45), (deep plunge:1.45), (low V apex:1.45), (V apex inside the cleavage:1.45), (V apex between the breasts:1.4), V apex at nipple level, V reaching the nipples, V reaching the sternum, V below the breasts, neckline below the breasts, neckline reaching the navel, long V opening, deep V opening, V apex close to the hem, V trim touching the hem, (short hem:1.35), hem above the nipples, cropped right below the neckline, narrow strip of fabric, thin band of fabric, only a lace edge, high neckline, bandeau, tube top, (bare skin gap at the neckline:1.3), open front, split front, opaque fabric, thick fabric, heavy fabric, satin fabric, cotton top, jersey fabric, knit fabric, tank top, t-shirt, cotton shirt, oversized shirt, open shirt, unbuttoned shirt, shirt lifted, babydoll, nightgown, chemise, camisole, slip dress, bodysuit, teddy lingerie, long hem, skirt, swimsuit, beach, fabric over the stomach, covered navel, covered stomach, semi-opaque fabric, frosted fabric, milky fabric, matte fabric, dense mesh, tight weave, thick weave, opaque netting, fabric hiding the skin, latex, vinyl, shiny plastic, oiled fabric, sports bra, cupless bra, open cup bra, (nipple slip:1.5), (exposed nipples:1.5), nipples outside the fabric, nipples above the neckline, bare nipples, uncovered nipples, areola exposed, topless, bare breasts, clothes pulled aside, covered pussy, crotch covered, (breasts far apart:1.35), (breasts spreading apart at the bottom:1.3), gap below the cleavage, breasts sliding outward, wide gap between the breasts, flat chest, small breasts, perky separated breasts, breasts falling to the sides, sagging breasts, fake round implants, large dark areola, brown nipples, belly fat, chubby belly, protruding belly, bloated stomach, belly rolls, love handles, outie navel, deformed vulva, uneven labia, hairy vulva, hands covering the vulva, hands between the legs, hands on the floor, propped up on hands, cropped head, head out of frame, top of head cut off, face obscured, no face, looking away, standing, sitting, kneeling, on stomach, legs closed, child, loli, shota, underage, teen
-```
 
 种子：`387404204`
+
+v22
+正向
+1girl, (solo:1.35), (solo focus:1.2), raw photo, film grain, beautiful adult woman, (korean woman:1.3), east asian features, (lewd expression:1.4), (lustful expression:1.35), (aroused expression:1.3), (enjoying the pleasure:1.25), blissful lustful look, (seductive expression:1.25), (bedroom eyes:1.35), (lustful gaze:1.3), (half-closed eyes:1.25), narrowed eyes, sultry gaze, hazy eyes, slightly furrowed brows, (looking at viewer:1.35), (flushed face:1.35), (flushed cheeks:1.3), blush across the nose, pink ears, aroused flush, (natural fair skin:1.2), healthy skin, warm rosy undertone, even skin tone, matching face and body skin color, subsurface scattering, k-pop idol makeup, (lying on back:1.4), (legs up:1.3), (spread legs:1.3), (holding own legs:1.4), arms under her knees, knees pulled back toward her chest, thighs wide apart, feet out of frame, (whole head inside the frame:1.3), face clearly visible, (long wavy jet black hair:1.3), glossy black hair, (detailed seductive eyes:1.25), glistening eyes, catchlights in the eyes, detailed face, sharp focus on the face, (tiny wine red sheer lace pasties covering only the nipples:1.5), (nipple pasties:1.4), (only nipples covered:1.45), (rest of breasts fully exposed:1.35), (sheer wine red mesh pasties:1.3), (wine red lace choker:1.2), (deep cleavage:1.4), (breasts pressed together:1.35), (lifted from below:1.15), (cleavage line continuing down between the breasts:1.3), inner lower curves of the breasts touching, (squeezed between the arms:1.25), (upper arms pressing the breasts inward:1.25), (full round breasts:1.3), heavy soft breasts, (bare midriff:1.3), (exposed navel:1.25), (bottomless:1.45), (completely nude from the waist down:1.4), (no panties:1.4), (no clothing on lower body:1.4), (flat toned stomach:1.2), slim waist, (vertical navel:1.2), narrow innie navel, natural skin texture, soft daylight, (backlight:1.3), (fully exposed beautiful plump pink pussy:1.45), pussy centered in the frame, front view, thick puffy plump outer labia, soft delicate pink inner labia, glistening wet pink folds, pretty juicy vertical slit, aroused swollen pink pussy, (low camera angle at crotch level:1.2), looking up along her body toward her face
+
+1040792420323383
+
+v23
+1girl, (solo:1.35), (solo focus:1.2), raw photo, film grain, beautiful adult woman, (korean woman:1.3), east asian features, (lewd expression:1.4), (lustful expression:1.35), (aroused expression:1.3), (enjoying the pleasure:1.25), blissful lustful look, (seductive expression:1.25), (bedroom eyes:1.35), (lustful gaze:1.3), (half-closed eyes:1.25), narrowed eyes, sultry gaze, hazy eyes, slightly furrowed brows, (looking at viewer:1.35), (flushed face:1.35), (flushed cheeks:1.3), blush across the nose, pink ears, aroused flush, (pale porcelain white skin:1.35), (fair white skin:1.3), healthy skin, even skin tone, matching face and body skin color, subsurface scattering, k-pop idol makeup, (lying on back:1.4), (legs up:1.3), (spread legs:1.3), (holding own legs:1.4), arms under her knees, knees pulled back toward her chest, thighs wide apart, feet out of frame, (whole head inside the frame:1.3), face clearly visible, (long wavy blue hair:1.35), glossy blue hair, (detailed seductive eyes:1.25), glistening eyes, catchlights in the eyes, detailed face, sharp focus on the face, (tiny black sheer lace pasties covering only the nipples:1.5), (black nipple pasties:1.4), (only nipples covered:1.45), (rest of breasts fully exposed:1.35), (sheer black mesh pasties:1.3), (black lace choker:1.2), (deep cleavage:1.4), (breasts pressed together:1.35), (lifted from below:1.15), (cleavage line continuing down between the breasts:1.3), inner lower curves of the breasts touching, (squeezed between the arms:1.25), (upper arms pressing the breasts inward:1.25), (full round breasts:1.3), heavy soft breasts, (bare midriff:1.3), (exposed navel:1.25), (bottomless:1.45), (completely nude from the waist down:1.4), (no panties:1.4), (no clothing on lower body:1.4), (flat toned stomach:1.2), slim waist, (vertical navel:1.2), narrow innie navel, natural skin texture, soft daylight, (backlight:1.3), (fully exposed beautiful plump pink pussy:1.45), pussy centered in the frame, front view, thick puffy plump outer labia, soft delicate pink inner labia, glistening wet pink folds, pretty juicy vertical slit, aroused swollen pink pussy, (low camera angle at crotch level:1.2), looking up along her body toward her face
+
+
+v24
+raw photo, film grain, 1girl, solo, beautiful adult korean woman, east asian features, long wavy jet black hair, glossy black hair, natural fair skin, warm rosy undertone, k-pop idol makeup, detailed face,
+
+(lewd aroused expression:1.3), bedroom eyes, half-closed eyes, looking at viewer, flushed face, flushed cheeks, pink ears,
+
+(lying on back:1.35), (legs up and spread:1.3), (holding own legs:1.3), arms under knees, knees pulled toward chest, thighs wide apart, feet out of frame, whole head inside the frame,
+
+(tiny wine red sheer lace pasties covering only the nipples:1.45), only nipples covered, rest of breasts fully exposed, wine red lace choker, deep cleavage, breasts pressed together by arms, full round heavy soft breasts,
+
+(bottomless:1.4), completely nude from the waist down, no clothing on lower body,
+(fully exposed beautiful plump pink pussy:1.4), pussy centered in the frame, front view, thick puffy plump outer labia, soft delicate pink inner labia, glistening wet pink folds, pretty juicy vertical slit, aroused swollen pink pussy,
+
+(low camera angle at crotch level:1.25), looking up along her body toward her face, soft daylight, backlight, sharp focus on face and pussy
+
+v25
+
+zhongzi
+893742259129125
+女全裸，躺床上，面对镜头，双手伸到阴道口两边，双手分别一左一右用食指压在阴道的两边的阴掰上，用力掰开，掰开阴道口，把阴道口掰成接近圆形，里面的都看得很清楚，让阴道口，阴蒂，阴掰，阴道，阴道里面清晰可见，是粉嫩的颜色。张开大腿，阴道对着镜头，露出清晰可见的淫荡的表情，完美勾引人的丰满身材，饱满圆润坚挺的乳房，白皙的皮肤。
+
+v26
+masterpiece, best quality, ultra detailed, photorealistic, 8k,
+beautiful young woman lying on soft bed, only wearing semi-transparent black lace panties, completely nude otherwise,
+facing the camera, legs spread wide open, knees bent,
+one hand reaching deep inside her panties, fingers spreading her pussy lips underneath the sheer fabric into a near circular shape,
+semi-transparent black lace panties tightly clinging to her body, clearly outlining and revealing the pink shape of her pussy through the fabric,
+soft seductive expression with a pure yet lustful gaze,
+perfect hourglass body, large full firm breasts, hard nipples, fair smooth skin,
+soft natural lighting, highly detailed skin texture, delicate lace texture
+
+759571335713899
